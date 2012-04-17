@@ -9,7 +9,7 @@ public class Shop extends Area {
 	private List<Stackable> equips;
 	private List<Stackable> consumables;
 
-	public Shop(String name, Map<Area, Dir> areas, List<Stackable> consumables, List<Stackable> equips){
+	public Shop(String name, Map<Dir, Area> areas, List<Stackable> consumables, List<Stackable> equips){
 		super(name, areas);
 		this.equips = equips;
 		this.consumables = consumables;

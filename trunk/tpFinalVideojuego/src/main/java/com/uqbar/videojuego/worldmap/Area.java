@@ -5,9 +5,9 @@ import java.util.Map;
 
 public abstract class Area {
 	private String name;
-	private Map<Area, Dir> areas = new HashMap<Area, Dir>();
+	private Map<Dir, Area> areas = new HashMap<Dir, Area>();
 	
-	protected Area(String name, Map<Area, Dir> areas){
+	protected Area(String name, Map<Dir, Area> areas){
 		this.name = name;
 		this.areas = areas;
 	}
@@ -18,12 +18,15 @@ public abstract class Area {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public Map<Area, Dir> getAreas() {
+	public Map<Dir, Area> getAreas() {
 		return areas;
 	}
-	public void setAreas(Map<Area, Dir> areas) {
+	public void setAreas(Map<Dir, Area> areas) {
 		this.areas = areas;
 	} 
 	
+	public Area getArea(Dir dir){
+		return this.getAreas().get(dir);
+	}
 	
 }
