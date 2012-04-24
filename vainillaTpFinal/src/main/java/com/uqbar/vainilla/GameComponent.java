@@ -168,6 +168,11 @@ public class GameComponent<SceneType extends GameScene> {
 
 	public void setZ(int z) {
 		this.z = z;
+		GameScene scene = this.getScene();
+		if (scene != null){
+			scene.removeComponent(this);
+			scene.addComponent(this);
+		}
 	}
 
 	public boolean isDestroyPending() {
