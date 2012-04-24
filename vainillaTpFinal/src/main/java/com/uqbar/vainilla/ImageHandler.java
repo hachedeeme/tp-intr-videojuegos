@@ -5,6 +5,7 @@ import java.util.Map;
 
 import com.uqbar.vainilla.appearances.Animation;
 import com.uqbar.vainilla.appearances.Appearance;
+import com.uqbar.vainilla.appearances.LimitedAnimation;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class ImageHandler {
@@ -21,18 +22,22 @@ public class ImageHandler {
 		}
 	}
 	
-	public void addAnimation(double time, double scale, int imgWidth, 
+	public Animation addAnimation(double time, double scale, int imgWidth, 
 			int imgHeight, int spriteWidth, int spriteHeight, String name){
-		this.images.put(name, AnimationGenerator.createAnimation(time, scale, ("/images/" + name + ".png"), imgWidth, imgHeight, spriteWidth, spriteHeight));
+		Animation animation = AnimationGenerator.createAnimation(time, scale, ("/images/" + name + ".png"), imgWidth, imgHeight, spriteWidth, spriteHeight);
+		this.images.put(name, animation);
+		return animation;
 	}
 	
 	public void addAnimation(String name, Animation animation){
 		this.images.put(name, animation);
 	}
-
-	public void addLimitedAnimation(double time, double scale, int imgWidth, 
+	
+	public LimitedAnimation addLimitedAnimation(double time, double scale, int imgWidth, 
 			int imgHeight, int spriteWidth, int spriteHeight, String name){
-		this.images.put(name, AnimationGenerator.createLimitedAnimation(time, scale, ("/images/" + name + ".png"), imgWidth, imgHeight, spriteWidth, spriteHeight));
+		LimitedAnimation animation = AnimationGenerator.createLimitedAnimation(time, scale, ("/images/" + name + ".png"), imgWidth, imgHeight, spriteWidth, spriteHeight);
+		this.images.put(name, animation);
+		return animation;
 	}
 	
 	public Sprite getSprite(String name){
