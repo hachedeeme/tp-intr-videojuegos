@@ -31,6 +31,9 @@ public class BattleScene extends VideojuegoScene {
 		if (this.map.getY() < this.tileSize){
 			this.map.setY(this.tileSize);
 		}
+		if (this.map.getX() < 0){
+			this.map.setX(0);
+		}
 		this.addComponent(this.map);
 	}
 
