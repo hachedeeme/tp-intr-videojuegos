@@ -1,11 +1,8 @@
 package unq.videojuego.components;
 
-import java.awt.Color;
-
 import unq.videojuego.scenes.BattleScene;
 
 import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class BattleComponent extends GameComponent<BattleScene> {
