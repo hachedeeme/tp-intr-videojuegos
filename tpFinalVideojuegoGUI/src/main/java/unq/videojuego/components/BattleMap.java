@@ -19,9 +19,9 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.setZ(-2);
 		this.tileSize = tileSize;
 		this.width = width;
+		this.height = height;
 		this.grid = new HashMap<Integer, Map<Integer,BattleComponent>>();
 		
-		this.height = height;
 		for (int i = 0; i < width; i++) {
 			this.grid.put(i, new HashMap<Integer, BattleComponent>());
 		}
@@ -48,25 +48,47 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void addBattleComponent(BattleComponent comp){
 		int x = comp.getMapX();
 		int y = comp.getMapY();
-		if (! this.grid.get(x).containsKey(y)){
-			this.getScene().addComponent(comp);
-			this.grid.get(x).put(y, comp);
+		if (this.grid.containsKey(x)){
+			if (! this.grid.get(x).containsKey(y)){
+				this.getScene().addComponent(comp);
+			}
 		}
 	}
 	
+	public void moveGridComponent(BattleComponent comp, int x, int y){
+		int oldX = comp.getMapX();
+		int oldY = comp.getMapY();
+		this.grid.get(oldX).remove(oldY);
+		this.grid.get(x).put(y, comp);
+	}
+	
 	public void setComponentCoord(BattleComponent comp, int x, int y) {
-		double xStart = this.getMapXStart() - comp.getAppearance().getWidth()/2;
-		double yStart = this.getMapYStart() + this.tileSize/2 - comp.getAppearance().getHeight();
+		this.setMapCoords(comp, x, y);
 		
-		double xPos = (x * this.tileSize/2) - (y * this.tileSize/2);
-		double yPos = (y * this.tileSize/4) + (x * this.tileSize/4);
-		
-		comp.setX(xStart + xPos);
-		comp.setY(yStart + yPos);
+		this.moveGridComponent(comp, x, y);
 		
 		comp.setMapX(x);
 		comp.setMapY(y);
 	}
+
+	public void setMapCoords(BattleComponent comp, int x, int y) {
+		comp.setX(this.getRealXCoord(comp, x, y));
+		comp.setY(this.getRealYCoord(comp, x, y));
+	}
+	
+	public double getRealXCoord(BattleComponent comp, int x, int y) {
+		double xStart = this.getMapXStart() - comp.getAppearance().getWidth()/2;
+		double xPos = (x * this.tileSize/2) - (y * this.tileSize/2);
+		return xStart + xPos;
+	}
+	
+	public double getRealYCoord(BattleComponent comp, int x, int y) {
+		double yStart = this.getMapYStart() + this.tileSize/2 - comp.getAppearance().getHeight();
+		double yPos = (y * this.tileSize/4) + (x * this.tileSize/4);
+		return yStart + yPos;
+	}
+	
+	
 
 	private double getMapXStart() {
 		return this.getScene().getWidth() * this.tileSize/2;

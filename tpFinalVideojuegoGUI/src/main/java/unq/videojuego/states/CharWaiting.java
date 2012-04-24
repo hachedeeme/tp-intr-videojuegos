@@ -1,6 +1,7 @@
 package unq.videojuego.states;
 
 import unq.videojuego.components.BattleCharacter;
+import unq.videojuego.enums.CharDir;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
@@ -16,19 +17,32 @@ public class CharWaiting extends State {
 		BattleCharacter bc = (BattleCharacter) comp;
 		int newX = bc.getMapX();
 		int newY = bc.getMapY();
+		boolean moved = false;
+		CharDir newCharDir = bc.getDir();
 		if (deltaState.isKeyPressed(Key.UP)) {
 			newY--;
-		}
-		if (deltaState.isKeyPressed(Key.RIGHT)) {
+			moved = true;
+			newCharDir = CharDir.Up;
+		} else if (deltaState.isKeyPressed(Key.RIGHT)) {
 			newX++;
-		}
-		if (deltaState.isKeyPressed(Key.DOWN)) {
+			moved = true;
+			newCharDir = CharDir.Right;
+		} else if (deltaState.isKeyPressed(Key.DOWN)) {
 			newY++;
-		}
-		if (deltaState.isKeyPressed(Key.LEFT)) {
+			moved = true;
+			newCharDir = CharDir.Down;
+		} else if (deltaState.isKeyPressed(Key.LEFT)) {
 			newX--;
+			moved = true;
+			newCharDir = CharDir.Left;
 		}
-		bc.getScene().getMap().setComponentCoord(bc, newX, newY);
+		if (moved){
+			int tilesize = bc.getScene().getTileSize();
+			double newRealX = bc.getScene().getMap().getRealXCoord(bc, newX, newY);
+			double newRealY = bc.getScene().getMap().getRealYCoord(bc, newX, newY);
+			bc.setDir(newCharDir);
+			bc.setState(new CharWalking(tilesize, bc.getX(), bc.getY(), newRealX, newRealY, newX, newY));
+		}
 	}
 
 }

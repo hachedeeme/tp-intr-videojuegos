@@ -35,18 +35,39 @@ public class BattleCharacter extends BattleComponent {
 		Map<String, Animation> downMap = new HashMap<String, Animation>();
 		Map<String, Animation> leftMap = new HashMap<String, Animation>();
 		
-		// Animaciones mirando hacia Arriba
-
+		// Animaciones mirando hacia abajo
+		String waitingDownName = this.name + "Waiting" + CharDir.Down.name();
+		Animation waitingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
+		
+		String walkingDownName = this.name + "Walking" + CharDir.Down.name();
+		Animation walkingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
+		
 		
 		// Animaciones mirando hacia la Derecha
+		String waitingRightName = this.name + "Waiting" + CharDir.Right.name();
+		this.getScene().imageH.addAnimation(waitingRightName, waitingDown.flip());
 		
-		
-		// Animaciones mirando hacia abajo
-		this.getScene().imageH.addAnimation(0.15, 1, 600, 120, 100, 120, (this.name + "Waiting" + CharDir.Down.name()));
-		this.getScene().imageH.addAnimation(0.15, 1, 600, 120, 100, 120, (this.name + "Walking" + CharDir.Down.name()));
+		String walkingRightName = this.name + "Walking" + CharDir.Right.name();
+		this.getScene().imageH.addAnimation(walkingRightName, walkingDown.flip());
 		
 		
 		// Animaciones mirando hacia la Izquierda
+		String waitingLeftName = this.name + "Waiting" + CharDir.Left.name();
+		Animation waitingLeft = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingLeftName); 
+		
+		String walkingLeftName = this.name + "Walking" + CharDir.Left.name();
+		Animation walkingLeft = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingLeftName); 
+		
+		
+		// Animaciones mirando hacia Arriba
+		String waitingUpName = this.name + "Waiting" + CharDir.Up.name();
+		this.getScene().imageH.addAnimation(waitingUpName, waitingLeft.flip());
+		
+		String walkingUpName = this.name + "Walking" + CharDir.Up.name();
+		this.getScene().imageH.addAnimation(walkingUpName, walkingLeft.flip());
+		
+		
+		
 
 		
 		charImages.put(CharDir.Up, upMap);
@@ -58,7 +79,7 @@ public class BattleCharacter extends BattleComponent {
 	}
 
 	public void updateAppearance() {
-		this.setAppearance(this.getScene().imageH.getAnimation(this.name + this.state.getName() + CharDir.Down.name()));
+		this.setAppearance(this.getScene().imageH.getAnimation(this.name + this.state.getName() + this.dir.name()));
 	}
 
 	public CharDir getDir() {
@@ -69,6 +90,16 @@ public class BattleCharacter extends BattleComponent {
 		this.dir = dir;
 	}
 
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+		this.updateAppearance();
+	}
+
+	
 	
 	
 	
