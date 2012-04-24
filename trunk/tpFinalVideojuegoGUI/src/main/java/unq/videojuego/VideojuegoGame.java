@@ -37,7 +37,7 @@ public class VideojuegoGame extends Game {
 		BattleMap bm1 = new BattleMap("/images/battleMap3.png", this.tileSize, 8, 8);
 		BattleScene battleScene = new BattleScene(this.tileSize, 11, 8);
 		battleScene.setMap(bm1);
-		battleScene.addBattleComponent(new BattleComponent(), 0, 0);
+		battleScene.addBattleComponent(new BattleComponent(), 5, 3);
 		this.setCurrentScene(battleScene);
 	}
 	

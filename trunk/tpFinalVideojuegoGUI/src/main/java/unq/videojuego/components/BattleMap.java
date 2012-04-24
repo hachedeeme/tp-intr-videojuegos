@@ -49,19 +49,19 @@ public class BattleMap extends GameComponent<BattleScene> {
 			this.grid.get(x).put(y, comp);
 			
 			// Cambiar por la formula para posicionar X e Y
-			comp.setX(this.translateXPos(x)); 
-			//comp.setX(x); 
-			//comp.setY(y);
-			comp.setY(this.translateYPos(y));
+			this.setComponentCoord(comp, x, y);
 		}
 	}
 	
-	public double translateXPos(int x){
-		return this.getMapXStart();
-	}
-	
-	public double translateYPos(int y){
-		return this.getMapYStart();
+	private void setComponentCoord(BattleComponent comp, int x, int y) {
+		double xStart = this.getMapXStart();
+		double yStart = this.getMapYStart();
+		
+		double xPos = (x * this.tileSize/2) - (y * this.tileSize/2);
+		double yPos = (y * this.tileSize/4) + (x * this.tileSize/4);
+		
+		comp.setX(xStart + xPos);
+		comp.setY(yStart + yPos);
 	}
 
 	private double getMapXStart() {
