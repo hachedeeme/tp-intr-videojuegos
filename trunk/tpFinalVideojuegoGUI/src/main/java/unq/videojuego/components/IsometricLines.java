@@ -13,10 +13,10 @@ public class IsometricLines extends GameComponent<BattleScene> {
 	private Appearance otherAppearance;
 	private Appearance curAppearance;
 	
-	public IsometricLines() {
-		this.setZ(1);
+	public IsometricLines(Sprite image) {
+		this.setZ(-1);
 		this.otherAppearance = new Invisible();
-		this.curAppearance = Sprite.fromImage("/images/isometricLines2.png");
+		this.curAppearance = image;
 		this.setAppearance(this.curAppearance);
 	}
 	

@@ -2,12 +2,15 @@ package unq.videojuego;
 
 import java.awt.Dimension;
 
-import unq.videojuego.components.BattleComponent;
+import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
+import unq.videojuego.components.Obstacle;
 import unq.videojuego.scenes.BattleScene;
 
+import com.uqbar.vainilla.AnimationGenerator;
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.ImageHandler;
 
 public class VideojuegoGame extends Game {
 	private int tileSize;
@@ -26,6 +29,9 @@ public class VideojuegoGame extends Game {
 
 	@Override
 	protected void initializeResources() {
+		ImageHandler imageH = ImageHandler.INSTANCE;
+		imageH.addSprites("BattleMap1", "IsometricLines", "Tree");
+		//imageH.addAnimation(time, scale, imgWidth, imgHeight, spriteWidth, spriteHeight, name);
 	}
 
 	@Override
@@ -36,13 +42,15 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		BattleMap bm1 = new BattleMap("/images/battleMap2.png", this.tileSize, 9, 9);
+		ImageHandler imageH = ImageHandler.INSTANCE;
+		
+		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 9, 11);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
-		battleScene.addBattleComponent(new BattleComponent(), 3, 0);
-		battleScene.addBattleComponent(new BattleComponent(), 4, 0);
-		battleScene.addBattleComponent(new BattleComponent(), 5, 0);
-		battleScene.addBattleComponent(new BattleComponent(), 6, 0);
+		battleScene.addBattleCharacter(new BattleCharacter("Angel", 6, 4));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 3));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 3, 7));
 		this.setCurrentScene(battleScene);
 	}
 	
