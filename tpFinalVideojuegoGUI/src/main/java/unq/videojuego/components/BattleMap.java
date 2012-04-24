@@ -69,8 +69,9 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 	
 	private double getMapYStart() {
-		double pos = (this.height - Math.ceil((this.height)/2)) * this.tileSize / 2 - this.tileSize/2;
-		return (pos < 0) ? 0 : pos;
+		//double pos = ((this.height - Math.ceil((this.height)/2)) * this.tileSize / 2 - this.tileSize/2) - 20;
+		//return (pos < 0) ? 0 : pos;
+		return this.getY() - this.tileSize/2 - 20;
 	}
 	
 	
