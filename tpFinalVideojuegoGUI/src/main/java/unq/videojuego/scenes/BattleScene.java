@@ -23,7 +23,7 @@ public class BattleScene extends GameScene {
 		this.background = new Background("/images/background.png");
 		//this.addComponent(this.background);
 		this.isometricLines = new IsometricLines();
-		//this.addComponent(this.isometricLines);
+		this.addComponent(this.isometricLines);
 		
 	}
 	
