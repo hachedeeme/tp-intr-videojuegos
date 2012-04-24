@@ -8,7 +8,7 @@ import com.uqbar.vainilla.appearances.Sprite;
 public class BattleComponent extends GameComponent<BattleScene> {
 	public BattleComponent() {
 		this.setZ(1);
-		this.setAppearance(Sprite.fromImage("/images/pj.png"));
+		this.setAppearance(Sprite.fromImage("/images/AshStand.png"));
 	}
 	
 }
