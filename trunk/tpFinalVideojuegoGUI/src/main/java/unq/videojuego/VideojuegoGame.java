@@ -36,7 +36,7 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		BattleMap bm1 = new BattleMap("/images/battleMap1.png", this.tileSize, 9, 9);
+		BattleMap bm1 = new BattleMap("/images/battleMap2.png", this.tileSize, 9, 9);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
 		battleScene.addBattleComponent(new BattleComponent(), 3, 0);
