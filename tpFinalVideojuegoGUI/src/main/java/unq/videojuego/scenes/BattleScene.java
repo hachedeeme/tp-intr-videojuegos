@@ -1,16 +1,15 @@
 package unq.videojuego.scenes;
 
 import unq.videojuego.components.Background;
+import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleComponent;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.IsometricLines;
+import unq.videojuego.components.Obstacle;
 
-import com.uqbar.vainilla.GameComponent;
-import com.uqbar.vainilla.GameScene;
-
-public class BattleScene extends GameScene {
+public class BattleScene extends VideojuegoScene {
 	private Background background;
-	private GameComponent isometricLines;
+	private IsometricLines isometricLines;
 	private BattleMap map;
 	private int width;
 	private int height;
@@ -20,9 +19,7 @@ public class BattleScene extends GameScene {
 		this.width = width;
 		this.height = height;
 		this.tileSize = tileSize;
-		this.background = new Background("/images/background.png");
-		//this.addComponent(this.background);
-		this.isometricLines = new IsometricLines();
+		this.isometricLines = new IsometricLines(imageH.getSprite("IsometricLines"));
 		this.addComponent(this.isometricLines);
 		
 	}
@@ -31,8 +28,8 @@ public class BattleScene extends GameScene {
 		this.map = map;
 		this.map.setX(this.width * this.tileSize / 2 - this.map.getWidth() * this.tileSize / 2);
 		this.map.setY((this.height - Math.ceil(((float)this.map.getHeight())/2)) * this.tileSize / 2);
-		if (this.map.getY() < this.tileSize/2){
-			this.map.setY(this.tileSize/2);
+		if (this.map.getY() < this.tileSize){
+			this.map.setY(this.tileSize);
 		}
 		this.addComponent(this.map);
 	}
@@ -73,8 +70,19 @@ public class BattleScene extends GameScene {
 		return map;
 	}
 
-	public void addBattleComponent(BattleComponent comp, int x, int y) {
-		this.map.addBattleComponent(comp, x, y);
+	public void addBattleCharacter(BattleCharacter comp){
+		this.addBattleComponent(comp);
+		comp.createImagesMap();
+		this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+	}
+	
+	private void addBattleComponent(BattleComponent comp) {
+		this.map.addBattleComponent(comp);
+	}
+	
+	public void addObstacle(Obstacle comp){
+		this.map.addBattleComponent(comp);
+		this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
 	}
 	
 	
