@@ -38,7 +38,7 @@ public class BattleCharacter extends BattleComponent {
 		// Animaciones mirando hacia abajo
 		String waitingDownName = this.name + "Waiting" + CharDir.Down.name();
 		Animation waitingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
-		
+
 		String walkingDownName = this.name + "Walking" + CharDir.Down.name();
 		Animation walkingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
 		
@@ -65,10 +65,6 @@ public class BattleCharacter extends BattleComponent {
 		
 		String walkingUpName = this.name + "Walking" + CharDir.Up.name();
 		this.getScene().imageH.addAnimation(walkingUpName, walkingLeft.flip());
-		
-		
-		
-
 		
 		charImages.put(CharDir.Up, upMap);
 		charImages.put(CharDir.Right,rightMap);

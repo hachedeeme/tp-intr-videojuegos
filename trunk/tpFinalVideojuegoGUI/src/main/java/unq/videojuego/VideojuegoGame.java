@@ -31,7 +31,6 @@ public class VideojuegoGame extends Game {
 	protected void initializeResources() {
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		imageH.addSprites("BattleMap1", "IsometricLines", "Tree");
-		//imageH.addAnimation(time, scale, imgWidth, imgHeight, spriteWidth, spriteHeight, name);
 	}
 
 	@Override
@@ -48,6 +47,7 @@ public class VideojuegoGame extends Game {
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
 		battleScene.addBattleCharacter(new BattleCharacter("Angel", 6, 4));
+		battleScene.addBattleCharacter(new BattleCharacter("Angel", 3, 3));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 3));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 3, 7));
