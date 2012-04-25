@@ -46,11 +46,12 @@ public class VideojuegoGame extends Game {
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
-		battleScene.addBattleCharacter(new BattleCharacter("Angel", 6, 4));
+		battleScene.addBattleCharacter(new BattleCharacter("Angel", 5, 5));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 3));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 3, 7));
 		this.setCurrentScene(battleScene);
+		bm1.createMovableArea();
 		//this.setCurrentScene(new MenuScene());
 	}
 	

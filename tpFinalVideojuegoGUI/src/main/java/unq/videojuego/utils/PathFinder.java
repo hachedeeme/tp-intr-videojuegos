@@ -10,15 +10,20 @@ import unq.videojuego.components.BattleComponent;
 public class PathFinder {
 	public static PathFinder INSTANCE = new PathFinder();
 	
-	public List<TTuple> getPath(Map<Integer, Map<Integer, BattleComponent>> map, int mapWidth, int mapHeight, Point start, Point end){
+	public List<TTuple> getArea(Map<Integer, Map<Integer, BattleComponent>> map, int mapWidth, int mapHeight, Point start, int count){
 		List<TTuple> list = new ArrayList<TTuple>();
-		list.add(new TTuple(end, 0));
+		TTuple startTuple = new TTuple(start, 0);
+		list.add(startTuple);
+		List<TTuple> temp = new ArrayList<TTuple>(list);
 		
-		for (TTuple tuple : list){
-			this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight);
-			
+		for (int i = 0; i < count; i++) {
+			for (TTuple tuple : new ArrayList<TTuple>(temp)){
+				temp = this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight);
+				list.addAll(temp);
+			}
 		}
 		
+		list.remove(startTuple);
 		return list;
 	}
 
@@ -32,15 +37,32 @@ public class PathFinder {
 		for (TTuple newTuple : new ArrayList<TTuple>(list)){
 			int x = newTuple.getX();
 			int y = newTuple.getY();
-			if (x >= 0 && x < mapWidth &&
-				y >= 0 && y < mapHeight){
-				if (map.get(x).containsKey(y)){
-					list.remove(newTuple);
-				}
+			boolean isOutOfMap = ! (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight);
+			if (isOutOfMap) {
+				list.remove(newTuple);
+			} else if (map.get(x).containsKey(y)){
+				list.remove(newTuple);
 			}
 		}
 		
+		this.removeMatched(list, mainList);
+		//System.out.println(list);
 		return list;
 	}
-	
+
+	private void removeMatched(List<TTuple> list, List<TTuple> mainList) {
+		for (TTuple tuple : new ArrayList<TTuple>(list)){
+			for (TTuple mainTuple : new ArrayList<TTuple>(mainList)){
+				if (mainTuple.equalsCoords(tuple)){
+					
+					if (mainTuple.counterSmallerOrEqual(tuple)){
+						list.remove(tuple);
+					}
+					else {
+						mainList.remove(mainTuple);
+					}
+				}
+			}
+		}
+	}
 }

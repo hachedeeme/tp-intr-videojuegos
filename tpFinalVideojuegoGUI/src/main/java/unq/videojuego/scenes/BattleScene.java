@@ -74,18 +74,23 @@ public class BattleScene extends VideojuegoScene {
 	}
 
 	public void addBattleCharacter(BattleCharacter comp){
-		this.addBattleComponent(comp);
-		comp.createImagesMap();
-		this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+		boolean added = this.addBattleComponent(comp);
+		if (added){
+			comp.createImagesMap();
+			this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+			this.map.setSelectedUnit(comp);
+		}
 	}
 	
-	private void addBattleComponent(BattleComponent comp) {
-		this.map.addBattleComponent(comp);
+	private boolean addBattleComponent(BattleComponent comp) {
+		return this.map.addBattleComponent(comp);
 	}
 	
 	public void addObstacle(Obstacle comp){
-		this.map.addBattleComponent(comp);
-		this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+		boolean added = this.addBattleComponent(comp);
+		if (added){
+			this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+		}
 	}
 	
 	
