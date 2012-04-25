@@ -1,19 +1,25 @@
 package unq.videojuego.components;
 
+import java.awt.Point;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import unq.videojuego.scenes.BattleScene;
+import unq.videojuego.utils.PathFinder;
+import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class BattleMap extends GameComponent<BattleScene> {
 	private Map<Integer, Map<Integer, BattleComponent>> grid;
-	private Map<Integer, Map<Integer, Integer>> obstaclesGrid;
+	//private Map<Integer, Map<Integer, Integer>> obstaclesGrid;
+	private PathFinder pathFinder = PathFinder.INSTANCE;
 	private int width;
 	private int height;
 	private int tileSize;
+	private BattleCharacter selectedUnit;
 	
 	public BattleMap(Sprite image, int tileSize, int width, int height) {
 		this.setZ(-2);
@@ -28,31 +34,18 @@ public class BattleMap extends GameComponent<BattleScene> {
 		
 		this.setAppearance(image);
 	}
-
-	public int getWidth() {
-		return width;
-	}
-
-	public void setWidth(int width) {
-		this.width = width;
-	}
-
-	public int getHeight() {
-		return height;
-	}
-
-	public void setHeight(int height) {
-		this.height = height;
-	}
 	
-	public void addBattleComponent(BattleComponent comp){
+	public boolean addBattleComponent(BattleComponent comp){
 		int x = comp.getMapX();
 		int y = comp.getMapY();
+		boolean added = false;
 		if (this.grid.containsKey(x)){
 			if (! this.grid.get(x).containsKey(y)){
 				this.getScene().addComponent(comp);
+				added = true;
 			}
 		}
+		return added;
 	}
 	
 	public void moveGridComponent(BattleComponent comp, int x, int y){
@@ -87,8 +80,6 @@ public class BattleMap extends GameComponent<BattleScene> {
 		double yPos = (y * this.tileSize/4) + (x * this.tileSize/4);
 		return yStart + yPos;
 	}
-	
-	
 
 	private double getMapXStart() {
 		return this.getScene().getWidth() * this.tileSize/2;
@@ -98,6 +89,40 @@ public class BattleMap extends GameComponent<BattleScene> {
 		return this.getY();
 	}
 	
+	public void createMovableArea(){
+		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
+		int range = this.selectedUnit.getRange();
+		List<TTuple> points = pathFinder.getArea(grid, width, height, startPoint, range);
+		System.out.println(points);
+	}
 	
+	
+	///////////////////
+	///// GETTERS /////
+	///////////////////
+	
+	public int getWidth() {
+		return width;
+	}
+
+	public void setWidth(int width) {
+		this.width = width;
+	}
+
+	public int getHeight() {
+		return height;
+	}
+
+	public void setHeight(int height) {
+		this.height = height;
+	}
+
+	public BattleCharacter getSelectedUnit() {
+		return selectedUnit;
+	}
+
+	public void setSelectedUnit(BattleCharacter selectedUnit) {
+		this.selectedUnit = selectedUnit;
+	}
 	
 }

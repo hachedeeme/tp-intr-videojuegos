@@ -13,6 +13,7 @@ import com.uqbar.vainilla.appearances.Animation;
 public class BattleCharacter extends BattleComponent {
 	private String name;
 	private State state = new CharWaiting();
+	private int range = 2;
 	
 	private CharDir dir = CharDir.Down; 
 	private Map<CharDir, Map<String, Animation>> images;
@@ -95,8 +96,20 @@ public class BattleCharacter extends BattleComponent {
 		this.updateAppearance();
 	}
 
-	
-	
-	
+	public int getRange() {
+		return range;
+	}
+
+	public void setRange(int range) {
+		this.range = range;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
 	
 }
