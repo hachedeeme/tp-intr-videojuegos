@@ -6,8 +6,8 @@ import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.scenes.BattleScene;
+import unq.videojuego.scenes.MenuScene;
 
-import com.uqbar.vainilla.AnimationGenerator;
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.ImageHandler;
@@ -52,6 +52,7 @@ public class VideojuegoGame extends Game {
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 3));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 3, 7));
 		this.setCurrentScene(battleScene);
+		//this.setCurrentScene(new MenuScene());
 	}
 	
 	public static void main(String[] args) {
