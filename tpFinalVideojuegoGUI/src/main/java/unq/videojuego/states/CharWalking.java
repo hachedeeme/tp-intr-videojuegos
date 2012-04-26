@@ -44,7 +44,7 @@ public class CharWalking extends State {
 			this.ySpeed < 0 && bChar.getY() > this.newY ){
 			bChar.move(xSpeed * delta, ySpeed * delta);
 		} else {
-			bChar.getScene().getMap().setComponentCoord(bChar, this.mapX, this.mapY);
+			bChar.getScene().getMap().setMapComponentCoords(bChar, this.mapX, this.mapY);
 			int newX = bChar.getMapX();
 			int newY = bChar.getMapY();
 			boolean moved = false;

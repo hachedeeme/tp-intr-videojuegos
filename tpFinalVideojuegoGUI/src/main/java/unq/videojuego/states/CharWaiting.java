@@ -36,13 +36,14 @@ public class CharWaiting extends State {
 			moved = true;
 			newCharDir = CharDir.Left;
 		}
+		/*
 		if (moved){
-			int tilesize = bc.getScene().getTileSize();
+			int tileSize = bc.getScene().getTileSize();
 			double newRealX = bc.getScene().getMap().getRealXCoord(bc, newX, newY);
 			double newRealY = bc.getScene().getMap().getRealYCoord(bc, newX, newY);
 			bc.setDir(newCharDir);
-			bc.setState(new CharWalking(tilesize, bc.getX(), bc.getY(), newRealX, newRealY, newX, newY));
-		}
+			bc.setState(new CharWalking(tileSize, bc.getX(), bc.getY(), newRealX, newRealY, newX, newY));
+		}*/
 	}
 
 }

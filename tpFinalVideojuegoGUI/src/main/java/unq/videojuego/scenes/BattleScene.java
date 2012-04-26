@@ -77,7 +77,7 @@ public class BattleScene extends VideojuegoScene {
 		boolean added = this.addBattleComponent(comp);
 		if (added){
 			comp.createImagesMap();
-			this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
 			this.map.setSelectedUnit(comp);
 		}
 	}
@@ -89,7 +89,7 @@ public class BattleScene extends VideojuegoScene {
 	public void addObstacle(Obstacle comp){
 		boolean added = this.addBattleComponent(comp);
 		if (added){
-			this.map.setComponentCoord(comp, comp.getMapX(), comp.getMapY());
+			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
 		}
 	}
 	

@@ -20,7 +20,6 @@ public abstract class BattleComponent extends GameComponent<BattleScene> {
 
 	public void setMapX(int mapX) {
 		this.mapX = mapX;
-		this.updateZ();
 	}
 
 	public int getMapY() {
@@ -29,7 +28,6 @@ public abstract class BattleComponent extends GameComponent<BattleScene> {
 
 	public void setMapY(int mapY) {
 		this.mapY = mapY;
-		this.updateZ();
 	}
 	
 	public void updateZ(){

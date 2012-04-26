@@ -23,7 +23,7 @@ public class PathFinder {
 			}
 		}
 		
-		list.remove(startTuple);
+		//list.remove(startTuple);
 		return list;
 	}
 
@@ -46,7 +46,6 @@ public class PathFinder {
 		}
 		
 		this.removeMatched(list, mainList);
-		//System.out.println(list);
 		return list;
 	}
 
