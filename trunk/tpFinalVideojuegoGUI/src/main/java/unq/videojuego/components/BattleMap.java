@@ -1,28 +1,38 @@
 package unq.videojuego.components;
 
 import java.awt.Point;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import unq.videojuego.scenes.BattleScene;
+import unq.videojuego.states.MapSelectingUnit;
+import unq.videojuego.states.State;
 import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class BattleMap extends GameComponent<BattleScene> {
-	private Map<Integer, Map<Integer, BattleComponent>> grid;
-	//private Map<Integer, Map<Integer, Integer>> obstaclesGrid;
 	private PathFinder pathFinder = PathFinder.INSTANCE;
+	private Map<Integer, Map<Integer, BattleComponent>> grid;
+	
 	private int width;
 	private int height;
 	private int tileSize;
+
+	private State state = new MapSelectingUnit();
+	
 	private BattleCharacter selectedUnit;
+	private List<TileArea> markedTiles = new ArrayList<TileArea>();
+	private List<TTuple> areaTuples = new ArrayList<TTuple>();
+	private SelectedTile selectedTile; 
 	
 	public BattleMap(Sprite image, int tileSize, int width, int height) {
-		this.setZ(-2);
+		this.setZ(-10);
 		this.tileSize = tileSize;
 		this.width = width;
 		this.height = height;
@@ -33,6 +43,12 @@ public class BattleMap extends GameComponent<BattleScene> {
 		}
 		
 		this.setAppearance(image);
+	}
+	
+	@Override
+	public void update(DeltaState deltaState) {
+		super.update(deltaState);
+		this.state.update(this, deltaState);
 	}
 	
 	public boolean addBattleComponent(BattleComponent comp){
@@ -55,8 +71,13 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.grid.get(x).put(y, comp);
 	}
 	
-	public void setComponentCoord(BattleComponent comp, int x, int y) {
-		this.setMapCoords(comp, x, y);
+	public void setMapComponentCoords(BattleComponent comp, int x, int y){
+		this.setBattleComponentCoords(comp, x, y);
+		comp.updateZ();
+	}
+	
+	public void setBattleComponentCoords(BattleComponent comp, int x, int y) {
+		this.setRealCoords(comp, x, y);
 		
 		this.moveGridComponent(comp, x, y);
 		
@@ -64,7 +85,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 		comp.setMapY(y);
 	}
 
-	public void setMapCoords(BattleComponent comp, int x, int y) {
+	public void setRealCoords(BattleComponent comp, int x, int y) {
 		comp.setX(this.getRealXCoord(comp, x, y));
 		comp.setY(this.getRealYCoord(comp, x, y));
 	}
@@ -89,13 +110,42 @@ public class BattleMap extends GameComponent<BattleScene> {
 		return this.getY();
 	}
 	
-	public void createMovableArea(){
+	public List<TTuple> createTileArea(){
 		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
 		int range = this.selectedUnit.getRange();
-		List<TTuple> points = pathFinder.getArea(grid, width, height, startPoint, range);
-		System.out.println(points);
+		return pathFinder.getArea(grid, width, height, startPoint, range);
 	}
 	
+	public void removeArea(){
+		this.getScene().removeComponents(this.markedTiles);
+		this.markedTiles = new ArrayList<TileArea>();
+		this.areaTuples = new ArrayList<TTuple>();
+	}
+	
+	public void createSelectedUnitMovableArea() {
+		this.areaTuples = this.createTileArea();
+		for (TTuple tuple : this.areaTuples){
+			int x = tuple.getX(); 
+			int y = tuple.getY();
+			TileArea tileArea = new TileArea(x, y);
+			this.setBattleComponentCoords(tileArea, x, y);
+			this.markedTiles.add(tileArea);
+			this.getScene().addComponent(tileArea);
+		}
+	}
+	
+	public void addSelectedTileInSelectedUnit(){
+		int x = this.selectedUnit.getMapX();
+		int y = this.selectedUnit.getMapY();
+		this.selectedTile = new SelectedTile(x, y);
+		this.setBattleComponentCoords(this.selectedTile, x, y);
+		this.getScene().addComponent(this.selectedTile);
+	}
+	
+	public void removeSelectedTile(){
+		this.getScene().removeComponent(this.selectedTile);
+		this.selectedTile = null;
+	}
 	
 	///////////////////
 	///// GETTERS /////
@@ -124,5 +174,36 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setSelectedUnit(BattleCharacter selectedUnit) {
 		this.selectedUnit = selectedUnit;
 	}
-	
+
+	public List<TileArea> getMarkedTiles() {
+		return markedTiles;
+	}
+
+	public void setMarkedTiles(List<TileArea> markedTiles) {
+		this.markedTiles = markedTiles;
+	}
+
+	public State getState() {
+		return state;
+	}
+
+	public void setState(State state) {
+		this.state = state;
+	}
+
+	public List<TTuple> getAreaTuples() {
+		return areaTuples;
+	}
+
+	public void setAreaTuples(List<TTuple> areaTuples) {
+		this.areaTuples = areaTuples;
+	}
+
+	public SelectedTile getSelectedTile() {
+		return selectedTile;
+	}
+
+	public void setSelectedTile(SelectedTile selectedTile) {
+		this.selectedTile = selectedTile;
+	}
 }

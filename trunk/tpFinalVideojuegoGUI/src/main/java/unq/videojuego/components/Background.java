@@ -7,7 +7,7 @@ public class Background extends GameComponent {
 	
 	public Background(String image){
 		super(0, 0);
-		this.setZ(-10);
+		this.setZ(-100);
 		this.setAppearance(Sprite.fromImage(image));
 	}
 

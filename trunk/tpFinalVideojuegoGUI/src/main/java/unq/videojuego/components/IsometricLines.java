@@ -14,7 +14,7 @@ public class IsometricLines extends GameComponent<BattleScene> {
 	private Appearance curAppearance;
 	
 	public IsometricLines(Sprite image) {
-		this.setZ(-1);
+		this.setZ(-2);
 		this.otherAppearance = new Invisible();
 		this.curAppearance = image;
 		this.setAppearance(this.curAppearance);

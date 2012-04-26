@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import unq.videojuego.enums.CharDir;
+import unq.videojuego.scenes.VideojuegoScene;
 import unq.videojuego.states.CharWaiting;
 import unq.videojuego.states.State;
 
@@ -13,10 +14,9 @@ import com.uqbar.vainilla.appearances.Animation;
 public class BattleCharacter extends BattleComponent {
 	private String name;
 	private State state = new CharWaiting();
-	private int range = 2;
+	private int range = 3;
 	
 	private CharDir dir = CharDir.Down; 
-	private Map<CharDir, Map<String, Animation>> images;
 	
 	public BattleCharacter(String name, int mapX, int mapY) {
 		super(mapX, mapY);
@@ -38,34 +38,34 @@ public class BattleCharacter extends BattleComponent {
 		
 		// Animaciones mirando hacia abajo
 		String waitingDownName = this.name + "Waiting" + CharDir.Down.name();
-		Animation waitingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
+		Animation waitingDown = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
 
 		String walkingDownName = this.name + "Walking" + CharDir.Down.name();
-		Animation walkingDown = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
+		Animation walkingDown = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
 		
 		
 		// Animaciones mirando hacia la Derecha
 		String waitingRightName = this.name + "Waiting" + CharDir.Right.name();
-		this.getScene().imageH.addAnimation(waitingRightName, waitingDown.flip());
+		VideojuegoScene.imageH.addAnimation(waitingRightName, waitingDown.flip());
 		
 		String walkingRightName = this.name + "Walking" + CharDir.Right.name();
-		this.getScene().imageH.addAnimation(walkingRightName, walkingDown.flip());
+		VideojuegoScene.imageH.addAnimation(walkingRightName, walkingDown.flip());
 		
 		
 		// Animaciones mirando hacia la Izquierda
 		String waitingLeftName = this.name + "Waiting" + CharDir.Left.name();
-		Animation waitingLeft = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingLeftName); 
+		Animation waitingLeft = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingLeftName); 
 		
 		String walkingLeftName = this.name + "Walking" + CharDir.Left.name();
-		Animation walkingLeft = this.getScene().imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingLeftName); 
+		Animation walkingLeft = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingLeftName); 
 		
 		
 		// Animaciones mirando hacia Arriba
 		String waitingUpName = this.name + "Waiting" + CharDir.Up.name();
-		this.getScene().imageH.addAnimation(waitingUpName, waitingLeft.flip());
+		VideojuegoScene.imageH.addAnimation(waitingUpName, waitingLeft.flip());
 		
 		String walkingUpName = this.name + "Walking" + CharDir.Up.name();
-		this.getScene().imageH.addAnimation(walkingUpName, walkingLeft.flip());
+		VideojuegoScene.imageH.addAnimation(walkingUpName, walkingLeft.flip());
 		
 		charImages.put(CharDir.Up, upMap);
 		charImages.put(CharDir.Right,rightMap);
@@ -76,7 +76,7 @@ public class BattleCharacter extends BattleComponent {
 	}
 
 	public void updateAppearance() {
-		this.setAppearance(this.getScene().imageH.getAnimation(this.name + this.state.getName() + this.dir.name()));
+		this.setAppearance(VideojuegoScene.imageH.getAnimation(this.name + this.state.getName() + this.dir.name()));
 	}
 
 	public CharDir getDir() {
