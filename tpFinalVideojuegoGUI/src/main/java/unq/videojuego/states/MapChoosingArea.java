@@ -34,7 +34,7 @@ public class MapChoosingArea extends State {
 			moved = true;
 		}
 		if (moved){
-			map.getScene().getMap().setBattleComponentCoords(sTile, newX, newY);
+			map.getScene().getMap().setSelectedTileCoords(newX, newY);
 		}
 		
 	}

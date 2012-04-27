@@ -130,20 +130,27 @@ public class BattleMap extends GameComponent<BattleScene> {
 			TileArea tileArea = new TileArea(x, y);
 			this.setBattleComponentCoords(tileArea, x, y);
 			this.markedTiles.add(tileArea);
-			this.getScene().addComponent(tileArea);
 		}
+		this.getScene().addComponents(this.markedTiles);
 	}
 	
 	public void addSelectedTileInSelectedUnit(){
 		int x = this.selectedUnit.getMapX();
 		int y = this.selectedUnit.getMapY();
 		this.selectedTile = new SelectedTile(x, y);
-		this.setBattleComponentCoords(this.selectedTile, x, y);
+		this.setSelectedTileCoords(x, y);
 		this.getScene().addComponent(this.selectedTile);
+		this.getScene().addComponent(this.selectedTile.getSelectionCone());
+	}
+	
+	public void setSelectedTileCoords(int x, int y){
+		this.setBattleComponentCoords(this.selectedTile, x, y);
+		this.setBattleComponentCoords(this.selectedTile.getSelectionCone(), x, y);
 	}
 	
 	public void removeSelectedTile(){
 		this.getScene().removeComponent(this.selectedTile);
+		this.getScene().removeComponent(this.selectedTile.getSelectionCone());
 		this.selectedTile = null;
 	}
 	
