@@ -15,15 +15,21 @@ public class PathFinder {
 		TTuple startTuple = new TTuple(start, 0);
 		list.add(startTuple);
 		List<TTuple> temp = new ArrayList<TTuple>(list);
+		List<TTuple> temp2 = new ArrayList<TTuple>();
+		List<TTuple> temp3 = new ArrayList<TTuple>();
 		
 		for (int i = 0; i < count; i++) {
 			for (TTuple tuple : new ArrayList<TTuple>(temp)){
-				temp = this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight);
-				list.addAll(temp);
+				temp3 = this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight);
+				temp2.addAll(temp3);
+				list.addAll(temp3);
 			}
+			temp = temp2;
+			temp2 = new ArrayList<TTuple>();
+			//list.addAll(temp);
 		}
 		
-		//list.remove(startTuple);
+		list.remove(startTuple);
 		return list;
 	}
 
@@ -44,6 +50,8 @@ public class PathFinder {
 				list.remove(newTuple);
 			}
 		}
+		
+		
 		
 		this.removeMatched(list, mainList);
 		return list;
