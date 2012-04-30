@@ -59,5 +59,4 @@ public class VideojuegoGame extends Game {
 	public static void main(String[] args) {
 		new DesktopGameLauncher(new VideojuegoGame()).launch();
 	}
-
 }

@@ -91,8 +91,6 @@ public class BattleScene extends VideojuegoScene {
 		if (added){
 			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
 		}
-	}
-	
-	
+	}	
 	
 }
