@@ -4,38 +4,74 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.videojuego.interfaces.Showable;
 import unq.videojuego.scenes.VideojuegoScene;
 
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class Window extends GameComponent<VideojuegoScene> {
-	private List<ListElement> elements;
-	private String name;
-	private int width;
-	private int height;
+	private List<Showable> elements;
+	private Pointer pointer;
+	private Sprite image;
 	
-	public Window(int x, int y, String name, int widht, int heigth) {
+	public Window(int x, int y, Sprite image) {
 		super(x,y);
-		this.width  = widht;
-		this.height = heigth;
-		this.setAppearance(Sprite.fromImage("/images/menuWindowBlue.png"));
-		this.elements = new ArrayList<ListElement>();
+		this.elements = new ArrayList<Showable>();
+		this.image    = image;
+		this.pointer  = new Pointer(x,y);
+		this.setAppearance(image);
 	}
 	
-	public void addElement(ListElement element){
-		this.elements.add(element);		
-	}
-	
-	public void addAllElements(List<ListElement> elements){
-		this.elements.addAll(elements);
-	}
-	
+	//***********************//
+	//** GAME LOOP METHODS **//
+	//***********************//
 	@Override
 	public void render(Graphics2D graphics) {
 		super.render(graphics);
-		for (ListElement element : this.elements) {
+		for (Showable element : this.elements) {
 			element.render(graphics);
 		}
+	}
+	
+	//*************//
+	//** METHODS **//
+	//*************//
+	public void placeWindow(){
+		this.setX(0);
+		this.setY(700 - image.getHeight());
+		//TODO Elimiar hardcode
+	}
+	
+	public void placeWindow(int x, int y){
+		this.setX(x);
+		this.setY(y);
+	}
+	
+	public int getHeight(){
+		return (int) this.image.getHeight();
+	}
+	
+	public int getWidth(){
+		return (int) this.image.getWidth();
+	}
+	
+	//**************//
+	//** ACCESORS **//
+	//**************//
+	public void addElement(Showable element){
+		this.elements.add(element);		
+	}
+	
+	public void addAllElements(List<Showable> elements){
+		this.elements.addAll(elements);
+	}
+	
+	public Sprite getImage() {
+		return image;
+	}
+	
+	public Pointer getPointer() {
+		return pointer;
 	}
 }
