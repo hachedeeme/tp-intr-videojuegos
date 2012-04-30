@@ -32,7 +32,7 @@ public class VideojuegoGame extends Game {
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		imageH.addSprites("BattleMap1", "IsometricLines", "Tree", "SelectedTile");
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");
-		imageH.addAnimation(0.1, 1, 1200, 150, 100, 150, "SelectionCone");
+		imageH.addAnimation(0.07, 1, 1200, 150, 100, 150, "SelectionCone");
 	}
 
 	@Override
