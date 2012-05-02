@@ -39,7 +39,7 @@ public class Window extends GameComponent<VideojuegoScene> {
 	//*************//
 	public void placeWindow(){
 		this.setX(0);
-		this.setY(700 - image.getHeight());
+		this.setY(700 - this.getHeight());
 		//TODO Elimiar hardcode
 	}
 	
