@@ -16,7 +16,7 @@ public class GameStatsLabel extends GameComponent {
 		super(x, y);
 		this.setZ(1000);
 		Font font = new Font("", Font.BOLD, 14);
-		this.label = new Label(font, Color.WHITE, "");
+		this.label = new Label(font, Color.BLACK, "");
 		this.setAppearance(this.label);
 	}
 	
