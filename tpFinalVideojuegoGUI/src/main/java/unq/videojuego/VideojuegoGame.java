@@ -10,6 +10,7 @@ import unq.videojuego.scenes.MenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.GameStatsLabel;
 import com.uqbar.vainilla.ImageHandler;
 
 public class VideojuegoGame extends Game {
@@ -52,6 +53,7 @@ public class VideojuegoGame extends Game {
 		//battleScene.addBattleCharacter(new BattleCharacter("Ash", 3, 3));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
+		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
 		this.setCurrentScene(battleScene);
 		//this.setCurrentScene(new MenuScene());
 	}

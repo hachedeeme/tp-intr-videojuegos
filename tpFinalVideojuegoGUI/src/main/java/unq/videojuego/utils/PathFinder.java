@@ -26,7 +26,6 @@ public class PathFinder {
 			}
 			temp = temp2;
 			temp2 = new ArrayList<TTuple>();
-			//list.addAll(temp);
 		}
 		
 		list.remove(startTuple);
@@ -61,7 +60,6 @@ public class PathFinder {
 		for (TTuple tuple : new ArrayList<TTuple>(list)){
 			for (TTuple mainTuple : new ArrayList<TTuple>(mainList)){
 				if (mainTuple.equalsCoords(tuple)){
-					
 					if (mainTuple.counterSmallerOrEqual(tuple)){
 						list.remove(tuple);
 					}

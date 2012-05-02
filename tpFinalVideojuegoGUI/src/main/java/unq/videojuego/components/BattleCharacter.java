@@ -5,8 +5,8 @@ import java.util.Map;
 
 import unq.videojuego.enums.CharDir;
 import unq.videojuego.scenes.VideojuegoScene;
-import unq.videojuego.states.CharWaiting;
 import unq.videojuego.states.State;
+import unq.videojuego.states.character.CharWaiting;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.appearances.Animation;
@@ -14,7 +14,7 @@ import com.uqbar.vainilla.appearances.Animation;
 public class BattleCharacter extends BattleComponent {
 	private String name;
 	private State state = new CharWaiting();
-	private int range = 3;
+	private int range = 4;
 	
 	private CharDir dir = CharDir.Down; 
 	
