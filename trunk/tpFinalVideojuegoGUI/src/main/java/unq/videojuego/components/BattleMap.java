@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.Map;
 
 import unq.videojuego.scenes.BattleScene;
-import unq.videojuego.states.MapSelectingUnit;
+import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
+import unq.videojuego.states.map.MapSelectingUnit;
+import unq.videojuego.states.selectedTile.STileMoving;
 import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
@@ -27,9 +29,11 @@ public class BattleMap extends GameComponent<BattleScene> {
 	private State state = new MapSelectingUnit();
 	
 	private BattleCharacter selectedUnit;
+	private List<BattleCharacter> units = new ArrayList<BattleCharacter>();
+	
 	private List<TileArea> markedTiles = new ArrayList<TileArea>();
 	private List<TTuple> areaTuples = new ArrayList<TTuple>();
-	private SelectedTile selectedTile; 
+	private SelectedTile selectedTile = new SelectedTile(this, 0, 0);
 	
 	public BattleMap(Sprite image, int tileSize, int width, int height) {
 		this.setZ(-10);
@@ -64,7 +68,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 		return added;
 	}
 	
-	public void moveGridComponent(BattleComponent comp, int x, int y){
+	public void setGridComponent(BattleComponent comp, int x, int y){
 		int oldX = comp.getMapX();
 		int oldY = comp.getMapY();
 		this.grid.get(oldX).remove(oldY);
@@ -72,15 +76,21 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 	
 	public void setMapComponentCoords(BattleComponent comp, int x, int y){
-		this.setBattleComponentCoords(comp, x, y);
+		this.setBattleComponentCoordsInMap(comp, x, y);
 		comp.updateZ();
+	}
+	
+	public void setBattleComponentCoordsInMap(BattleComponent comp, int x, int y) {
+		this.setGridComponent(comp, x, y);
+		
+		this.setRealCoords(comp, x, y);
+		
+		comp.setMapX(x);
+		comp.setMapY(y);
 	}
 	
 	public void setBattleComponentCoords(BattleComponent comp, int x, int y) {
 		this.setRealCoords(comp, x, y);
-		
-		this.moveGridComponent(comp, x, y);
-		
 		comp.setMapX(x);
 		comp.setMapY(y);
 	}
@@ -118,8 +128,8 @@ public class BattleMap extends GameComponent<BattleScene> {
 	
 	public void removeArea(){
 		this.getScene().removeComponents(this.markedTiles);
-		this.markedTiles = new ArrayList<TileArea>();
-		this.areaTuples = new ArrayList<TTuple>();
+		this.markedTiles.clear();
+		this.areaTuples.clear();
 	}
 	
 	public void createSelectedUnitMovableArea() {
@@ -137,7 +147,6 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void addSelectedTileInSelectedUnit(){
 		int x = this.selectedUnit.getMapX();
 		int y = this.selectedUnit.getMapY();
-		this.selectedTile = new SelectedTile(x, y);
 		this.setSelectedTileCoords(x, y);
 		this.getScene().addComponent(this.selectedTile);
 		this.getScene().addComponent(this.selectedTile.getSelectionCone());
@@ -151,8 +160,22 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void removeSelectedTile(){
 		this.getScene().removeComponent(this.selectedTile);
 		this.getScene().removeComponent(this.selectedTile.getSelectionCone());
-		this.selectedTile = null;
+		this.selectedTile.setState(new Sleeping());
 	}
+	
+	public void addUnit(BattleCharacter unit){
+		this.units.add(unit);
+	}
+	
+	public void nextSelectedUnit(){
+		this.selectedUnit = this.units.remove(0);
+	}
+	
+	public boolean isOutOfMap(int x, int y){
+		return x < 0 || x >= this.width || y < 0 || y >= this.height;
+	}
+	
+	
 	
 	///////////////////
 	///// GETTERS /////
@@ -213,4 +236,14 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setSelectedTile(SelectedTile selectedTile) {
 		this.selectedTile = selectedTile;
 	}
+
+	public int getTileSize() {
+		return tileSize;
+	}
+
+	public void setTileSize(int tileSize) {
+		this.tileSize = tileSize;
+	}
+	
+	
 }

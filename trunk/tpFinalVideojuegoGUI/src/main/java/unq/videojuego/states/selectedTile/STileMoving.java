@@ -1,22 +1,23 @@
-package unq.videojuego.states;
-
-import unq.videojuego.components.BattleMap;
-import unq.videojuego.components.SelectedTile;
+package unq.videojuego.states.selectedTile;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.events.constants.Key;
 
-public class MapChoosingArea extends State {
+import unq.videojuego.components.BattleMap;
+import unq.videojuego.components.SelectedTile;
+import unq.videojuego.states.State;
 
-	protected MapChoosingArea() {
-		super("ChoosingArea");
+public class STileMoving extends State {
+
+	public STileMoving() {
+		super("STileMoving");
 	}
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
-		BattleMap map = (BattleMap) comp;
-		SelectedTile sTile = map.getSelectedTile();
+		SelectedTile sTile = (SelectedTile) comp;
+		BattleMap map = sTile.getScene().getMap();
 		int newX = sTile.getMapX();
 		int newY = sTile.getMapY();
 		boolean moved = false;
@@ -33,10 +34,8 @@ public class MapChoosingArea extends State {
 			newX--;
 			moved = true;
 		}
-		if (moved){
-			map.getScene().getMap().setSelectedTileCoords(newX, newY);
+		if (moved && ! map.isOutOfMap(newX, newY)){
+			sTile.getBattleMap().setSelectedTileCoords(newX, newY);
 		}
-		
 	}
-
 }

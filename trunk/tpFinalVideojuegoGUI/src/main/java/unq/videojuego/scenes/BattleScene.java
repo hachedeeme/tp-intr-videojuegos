@@ -78,7 +78,7 @@ public class BattleScene extends VideojuegoScene {
 		if (added){
 			comp.createImagesMap();
 			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
-			this.map.setSelectedUnit(comp);
+			this.map.addUnit(comp);
 		}
 	}
 	

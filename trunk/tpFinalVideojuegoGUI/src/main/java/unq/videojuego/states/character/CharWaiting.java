@@ -1,7 +1,8 @@
-package unq.videojuego.states;
+package unq.videojuego.states.character;
 
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.enums.CharDir;
+import unq.videojuego.states.State;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
@@ -14,6 +15,7 @@ public class CharWaiting extends State {
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
+		/*
 		BattleCharacter bc = (BattleCharacter) comp;
 		int newX = bc.getMapX();
 		int newY = bc.getMapY();
@@ -36,14 +38,14 @@ public class CharWaiting extends State {
 			moved = true;
 			newCharDir = CharDir.Left;
 		}
-		/*
 		if (moved){
 			int tileSize = bc.getScene().getTileSize();
 			double newRealX = bc.getScene().getMap().getRealXCoord(bc, newX, newY);
 			double newRealY = bc.getScene().getMap().getRealYCoord(bc, newX, newY);
 			bc.setDir(newCharDir);
 			bc.setState(new CharWalking(tileSize, bc.getX(), bc.getY(), newRealX, newRealY, newX, newY));
-		}*/
+		}
+		*/
 	}
 
 }

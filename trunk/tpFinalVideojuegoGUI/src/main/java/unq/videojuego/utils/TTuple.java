@@ -1,6 +1,7 @@
 package unq.videojuego.utils;
 
 import java.awt.Point;
+import java.util.List;
 
 public class TTuple {
 	private int x;
@@ -18,23 +19,8 @@ public class TTuple {
 		this((int)point.getX(), (int)point.getY(), counter);
 	}
 	
-	public int getX() {
-		return x;
-	}
-	public void setX(int x) {
-		this.x = x;
-	}
-	public int getY() {
-		return y;
-	}
-	public void setY(int y) {
-		this.y = y;
-	}
-	public int getCounter() {
-		return counter;
-	}
-	public void setCounter(int counter) {
-		this.counter = counter;
+	public TTuple(int x, int y){
+		this(x, y, 0);
 	}
 	
 	@Override
@@ -69,6 +55,10 @@ public class TTuple {
 		return this.counter <= tuple.getCounter();
 	}
 	
+	public boolean counterSmaller(TTuple tuple) {
+		return this.counter < tuple.getCounter();
+	}
+	
 	public boolean equalsCoords(TTuple tuple) {
 		return this.x == tuple.getX() && this.y == tuple.getY();
 	}
@@ -77,7 +67,41 @@ public class TTuple {
 	public String toString() {
 		return "(" + this.x + "," + this.y + "," + this.counter + ")";
 	}
+
+	public TTuple getTupleFromCoords(List<TTuple> areaTuples) {
+		TTuple wantedTuple = null;
+		for (TTuple aTuple : areaTuples){
+			if (this.equalsCoords(aTuple)){
+				wantedTuple = aTuple;
+			}
+		}
+		return wantedTuple;
+	}
 	
+	public boolean isAdyacent(TTuple tuple) {
+		return  this.x - 1 == tuple.getX() && this.y == tuple.getY() ||
+				this.x + 1 == tuple.getX() && this.y == tuple.getY() ||
+				this.y - 1 == tuple.getY() && this.x == tuple.getX() ||
+				this.y + 1 == tuple.getY() && this.x == tuple.getX();
+	}
 	
+	public int getX() {
+		return x;
+	}
+	public void setX(int x) {
+		this.x = x;
+	}
+	public int getY() {
+		return y;
+	}
+	public void setY(int y) {
+		this.y = y;
+	}
+	public int getCounter() {
+		return counter;
+	}
+	public void setCounter(int counter) {
+		this.counter = counter;
+	}
 
 }
