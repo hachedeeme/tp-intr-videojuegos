@@ -25,7 +25,6 @@ public class ListElement extends GameComponent<VideojuegoScene>{
 		
 		this.picture = new Ornament(x, y, 0, image);
 		this.text    = new Ornament(x + this.width + 10, y, 0, new Label(font, Color.WHITE, text));
-		
 	}
 	
 	@Override

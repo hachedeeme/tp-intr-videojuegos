@@ -11,7 +11,8 @@ import com.uqbar.vainilla.appearances.Sprite;
 public class MenuScene extends VideojuegoScene {
 	private Ornament background;
 	
-	public MenuScene() {
+	public MenuScene(int screenWidth, int screenHeight) {
+		super(screenWidth, screenHeight);
 		this.setBackground(new Ornament(0, 0, -1, new Rectangle(Color.BLACK, 1000, 1000)));
 		Window win = new Window(0, 0, Sprite.fromImage("/images/BlueWindow.png"));
 		this.addComponent(win);
