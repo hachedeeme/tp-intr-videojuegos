@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.videojuego.VideojuegoGame;
 import unq.videojuego.interfaces.Showable;
 import unq.videojuego.scenes.VideojuegoScene;
 
@@ -39,7 +40,7 @@ public class Window extends GameComponent<VideojuegoScene> {
 	//*************//
 	public void placeWindow(){
 		this.setX(0);
-		this.setY(700 - this.getHeight());
+		this.setY(this.getScene().getScreenHeight() - this.getHeight());
 		//TODO Elimiar hardcode
 	}
 	
@@ -56,6 +57,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 		return (int) this.image.getWidth();
 	}
 	
+	public int rigthBorder(){
+		return (int) this.getX() + this.getWidth();
+	}
 	//**************//
 	//** ACCESORS **//
 	//**************//

@@ -16,6 +16,7 @@ public class BattleScene extends VideojuegoScene {
 	private int tileSize;
 	
 	public BattleScene(int tileSize, int width, int height) {
+		super(tileSize * width, tileSize * height);
 		this.width = width;
 		this.height = height;
 		this.tileSize = tileSize;
