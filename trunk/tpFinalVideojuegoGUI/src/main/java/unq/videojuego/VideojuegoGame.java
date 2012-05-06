@@ -32,8 +32,14 @@ public class VideojuegoGame extends Game {
 	protected void initializeResources() {
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		imageH.addSprites("BattleMap1", "IsometricLines", "Tree", "SelectedTile");
+		
+		// Tile Selection 
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");
 		imageH.addAnimation(0.07, 1, 1200, 150, 100, 150, "SelectionCone");
+		
+		// Sttacks
+		imageH.addAnimation(0.1, 1, 126, 128, 126, 64, "ki");
+		imageH.addAnimation(0.1, 1.5, 560, 104, 80, 104, "FirePilar");
 	}
 
 	@Override
@@ -43,7 +49,7 @@ public class VideojuegoGame extends Game {
 		int tileHeight = 7;
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
-		/*
+		
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
@@ -53,9 +59,9 @@ public class VideojuegoGame extends Game {
 		battleScene.addBattleCharacter(new BattleCharacter("Angel", 6, 6));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
-		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));*/
-		//this.setCurrentScene(battleScene);
-		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
+		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
+		this.setCurrentScene(battleScene);
+		//this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
 	}
 	
 	public int getScreenWidth() {
