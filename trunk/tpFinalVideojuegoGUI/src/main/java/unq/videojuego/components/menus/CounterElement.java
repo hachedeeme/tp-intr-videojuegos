@@ -1,12 +1,13 @@
-package unq.videojuego.components;
+package unq.videojuego.components.menus;
+
 
 import com.uqbar.vainilla.appearances.Label;
 
 
-public class CounterOrnament extends Ornament {
+public class CounterElement extends ListElement {
 	private int counter;
 
-	public CounterOrnament(int x, int y, int z, int counter) {
+	public CounterElement(int x, int y, int z, int counter) {
 		super(x, y, z, null);
 		this.setWidth((counter + "").length() * this.getFont().getSize());
 		this.counter = counter;

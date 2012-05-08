@@ -1,10 +1,11 @@
-package unq.videojuego.components;
+package unq.videojuego.components.menus;
+
 
 import com.uqbar.vainilla.appearances.Label;
 
-public class TextOrnament extends Ornament {
+public class TextElement extends ListElement {
 	
-	public TextOrnament(int x, int y, int z, String aText) {
+	public TextElement(int x, int y, int z, String aText) {
 		super(x, y, z, null);
 		this.setWidth(aText.length() * this.getFont().getSize());
 		this.setAppearance(new Label(this.getFont(), this.getColor(), aText));

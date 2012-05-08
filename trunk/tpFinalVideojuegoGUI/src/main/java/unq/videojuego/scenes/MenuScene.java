@@ -2,18 +2,18 @@ package unq.videojuego.scenes;
 
 import java.awt.Color;
 
-import unq.videojuego.components.Ornament;
+import unq.videojuego.components.menus.ListElement;
 import unq.videojuego.components.menus.Window;
 
 import com.uqbar.vainilla.appearances.Rectangle;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class MenuScene extends VideojuegoScene {
-	private Ornament background;
+	private ListElement background;
 	
 	public MenuScene(int screenWidth, int screenHeight) {
 		super(screenWidth, screenHeight);
-		this.setBackground(new Ornament(0, 0, -1, new Rectangle(Color.BLACK, 1000, 1000)));
+		this.setBackground(new ListElement(0, 0, -1, new Rectangle(Color.BLACK, 1000, 1000)));
 		Window win = new Window(0, 0, Sprite.fromImage("/images/BlueWindow.png"));
 		this.addComponent(win);
 		win.placeWindow();
@@ -29,7 +29,7 @@ public class MenuScene extends VideojuegoScene {
 	public void initMenu(){
 	}
 	
-	public void setBackground(Ornament background) {
+	public void setBackground(ListElement background) {
 		this.background = background;
 		this.addComponent(background);
 	}

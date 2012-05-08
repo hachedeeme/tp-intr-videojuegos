@@ -6,7 +6,6 @@ import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.scenes.BattleScene;
-import unq.videojuego.scenes.MenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
