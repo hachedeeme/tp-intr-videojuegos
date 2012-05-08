@@ -34,14 +34,15 @@ public class StackableItemShowable implements Showable{
 		return item.getName();
 	}
 
-	@Override
-	public Showable getElement() {
-		return this;
+	public Stackable getStackableItem() {
+		return this.item;
 	}
 
 	@Override
 	public void render(Graphics2D graphics) {
-		
+		this.picture.render(graphics);
+		this.text.render(graphics);
+		this.amount.render(graphics);		
 	}
 
 }

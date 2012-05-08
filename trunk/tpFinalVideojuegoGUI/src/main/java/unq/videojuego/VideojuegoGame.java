@@ -2,14 +2,10 @@ package unq.videojuego;
 
 import java.awt.Dimension;
 
-import unq.videojuego.components.BattleCharacter;
-import unq.videojuego.components.BattleMap;
-import unq.videojuego.components.Obstacle;
-import unq.videojuego.scenes.BattleScene;
+import unq.videojuego.scenes.MenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import com.uqbar.vainilla.GameStatsLabel;
 import com.uqbar.vainilla.ImageHandler;
 
 public class VideojuegoGame extends Game {
@@ -49,7 +45,7 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		ImageHandler imageH = ImageHandler.INSTANCE;
+		/*ImageHandler imageH = ImageHandler.INSTANCE;
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
@@ -59,8 +55,8 @@ public class VideojuegoGame extends Game {
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
 		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
-		this.setCurrentScene(battleScene);
-		//this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
+		this.setCurrentScene(battleScene);*/
+		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
 	}
 	
 	public int getScreenWidth() {
