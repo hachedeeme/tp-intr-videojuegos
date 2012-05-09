@@ -7,7 +7,7 @@ import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.enums.CharDir;
 import unq.videojuego.states.State;
-import unq.videojuego.states.map.MapWaitingForOrders;
+import unq.videojuego.states.map.MapSelectingUnit;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
@@ -90,8 +90,8 @@ public class CharWalking extends State {
 		if (! this.moving){
 			if (this.tuplesPath.isEmpty()){
 				bChar.setState(new CharWaiting());
-				map.setState(new MapWaitingForOrders());
-				map.addSelectedTileInSelectedUnit();
+				map.addUnit(bChar);
+				map.setState(new MapSelectingUnit());
 			} else {
 				TTuple firstTuple = this.tuplesPath.remove(0);
 				this.newMapX = firstTuple.getX();

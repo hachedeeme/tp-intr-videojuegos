@@ -29,19 +29,16 @@ public class BattleCharacter extends BattleComponent {
 		this.state.update(this, deltaState);
 	}
 
-	public void createImagesMap() {
-		Map<CharDir, Map<String, Animation>> charImages = new HashMap<CharDir, Map<String,Animation>>();
-		Map<String, Animation> upMap = new HashMap<String, Animation>();
-		Map<String, Animation> rightMap = new HashMap<String, Animation>();
-		Map<String, Animation> downMap = new HashMap<String, Animation>();
-		Map<String, Animation> leftMap = new HashMap<String, Animation>();
-		
+	public void createImagesMap() {		
 		// Animaciones mirando hacia abajo
 		String waitingDownName = this.name + "Waiting" + CharDir.Down.name();
 		Animation waitingDown = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
 
 		String walkingDownName = this.name + "Walking" + CharDir.Down.name();
 		Animation walkingDown = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
+		
+		String selectedDownName = this.name + "Selected" + CharDir.Down.name();
+		Animation selectedDown = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, selectedDownName); 
 		
 		
 		// Animaciones mirando hacia la Derecha
@@ -51,6 +48,9 @@ public class BattleCharacter extends BattleComponent {
 		String walkingRightName = this.name + "Walking" + CharDir.Right.name();
 		VideojuegoScene.imageH.addAnimation(walkingRightName, walkingDown.flip());
 		
+		String selectedRightName = this.name + "Selected" + CharDir.Right.name();
+		VideojuegoScene.imageH.addAnimation(selectedRightName, selectedDown.flip());
+		
 		
 		// Animaciones mirando hacia la Izquierda
 		String waitingLeftName = this.name + "Waiting" + CharDir.Left.name();
@@ -58,6 +58,9 @@ public class BattleCharacter extends BattleComponent {
 		
 		String walkingLeftName = this.name + "Walking" + CharDir.Left.name();
 		Animation walkingLeft = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, walkingLeftName); 
+		
+		String selectedLeftName = this.name + "Selected" + CharDir.Left.name();
+		Animation selectedLeft = VideojuegoScene.imageH.addAnimation(0.10, 1, 600, 120, 100, 120, selectedLeftName); 
 		
 		
 		// Animaciones mirando hacia Arriba
@@ -67,10 +70,8 @@ public class BattleCharacter extends BattleComponent {
 		String walkingUpName = this.name + "Walking" + CharDir.Up.name();
 		VideojuegoScene.imageH.addAnimation(walkingUpName, walkingLeft.flip());
 		
-		charImages.put(CharDir.Up, upMap);
-		charImages.put(CharDir.Right,rightMap);
-		charImages.put(CharDir.Down, downMap);
-		charImages.put(CharDir.Left, leftMap);
+		String selectedUpName = this.name + "Selected" + CharDir.Up.name();
+		VideojuegoScene.imageH.addAnimation(selectedUpName, selectedLeft.flip());
 		
 		this.updateAppearance();
 	}
