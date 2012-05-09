@@ -30,23 +30,5 @@ public class Shop extends Area {
 	public void setConsumables(List<Stackable> consumables) {
 		this.consumables = consumables;
 	}
-	
-	public Stackable buyItem(List<Stackable> list, String name, int quant){
-		Stackable itemToBuy = null; 
-		for (Stackable item : list){
-			if (item.getName() == name){
-				itemToBuy = item;
-			}
-		}
-		return itemToBuy;
-	}
-	
-	public Stackable buyConsumable(String name, int quant){
-		return this.buyItem(this.getConsumables(), name, quant);
-	}
-	
-	public Stackable buyEquipment(String name, int quant){
-		return this.buyItem(this.getEquips(), name, quant);
-	}
-	
+
 }
