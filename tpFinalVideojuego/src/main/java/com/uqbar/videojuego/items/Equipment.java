@@ -2,8 +2,8 @@ package com.uqbar.videojuego.items;
 
 import java.util.List;
 
+import com.uqbar.videojuego.characters.StatsContainer;
 import com.uqbar.videojuego.skills.Skill;
-import com.uqbar.videojuego.stats.StatsContainer;
 
 public class Equipment extends Stackable {
 	private int range;
