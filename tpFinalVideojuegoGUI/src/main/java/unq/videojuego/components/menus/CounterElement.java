@@ -9,9 +9,10 @@ public class CounterElement extends ListElement {
 
 	public CounterElement(int x, int y, int z, int counter) {
 		super(x, y, z, null);
-		this.setWidth((counter + "").length() * this.getFont().getSize());
+		Label label = new Label( this.getFont(), this.getColor(), "" + counter); 
+		this.setWidth(label.getWidth());
 		this.counter = counter;
-		this.setAppearance(new Label( this.getFont(), this.getColor(), "" + counter));
+		this.setAppearance(label);
 	}
 	
 	public void updateAppearance(int aCounter){

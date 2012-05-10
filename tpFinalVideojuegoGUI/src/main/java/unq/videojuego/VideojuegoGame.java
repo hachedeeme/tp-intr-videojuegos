@@ -2,10 +2,15 @@ package unq.videojuego;
 
 import java.awt.Dimension;
 
+import unq.videojuego.components.BattleCharacter;
+import unq.videojuego.components.BattleMap;
+import unq.videojuego.components.Obstacle;
+import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.scenes.MenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
+import com.uqbar.vainilla.GameStatsLabel;
 import com.uqbar.vainilla.ImageHandler;
 
 public class VideojuegoGame extends Game {
@@ -26,13 +31,21 @@ public class VideojuegoGame extends Game {
 	@Override
 	protected void initializeResources() {
 		ImageHandler imageH = ImageHandler.INSTANCE;
-		imageH.addSprites("BattleMap1", "IsometricLines", "Tree", "SelectedTile");
+		imageH.addSprites("BattleMap1", "IsometricLines", "SelectedTile",
+				
+						  "Tree",
+				
+						  "BlueWindow", "BigBlueWindow", "LongBlueWindow",
+						  
+						  "HP Potion", "MP Potion",  
+						  
+						  "Dagger");
 		
 		// Tile Selection 
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");
 		imageH.addAnimation(0.07, 1, 1200, 150, 100, 150, "SelectionCone");
 		
-		// Sttacks
+		// Attacks
 		imageH.addAnimation(0.1, 1, 126, 128, 126, 64, "ki");
 		imageH.addAnimation(0.1, 1.5, 560, 104, 80, 104, "FirePilar");
 	}
@@ -45,17 +58,17 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		/*ImageHandler imageH = ImageHandler.INSTANCE;
+		ImageHandler imageH = ImageHandler.INSTANCE;
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
-		battleScene.addBattleCharacter(new BattleCharacter("Ash", 3, 3));
-		battleScene.addBattleCharacter(new BattleCharacter("Angel", 6, 6));
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 1, 1));
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
+		battleScene.addBattleCharacter(new BattleCharacter("Ash"), 3, 3);
+		battleScene.addBattleCharacter(new BattleCharacter("Angel"), 6, 6);
+		battleScene.addObstacle(new Obstacle(imageH.getAnimation("ki"), 1, 1));
+		battleScene.addObstacle(new Obstacle(imageH.getAnimation("FirePilar"), 5, 2));
 		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
-		this.setCurrentScene(battleScene);*/
+		//this.setCurrentScene(battleScene);
 		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
 	}
 	

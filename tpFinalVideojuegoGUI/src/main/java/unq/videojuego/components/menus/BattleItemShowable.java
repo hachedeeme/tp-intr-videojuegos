@@ -5,33 +5,40 @@ import java.awt.Graphics2D;
 import unq.videojuego.interfaces.Showable;
 
 import com.uqbar.vainilla.ImageHandler;
+import com.uqbar.videojuego.items.Consumable;
 import com.uqbar.videojuego.items.Stackable;
 
-public class StackableItemShowable implements Showable{
-	private int x;
-	private int y;
+public class BattleItemShowable implements Showable{
+	private double x;
+	private double y;
 	private Stackable item;
 	private PictureElement picture;
 	private TextElement text;
 	private CounterElement amount;
 	
-	public StackableItemShowable(Stackable anItem) {
+	public BattleItemShowable(Consumable anItem) {
 		this.item = anItem;
 		this.picture = new PictureElement(0, 0, 0, ImageHandler.INSTANCE.getSprite(item.getName()));
 		this.text = new TextElement(0, 0, 0, item.getName());
 		this.amount = new CounterElement(0, 0, 0, item.getQuantity());
 	}
 	
-	public void setX(int x, int windowWidth){
-		//this.x = x;
-		this.picture.setX(x);
-		this.text.setX(x + this.picture.getWidth());
-		
+	public double getHeight(){
+		return this.picture.getHeight();
 	}
-
-	@Override
-	public String getName() {
-		return item.getName();
+	
+	public void setX(double start, double end){
+		this.x = start;
+		this.picture.setX(start);
+		this.text.setX(start + this.picture.getWidth() + 5);
+		this.amount.setX(end - this.amount.getWidth() - 15);
+	}
+	
+	public void setY(double y){
+		this.y = y;
+		this.picture.setY(y-5);
+		this.text.setY(y);
+		this.amount.setY(y);
 	}
 
 	public Stackable getStackableItem() {

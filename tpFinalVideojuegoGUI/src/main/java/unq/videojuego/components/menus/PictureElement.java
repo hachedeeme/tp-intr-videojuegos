@@ -9,5 +9,9 @@ public class PictureElement extends ListElement {
 		super(x, y, z, aPicture);
 		this.setWidth((int) aPicture.getWidth());
 	}
+	
+	public double getHeight(){
+		return this.getAppearance().getHeight();
+	}
 
 }

@@ -1,29 +1,29 @@
 package unq.videojuego.scenes;
 
-import java.awt.Color;
+import java.util.ArrayList;
+import java.util.List;
 
+import unq.videojuego.components.menus.BattleItemShowable;
 import unq.videojuego.components.menus.ListElement;
 import unq.videojuego.components.menus.Window;
+import unq.videojuego.interfaces.Showable;
 
-import com.uqbar.vainilla.appearances.Rectangle;
-import com.uqbar.vainilla.appearances.Sprite;
+import com.uqbar.vainilla.ImageHandler;
+import com.uqbar.videojuego.items.Consumable;
 
 public class MenuScene extends VideojuegoScene {
 	private ListElement background;
 	
 	public MenuScene(int screenWidth, int screenHeight) {
 		super(screenWidth, screenHeight);
-		this.setBackground(new ListElement(0, 0, -1, new Rectangle(Color.BLACK, 1000, 1000)));
-		Window win = new Window(0, 0, Sprite.fromImage("/images/BlueWindow.png"));
+		List<Showable> showables = new ArrayList<Showable>();
+		showables.add(new BattleItemShowable(new Consumable("MP Potion", 35, 1000)));
+		showables.add(new BattleItemShowable(new Consumable("MP Potion", 35, 1000)));
+		showables.add(new BattleItemShowable(new Consumable("MP Potion", 35, 1000)));
+		showables.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
+		Window win = new Window(0, 0, ImageHandler.INSTANCE.getSprite("LongBlueWindow"), showables);
 		this.addComponent(win);
-		win.placeWindow();
-		/*/List<ListElement> elements = new ArrayList<ListElement>();
-		ListElement dagger = new ListElement(20, 20, "/images/Dagger.png", "Iron Dagger");
-		elements.add(dagger);
-		elements.add(new ListElement(20, 20 + dagger.getHeight(), "/images/Dagger.png", "Iron Dagger"));
-		elements.add(new ListElement(20, 20 + dagger.getHeight()*2, "/images/Dagger.png", "Iron Dagger"));
-		elements.add(new ListElement(20, 20 + dagger.getHeight()*3, "/images/Dagger.png", "Iron Dagger"));
-		this.addComponents(elements);*/
+		
 	}
 	
 	public void initMenu(){
