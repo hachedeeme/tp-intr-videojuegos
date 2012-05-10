@@ -65,7 +65,7 @@ public class VideojuegoGame extends Game {
 		battleScene.setMap(bm1);
 		battleScene.addBattleCharacter(new BattleCharacter("Ash"), 3, 3);
 		battleScene.addBattleCharacter(new BattleCharacter("Angel"), 6, 6);
-		battleScene.addObstacle(new Obstacle(imageH.getAnimation("ki"), 1, 1));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));//getAnimation("ki"), 1, 1));
 		battleScene.addObstacle(new Obstacle(imageH.getAnimation("FirePilar"), 5, 2));
 		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
 		//this.setCurrentScene(battleScene);

@@ -8,10 +8,11 @@ import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.videojuego.items.Consumable;
 import com.uqbar.videojuego.items.Stackable;
 
+
 public class BattleItemShowable implements Showable{
 	private double x;
 	private double y;
-	private Stackable item;
+	private Consumable item;
 	private PictureElement picture;
 	private TextElement text;
 	private CounterElement amount;
@@ -23,10 +24,19 @@ public class BattleItemShowable implements Showable{
 		this.amount = new CounterElement(0, 0, 0, item.getQuantity());
 	}
 	
-	public double getHeight(){
-		return this.picture.getHeight();
+	//***********************//
+	//** GAME LOOP METHODS **//
+	//***********************//
+	@Override
+	public void render(Graphics2D graphics) {
+		this.picture.render(graphics);
+		this.text.render(graphics);
+		this.amount.render(graphics);		
 	}
 	
+	//*************//
+	//** METHODS **//
+	//*************//
 	public void setX(double start, double end){
 		this.x = start;
 		this.picture.setX(start);
@@ -40,16 +50,25 @@ public class BattleItemShowable implements Showable{
 		this.text.setY(y);
 		this.amount.setY(y);
 	}
-
-	public Stackable getStackableItem() {
+	
+	public double getHeight(){
+		return this.picture.getHeight();
+	}
+	
+	//**************//
+	//** ACCESORS **//
+	//**************//
+	public Stackable getConsumableItem() {
 		return this.item;
 	}
-
-	@Override
-	public void render(Graphics2D graphics) {
-		this.picture.render(graphics);
-		this.text.render(graphics);
-		this.amount.render(graphics);		
+	
+	public double getX() {
+		return x;
 	}
+	
+	public double getY() {
+		return y;
+	}
+
 
 }
