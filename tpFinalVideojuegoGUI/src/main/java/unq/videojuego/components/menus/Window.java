@@ -6,7 +6,6 @@ import java.util.List;
 import unq.videojuego.interfaces.Showable;
 import unq.videojuego.scenes.VideojuegoScene;
 
-import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
 
