@@ -11,6 +11,9 @@ public class Equipment extends Stackable {
 	private StatsContainer stats;
 	private List<Skill> skills;
 
+	public Equipment(String name, int quantity, int price) {
+		super(name, quantity, price);
+	}
 	
 	public int getRange() {
 		return range;
