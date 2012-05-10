@@ -1,10 +1,15 @@
 package com.uqbar.videojuego.items;
 
-public class Stackable extends Item {
+public abstract class Stackable extends Item {
 	private int quantity;
 	private int price;
 
-	
+	protected Stackable(String name, int quantity, int price) {
+		super(name);
+		this.quantity = quantity;
+		this.price = price;
+	}
+
 	public int getQuantity() {
 		return quantity;
 	}

@@ -8,6 +8,10 @@ public abstract class Item {
 	private String name;
 	private List<ItemAction> actions;  
 
+	protected Item(String name){
+		super();
+		this.name = name;
+	}
 	
 	public String getName() {
 		return name;
