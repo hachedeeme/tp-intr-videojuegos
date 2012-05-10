@@ -74,10 +74,12 @@ public class BattleScene extends VideojuegoScene {
 		return map;
 	}
 
-	public void addBattleCharacter(BattleCharacter comp){
+	public void addBattleCharacter(BattleCharacter comp, int mapX, int mapY){
 		boolean added = this.addBattleComponent(comp);
 		if (added){
 			comp.createImagesMap();
+			comp.setMapX(mapX);
+			comp.setMapY(mapY);
 			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
 			this.map.addUnit(comp);
 		}

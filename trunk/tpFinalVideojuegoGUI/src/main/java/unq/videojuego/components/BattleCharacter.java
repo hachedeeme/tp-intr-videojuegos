@@ -1,8 +1,5 @@
 package unq.videojuego.components;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import unq.videojuego.enums.CharDir;
 import unq.videojuego.scenes.VideojuegoScene;
 import unq.videojuego.states.State;
@@ -20,6 +17,11 @@ public class BattleCharacter extends BattleComponent {
 	
 	public BattleCharacter(String name, int mapX, int mapY) {
 		super(mapX, mapY);
+		this.name = name;
+	}
+	
+	public BattleCharacter(String name){
+		super();
 		this.name = name;
 	}
 	

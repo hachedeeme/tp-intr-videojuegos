@@ -1,13 +1,12 @@
 package unq.videojuego.components.menus;
 
 import java.awt.Graphics2D;
-import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.VideojuegoGame;
 import unq.videojuego.interfaces.Showable;
 import unq.videojuego.scenes.VideojuegoScene;
 
+import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
 
@@ -16,17 +15,25 @@ public class Window extends GameComponent<VideojuegoScene> {
 	private Pointer pointer;
 	private Sprite image;
 	
-	public Window(int x, int y, Sprite image) {
-		super(x,y);
-		this.elements = new ArrayList<Showable>();
-		this.image    = image;
-		this.pointer  = new Pointer(x,y);
+	public Window(double x, double y, Sprite image, List<Showable> showables) {
+		super();
+		this.elements = showables;
+		this.image = image;
 		this.setAppearance(image);
+		this.placeWindow(x, y);
+		//this.pointer  = new Pointer(x,y);
 	}
 	
 	//***********************//
 	//** GAME LOOP METHODS **//
 	//***********************//
+	/*
+	@Override
+	public void update(DeltaState deltaState) {
+		super.update(deltaState);
+		this.placeWindow(this.getX()+ 200*deltaState.getDelta(), 0);
+	}
+	*/
 	@Override
 	public void render(Graphics2D graphics) {
 		super.render(graphics);
@@ -39,14 +46,22 @@ public class Window extends GameComponent<VideojuegoScene> {
 	//** METHODS **//
 	//*************//
 	public void placeWindow(){
-		this.setX(0);
-		this.setY(this.getScene().getScreenHeight() - this.getHeight());
-		//TODO Elimiar hardcode
+		this.placeWindow(0, this.getScene().getScreenHeight() - this.getHeight());
 	}
 	
-	public void placeWindow(int x, int y){
+	public void placeWindow(double x, double y){
 		this.setX(x);
 		this.setY(y);
+		this.setElementsCoords();
+	}
+	
+	public void setElementsCoords(){
+		double heightAccum = this.getY() + 22;
+		for (Showable elem : this.elements){
+			elem.setX(this.getX() + 20, this.getX() + this.getWidth());
+			elem.setY(heightAccum);
+			heightAccum += elem.getHeight();
+		}
 	}
 	
 	public int getHeight(){
@@ -68,7 +83,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 	}
 	
 	public void addAllElements(List<Showable> elements){
-		this.elements.addAll(elements);
+		for (Showable elem : elements){
+			this.addElement(elem);
+		}
 	}
 	
 	public Sprite getImage() {

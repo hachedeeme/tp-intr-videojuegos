@@ -13,6 +13,10 @@ public abstract class BattleComponent extends GameComponent<BattleScene> {
 		this.setMapX(mapX);
 		this.setMapY(mapY);
 	}
+	
+	public BattleComponent() {
+		super();
+	}
 
 	public int getMapX() {
 		return mapX;

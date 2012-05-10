@@ -11,12 +11,11 @@ import com.uqbar.vainilla.appearances.Appearance;
 public class ListElement extends GameComponent<VideojuegoScene> {
 	private Font font;
 	private Color color;
-	private int width;
+	private double width;
 
-	
-	public ListElement(int x, int y, int z, Appearance aAppearance) {
-		super(aAppearance,x,y);
-		this.font = new Font("monospaced", Font.BOLD, 22);
+	public ListElement(int x, int y, int z, Appearance anAppearance) {
+		super(anAppearance,x,y);
+		this.font = new Font("monospaced", Font.BOLD, 18);
 		this.color = Color.WHITE;
 		this.setZ(z);
 	}
@@ -29,11 +28,11 @@ public class ListElement extends GameComponent<VideojuegoScene> {
 		return color;
 	}
 	
-	public int getWidth() {
+	public double getWidth() {
 		return width;
 	}
 	
-	public void setWidth(int width) {
+	public void setWidth(double width) {
 		this.width = width;
 	}
 }
