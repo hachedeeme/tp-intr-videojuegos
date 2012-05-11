@@ -24,19 +24,19 @@ public class StatsHandler extends StatsContainer {
 	//** METHODS **//
 	//*************//	
 	public int calculateAttackPower(){
-		return 0;
+		return this.strength + ((this.stamina * 20)/100);
 	}
 	
 	public int calculateSpellPower(){
-		return 0;
+		return this.intellect + ((this.wisdom * 20)/100);
 	}
 	
 	public int calculateArmor(){
-		return 0;
+		return this.stamina + ((this.strength * 20)/100);
 	}
 	
 	public int calculateMagicResist(){
-		return 0;
+		return this.wisdom + ((this.intellect * 20)/100);
 	}
 
 	//**************//
