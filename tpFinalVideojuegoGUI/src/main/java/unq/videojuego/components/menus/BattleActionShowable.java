@@ -3,9 +3,8 @@ package unq.videojuego.components.menus;
 import java.awt.Graphics2D;
 
 import unq.videojuego.commands.Command;
-import unq.videojuego.interfaces.Showable;
 
-public class BattleActionShowable implements Showable{
+public class BattleActionShowable extends Showable{
 	private double x;
 	private double y;
 	private Command command;
@@ -37,11 +36,6 @@ public class BattleActionShowable implements Showable{
 	public void setY(double y) {
 		this.y = y;
 		this.text.setY(y);
-	}
-
-	@Override
-	public double getHeight() {
-		return this.text.getHeight();
 	}
 	
 	//**************//
