@@ -1,62 +1,83 @@
 package com.uqbar.videojuego.characters;
 
+import java.util.HashMap;
+import java.util.Map;
+
+import com.uqbar.videojuego.items.EquipType;
 import com.uqbar.videojuego.items.Equipment;
 
 public class CharEquipment {
-	private Equipment mainHand;
-	private Equipment offHand;
-	private Equipment head;
-	private Equipment body;
-	private Equipment hand;
-	private Equipment feet;
-	private Equipment accesory;
+	private Map<String,Equipment> equipment;
 	
-	public CharEquipment(Equipment mainHand, Equipment offHand, Equipment head,
-						 Equipment body, Equipment hand, Equipment feet, 
-			 			 Equipment accesory) {
-		this.mainHand = mainHand;
-		this.offHand = offHand;
-		this.head = head;
-		this.body = body;
-		this.hand = hand;
-		this.feet = feet;
-		this.accesory = accesory;
+	public CharEquipment() {
+		this.equipment = new HashMap<String, Equipment>();
+		this.equipment.put("mainHand", null);
+		this.equipment.put("offHand",  null);
+		this.equipment.put("head",     null);
+		this.equipment.put("body",     null);
+		this.equipment.put("hand",     null);
+		this.equipment.put("feet",     null);
+		this.equipment.put("accesory", null);
 	}
 	
 	//*************//
 	//** METHODS **//
 	//*************//
-	public void modifyStats(StatsHandler aStatH){
+	public StatsContainer generateStatsConteContainer(){
+		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
+		for (Equipment equip : this.equipment.values()) {
+			stats.sumStats(equip.getStats());
+		}
+		return stats;
 	}
 	
+	public void putEquipment(Equipment aEquipment){
+		EquipType equipType = aEquipment.getType();
+		switch (equipType) {
+		case TWOHANDED:
+			this.equipment.put(equipType.getEquipString(), aEquipment);
+			this.equipment.put("offHand", null);
+			break;
+		case ONEHANDED:
+			Equipment mainHand = this.getMainHand();
+			if((mainHand == null) || (mainHand.getType() == EquipType.TWOHANDED))
+				this.equipment.put(equipType.getEquipString(), aEquipment);
+			else
+				this.equipment.put("offHand", aEquipment);
+			break;
+		default:
+			this.equipment.put(equipType.getEquipString(), aEquipment);
+			break;
+		}
+	}
 	//**************//
 	//** ACCESORS **//
 	//**************//
 	public Equipment getAccesory() {
-		return accesory;
+		return this.equipment.get("accesory");
 	}
 	 
 	public Equipment getBody() {
-		return body;
+		return this.equipment.get("body");
 	}
 	 
 	public Equipment getFeet() {
-		return feet;
+		return this.equipment.get("feet");
 	}
 	 
 	public Equipment getHand() {
-		return hand;
+		return this.equipment.get("hand");
 	}
 	 
 	public Equipment getHead() {
-		return head;
+		return this.equipment.get("head");
 	}
 	 
 	public Equipment getMainHand() {
-		return mainHand;
+		return this.equipment.get("mainHand");
 	}
 	
 	public Equipment getOffHand() {
-		return offHand;
+		return this.equipment.get("offHand");
 	}
 }
