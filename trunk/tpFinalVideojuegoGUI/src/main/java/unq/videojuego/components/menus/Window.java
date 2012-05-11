@@ -3,7 +3,6 @@ package unq.videojuego.components.menus;
 import java.awt.Graphics2D;
 import java.util.List;
 
-import unq.videojuego.interfaces.Showable;
 import unq.videojuego.scenes.VideojuegoScene;
 
 import com.uqbar.vainilla.GameComponent;
@@ -57,7 +56,7 @@ public class Window extends GameComponent<VideojuegoScene> {
 	public void setElementsCoords(){
 		double heightAccum = this.getY() + 22;
 		for (Showable elem : this.elements){
-			elem.setX(this.getX() + 20, this.getX() + this.getWidth());
+			elem.setX(this.getX() + 35, this.getX() + this.getWidth());
 			elem.setY(heightAccum);
 			heightAccum += elem.getHeight();
 		}

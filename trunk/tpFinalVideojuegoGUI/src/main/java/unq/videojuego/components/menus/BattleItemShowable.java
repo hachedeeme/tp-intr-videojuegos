@@ -2,14 +2,13 @@ package unq.videojuego.components.menus;
 
 import java.awt.Graphics2D;
 
-import unq.videojuego.interfaces.Showable;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.videojuego.items.Consumable;
 import com.uqbar.videojuego.items.Stackable;
 
 
-public class BattleItemShowable implements Showable{
+public class BattleItemShowable extends Showable{
 	private double x;
 	private double y;
 	private Consumable item;
@@ -49,10 +48,6 @@ public class BattleItemShowable implements Showable{
 		this.picture.setY(y-5);
 		this.text.setY(y);
 		this.amount.setY(y);
-	}
-	
-	public double getHeight(){
-		return this.picture.getHeight();
 	}
 	
 	//**************//

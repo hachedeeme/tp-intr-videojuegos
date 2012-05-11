@@ -2,11 +2,10 @@ package unq.videojuego.components.menus;
 
 import java.awt.Graphics2D;
 
-import unq.videojuego.interfaces.Showable;
 
 import com.uqbar.videojuego.skills.Skill;
 
-public class BattleSkillShowable implements Showable {
+public class BattleSkillShowable extends Showable {
 	private double x;
 	private double y;
 	private Skill skill;
@@ -45,10 +44,6 @@ public class BattleSkillShowable implements Showable {
 		this.cost.setY(y);		
 	}
 
-	@Override
-	public double getHeight() {
-		return this.text.getHeight();
-	}
 	//**************//
 	//** ACCESORS **//
 	//**************//
