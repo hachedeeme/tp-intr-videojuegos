@@ -23,10 +23,11 @@ public class CharEquipment {
 	//*************//
 	//** METHODS **//
 	//*************//
-	public StatsContainer generateStatsConteContainer(){
+	public StatsContainer generateStatsContainer(){
 		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
 		for (Equipment equip : this.equipment.values()) {
-			stats.sumStats(equip.getStats());
+			if(equip != null)
+				stats.sumStats(equip.getStats());
 		}
 		return stats;
 	}
@@ -50,6 +51,12 @@ public class CharEquipment {
 			break;
 		}
 	}
+	
+	@Override
+	public String toString() {
+		return this.equipment.toString();
+	}
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//
