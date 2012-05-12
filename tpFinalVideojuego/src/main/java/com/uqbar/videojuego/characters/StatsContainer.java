@@ -33,6 +33,13 @@ public class StatsContainer {
 		this.wisdom += stats.getWisdom();
 	}
 	
+	public StatsContainer clone(){
+		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
+		stats.sumStats(this);
+		return stats;
+	}
+	
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//
@@ -63,6 +70,25 @@ public class StatsContainer {
 	public int getWisdom() {
 		return wisdom;
 	}
-	
-	
+
+	//**************//
+	//** PRINTING **//
+	//**************//
+	protected String statsToString(){
+		String enter = System.getProperty("line.separator");
+		String resString = "Agility = " + this.agility + enter;
+		resString += "Strength = " + this.strength + enter;
+		resString += "Stamina = " + this.stamina + enter;
+		resString += "Intellect = " + this.intellect + enter;
+		resString += "Wisdom = " + this.wisdom + enter;
+		return resString;
+	}
+	@Override
+	public String toString() {
+		String enter = System.getProperty("line.separator");
+		String resString = "HP = " + this.hp + enter;
+		resString += "MP = " + this.mp + enter;
+		resString += this.statsToString();
+		return resString;
+	}
 }

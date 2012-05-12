@@ -1,5 +1,6 @@
 package com.uqbar.videojuego.items;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.uqbar.videojuego.characters.StatsContainer;
@@ -11,10 +12,20 @@ public class Equipment extends Stackable {
 	private StatsContainer stats;
 	private List<Skill> skills;
 
-	public Equipment(String name, int quantity, int price) {
+	public Equipment(String name, EquipType aType, StatsContainer stats, int quantity, int price) {
 		super(name, quantity, price);
+		this.type = aType;
+		this.stats = stats;
+		this.skills = new ArrayList<Skill>();
 	}
 	
+	@Override
+	public String toString() {
+		return this.getName();
+	}
+	//**************//
+	//** ACCESORS **//
+	//**************//	
 	public int getRange() {
 		return range;
 	}
