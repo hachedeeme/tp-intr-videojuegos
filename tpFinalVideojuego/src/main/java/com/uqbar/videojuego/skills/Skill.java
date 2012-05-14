@@ -10,6 +10,9 @@ public class Skill {
 		this.cost = cost;
 	}
 
+	//**************//
+	//** ACCESORS **//
+	//**************//	
 	public String getName() {
 		return name;
 	}
