@@ -5,12 +5,9 @@ import java.util.List;
 
 import com.uqbar.videojuego.skills.Skill;
 
-public class Character {
-	private String name;
+public class Character extends Actor{
 	private StatsContainer basicStats;
-	private StatsHandler stats;
 	private CharEquipment equipment;
-	private List<Skill> skills;
 	
 	public Character(String aName, StatsContainer stats, CharEquipment aEquipment) {
 		StatsContainer statsToHandler = stats.clone();
@@ -24,7 +21,7 @@ public class Character {
 
 	//*************//
 	//** METHODS **//
-	//*************//
+	//*************//	
 	public void addSkill(Skill aSkill){
 		this.skills.add(aSkill);
 	}
@@ -42,19 +39,7 @@ public class Character {
 	}
 	//**************//
 	//** ACCESORS **//
-	//**************//
-	public String getName() {
-		return name;
-	}
-	
-	public List<Skill> getSkills() {
-		return skills;
-	}
-	
-	public StatsHandler getStats() {
-		return stats;
-	}
-	
+	//**************//	
 	public CharEquipment getEquipment() {
 		return equipment;
 	}
@@ -62,4 +47,11 @@ public class Character {
 	public StatsContainer getBasicStats() {
 		return basicStats;
 	}
+
+	@Override
+	public void attack(Actor anActor) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
