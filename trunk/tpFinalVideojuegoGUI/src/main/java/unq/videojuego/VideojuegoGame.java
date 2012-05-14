@@ -63,13 +63,13 @@ public class VideojuegoGame extends Game {
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
 		battleScene.setMap(bm1);
-		battleScene.addBattleCharacter(new BattleCharacter("Ash"), 3, 3);
-		battleScene.addBattleCharacter(new BattleCharacter("Angel"), 6, 6);
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));//getAnimation("ki"), 1, 1));
-		battleScene.addObstacle(new Obstacle(imageH.getAnimation("FirePilar"), 5, 2));
+		battleScene.addBattleCharacter(new BattleCharacter("Angel"), 3, 3);
+		battleScene.addBattleCharacter(new BattleCharacter("Ash"), 6, 6);
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
 		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
-		//this.setCurrentScene(battleScene);
-		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
+		this.setCurrentScene(battleScene);
+		//this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
 	}
 	
 	public int getScreenWidth() {
