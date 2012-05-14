@@ -16,7 +16,7 @@ public abstract class Actor {
 	//** METHODS **//
 	//*************//
 	public void attack(Actor anActor){
-		int damage = this.getAttackPower();
+		int damage = this.getStrength() + this.getAttackPower();
 		int armor  = anActor.getArmor();
 		if(damage > armor)
 			anActor.inflictDamage(damage - armor);
@@ -47,12 +47,12 @@ public abstract class Actor {
 		return stats;
 	}
 	
-	public int getStrentgh(){
-		return this.getStrentgh();
+	public int getStrength(){
+		return this.stats.getStrength();
 	}
 	
 	public int getStamina(){
-		return this.getStamina();
+		return this.stats.getStamina();
 	}
 	
 	public int getCurrentHp() {

@@ -47,11 +47,4 @@ public class Character extends Actor{
 	public StatsContainer getBasicStats() {
 		return basicStats;
 	}
-
-	@Override
-	public void attack(Actor anActor) {
-		// TODO Auto-generated method stub
-		
-	}
-
 }
