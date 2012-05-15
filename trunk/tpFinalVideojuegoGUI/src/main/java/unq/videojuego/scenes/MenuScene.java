@@ -27,6 +27,10 @@ public class MenuScene extends VideojuegoScene {
 		showables1.add(new BattleItemShowable(new Consumable("MP Potion", 35, 1000)));
 		showables1.add(new BattleItemShowable(new Consumable("MP Potion", 35, 1000)));
 		showables1.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
+		showables1.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
+		showables1.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
+		showables1.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
+		showables1.add(new BattleItemShowable(new Consumable("HP Potion", 99, 1000)));
 		Window win1 = new Window(0, 0, ImageHandler.INSTANCE.getSprite("LongBlueWindow"), showables1);
 		
 		
@@ -44,8 +48,8 @@ public class MenuScene extends VideojuegoScene {
 		showables3.add(new BattleActionShowable(new Command("Run")));
 		Window win3 = new Window(0, 500, ImageHandler.INSTANCE.getSprite("BlueWindow"), showables3);
 		this.addComponent(win1);
-		this.addComponent(win2);
-		this.addComponent(win3);
+		//this.addComponent(win2);
+		//this.addComponent(win3);
 		
 	}
 }
