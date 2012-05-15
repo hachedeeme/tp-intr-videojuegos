@@ -79,11 +79,32 @@ public class Animation implements Appearance {
 		this.setRemainingTime(this.getMeantime() - this.getRemainingTime());
 	}
 	
-	public Animation flip(){
+	public Animation flipHorizontally(){
 		Sprite[] newSprites = new Sprite[this.sprites.length];
 		int i = 0;
 		for (Sprite sprite : this.sprites){
 			newSprites[i] = sprite.flipHorizontally();
+			i++;
+		}
+		return new Animation(this.meantime, newSprites);
+	}
+	
+
+	public Animation flipVertically(){
+		Sprite[] newSprites = new Sprite[this.sprites.length];
+		int i = 0;
+		for (Sprite sprite : this.sprites){
+			newSprites[i] = sprite.flipVertically();
+			i++;
+		}
+		return new Animation(this.meantime, newSprites);
+	}
+	
+	public Animation scale(double scale){
+		Sprite[] newSprites = new Sprite[this.sprites.length];
+		int i = 0;
+		for (Sprite sprite : this.sprites){
+			newSprites[i] = sprite.scale(scale);
 			i++;
 		}
 		return new Animation(this.meantime, newSprites);
