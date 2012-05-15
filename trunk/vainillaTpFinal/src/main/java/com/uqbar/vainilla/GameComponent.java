@@ -60,6 +60,14 @@ public class GameComponent<SceneType extends GameScene> {
 	public void destroy() {
 		this.setDestroyPending(true);
 	}
+	
+	public void addToScene(GameScene scene){
+		scene.addComponent(this);
+	}
+	
+	public void removeFromScene(GameScene scene){
+		scene.removeComponent(this);
+	}
 
 	// ****************************************************************
 	// ** ALIGNMENT OPERATIONS
