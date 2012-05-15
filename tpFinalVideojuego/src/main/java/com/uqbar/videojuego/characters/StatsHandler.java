@@ -1,5 +1,7 @@
 package com.uqbar.videojuego.characters;
 
+import java.util.Random;
+
 
 public class StatsHandler extends StatsContainer {
 	private int currentHp;
@@ -22,7 +24,15 @@ public class StatsHandler extends StatsContainer {
 	
 	//*************//
 	//** METHODS **//
-	//*************//	
+	//*************//
+	
+	/*
+	 * Calculos de stats, hasta ahora la formula es, 40% de su primer atributo sumado a
+	 * el 20% de su segundo atributo. Esto está así por ahora porque es para probar, tengo
+	 * la tendencia de hacer algún otro tipo de formula con respecto a esto y a los daños. */
+	//************************//
+	//** STATS CALCULATIONS **//
+	//************************//
 	public int calculateAttackPower(){
 		return this.strength * 40/100 + this.stamina * 20/100;
 	}
@@ -37,6 +47,14 @@ public class StatsHandler extends StatsContainer {
 	
 	public int calculateMagicResist(){
 		return this.wisdom * 40/100 + this.intellect * 20/100;
+	}
+	
+	/**
+	 * Cada 100 puntos de agility es uno de movility.
+	 * @return
+	 */
+	public int calculateMovility(){
+		return this.agility/100;
 	}
 	
 	public void decreaseHP(int amount){
@@ -67,6 +85,40 @@ public class StatsHandler extends StatsContainer {
 			this.currentMp = this.mp;
 	}
 	
+	/*
+	 * Hasta ahora, los cálculos de daño fisico y mágico son: su atributo especifico(Fuerza
+	 * en caso de daño físico) más su ataque especifico más un random de 0 a 10 para que
+	 * los ataques varien un poco, estuve viendo ejemplos y se usa bastante y lo llaman 
+	 * varianza, lo puse para probar que onda y por ahora va... como dije en el comentario 
+	 * aterior, estoy en busca de una que me paresca mejor y mas copada, esta me va, pero por
+	 * ahora. Despues hablaremos sobre eso supongo :P .*/
+	//*************************************//
+	//** DAMAGE AND DEFENCE CALCULATIONS **//
+	//*************************************//
+	public int calculatePhysicalDamage(){
+		Random rand = new Random();
+		int damage = this.getStrength() + this.getAttackPower() + rand.nextInt(10);
+		return damage;
+	}
+	
+	public int calculatePhysicalDefence(){
+		Random rand = new Random();
+		int defence = this.getArmor() + this.getStamina()*20/100 + rand.nextInt(10);
+		return defence;
+	}
+	
+	public int calculateMagicDamage(){
+		Random rand = new Random();
+		int damage = this.getIntellect() + this.getSpellPower() + rand.nextInt(10);
+		return damage;
+	}
+	
+	
+	public int calculateMagicDefence(){
+		Random rand = new Random();
+		int defence = this.getMagicResist() + this.getWisdom()*20/100 + rand.nextInt(10);
+		return defence;
+	}
 	//**************//
 	//** ACCESORS **//
 	//**************//
