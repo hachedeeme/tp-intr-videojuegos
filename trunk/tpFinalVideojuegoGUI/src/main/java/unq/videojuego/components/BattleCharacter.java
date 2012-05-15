@@ -45,13 +45,13 @@ public class BattleCharacter extends BattleComponent {
 		
 		// Animaciones mirando hacia la Derecha
 		String waitingRightName = this.name + "Waiting" + CharDir.Right.name();
-		VideojuegoScene.imageH.addAnimation(waitingRightName, waitingDown.flip());
+		VideojuegoScene.imageH.addAnimation(waitingRightName, waitingDown.flipHorizontally());
 		
 		String walkingRightName = this.name + "Walking" + CharDir.Right.name();
-		VideojuegoScene.imageH.addAnimation(walkingRightName, walkingDown.flip());
+		VideojuegoScene.imageH.addAnimation(walkingRightName, walkingDown.flipHorizontally());
 		
 		String selectedRightName = this.name + "Selected" + CharDir.Right.name();
-		VideojuegoScene.imageH.addAnimation(selectedRightName, selectedDown.flip());
+		VideojuegoScene.imageH.addAnimation(selectedRightName, selectedDown.flipHorizontally());
 		
 		
 		// Animaciones mirando hacia la Izquierda
@@ -67,13 +67,13 @@ public class BattleCharacter extends BattleComponent {
 		
 		// Animaciones mirando hacia Arriba
 		String waitingUpName = this.name + "Waiting" + CharDir.Up.name();
-		VideojuegoScene.imageH.addAnimation(waitingUpName, waitingLeft.flip());
+		VideojuegoScene.imageH.addAnimation(waitingUpName, waitingLeft.flipHorizontally());
 		
 		String walkingUpName = this.name + "Walking" + CharDir.Up.name();
-		VideojuegoScene.imageH.addAnimation(walkingUpName, walkingLeft.flip());
+		VideojuegoScene.imageH.addAnimation(walkingUpName, walkingLeft.flipHorizontally());
 		
 		String selectedUpName = this.name + "Selected" + CharDir.Up.name();
-		VideojuegoScene.imageH.addAnimation(selectedUpName, selectedLeft.flip());
+		VideojuegoScene.imageH.addAnimation(selectedUpName, selectedLeft.flipHorizontally());
 		
 		this.updateAppearance();
 	}
