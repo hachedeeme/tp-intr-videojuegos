@@ -22,7 +22,12 @@ public class StatsContainer {
 
 	//*************//
 	//** METHODS **//
-	//*************//		
+	//*************//
+	/**
+	 * Recibe un StatsContainer por parámetro y le suma los valores correspondientes a cada
+	 * campo al objeto receptor.
+	 * @param stats
+	 */
 	public void sumStats(StatsContainer stats){
 		this.hp += stats.getHp();
 		this.mp += stats.getMp();
@@ -33,6 +38,10 @@ public class StatsContainer {
 		this.wisdom += stats.getWisdom();
 	}
 	
+	/**
+	 * Retorna un StatsContainer con los mismos valores que el objeto receptor.
+	 * @return StatsContainer
+	 */
 	public StatsContainer clone(){
 		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
 		stats.sumStats(this);

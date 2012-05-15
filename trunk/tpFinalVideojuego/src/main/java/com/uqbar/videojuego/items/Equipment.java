@@ -12,17 +12,20 @@ public class Equipment extends Stackable {
 	private StatsContainer stats;
 	private List<Skill> skills;
 
-	public Equipment(String name, EquipType aType, StatsContainer stats, int quantity, int price) {
+	public Equipment(String name, EquipType aType, StatsContainer stats, int range, 
+					 int quantity, int price) {
 		super(name, quantity, price);
-		this.type = aType;
-		this.stats = stats;
+		this.type   = aType;
+		this.stats  = stats;
+		this.range  = range;
 		this.skills = new ArrayList<Skill>();
 	}
 	
-	@Override
-	public String toString() {
-		return this.getName();
-	}
+	//*************//
+	//** METHODS **//
+	//*************//	
+	
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//	
@@ -58,4 +61,8 @@ public class Equipment extends Stackable {
 		this.skills = skills;
 	}
 	
+	@Override
+	public String toString() {
+		return this.getName();
+	}
 }

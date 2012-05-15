@@ -23,6 +23,11 @@ public class CharEquipment {
 	//*************//
 	//** METHODS **//
 	//*************//
+	/**
+	 * Retorna el StatsContainer resultado de sumar los StatsContainers de todos 
+	 * los Equipments.
+	 * @return StatsContainer
+	 */
 	public StatsContainer generateStatsContainer(){
 		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
 		for (Equipment equip : this.equipment.values()) {
@@ -32,6 +37,15 @@ public class CharEquipment {
 		return stats;
 	}
 	
+	/**
+	 * Recine un Equipment por parámetro y lo agrega al CharEquipment segun su EquipType.
+	 * Si ya había un Equipment de ese EquipType, es reemplazado por el nuevo. 
+	 * Si el Equipment a equipar es del tipo TWOHANDED, se acomoda en la "mainHand" y la
+	 * "offHand" queda en null.
+	 * Si el Equipment a equipar es del tipo ONEHANDED, se acomoda en la "mainHand" pero
+	 * si ya había uno en ese lugar, se acomoda en la "offHand". 
+	 * @param aEquipment
+	 */
 	public void putEquipment(Equipment aEquipment){
 		EquipType equipType = aEquipment.getType();
 		switch (equipType) {
@@ -50,6 +64,14 @@ public class CharEquipment {
 			this.equipment.put(equipType.getEquipString(), aEquipment);
 			break;
 		}
+	}
+	
+	public boolean haveMainHand(){
+		return this.getMainHand() != null;
+	}
+	
+	public boolean haveOffHand(){
+		return this.getOffHand() != null;
 	}
 	
 	@Override
