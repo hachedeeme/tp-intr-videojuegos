@@ -1,5 +1,5 @@
 package unq.videojuego.enums;
 
-public enum CharDir {
+public enum UnitDir {
 	Up, Right, Down, Left
 }

@@ -1,10 +1,10 @@
 package unq.videojuego.components;
 
-import com.uqbar.vainilla.DeltaState;
-
-import unq.videojuego.scenes.VideojuegoScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
+
+import com.uqbar.vainilla.DeltaState;
+import com.uqbar.vainilla.ImageHandler;
 
 public class SelectedTile extends BattleComponent {
 	private SelectionCone selectionCone = new SelectionCone(0, 0);
@@ -17,7 +17,7 @@ public class SelectedTile extends BattleComponent {
 		super(x, y);
 		this.setZ(-1);
 		this.battleMap = battleMap;
-		this.setAppearance(VideojuegoScene.imageH.getSprite("SelectedTile"));
+		this.setAppearance(ImageHandler.INSTANCE.getSprite("SelectedTile"));
 	}
 	
 	@Override
