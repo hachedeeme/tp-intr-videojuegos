@@ -25,6 +25,11 @@ public class LimitedAnimation extends Animation {
 		return this.timesLeft == 0 && this.getCurrentIndex() >= this.getSprites().length;
 	}
 	
+	public boolean isAtEnd(){
+		return this.timesLeft == 1 && this.getCurrentIndex() == this.getSprites().length;
+	}
+	
+	
 	@Override
 	protected void advance() {
 		if (this.timesLeft > 0){
