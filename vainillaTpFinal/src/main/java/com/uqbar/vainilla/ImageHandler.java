@@ -33,6 +33,10 @@ public class ImageHandler {
 		this.images.put(name, animation);
 	}
 	
+	public void addLimitedAnimation(String name, LimitedAnimation animation){
+		this.images.put(name, animation);
+	}
+	
 	public LimitedAnimation addLimitedAnimation(double time, double scale, int imgWidth, 
 			int imgHeight, int spriteWidth, int spriteHeight, String name){
 		LimitedAnimation animation = AnimationGenerator.createLimitedAnimation(time, scale, ("/images/" + name + ".png"), imgWidth, imgHeight, spriteWidth, spriteHeight);
