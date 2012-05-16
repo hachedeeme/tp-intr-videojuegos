@@ -88,7 +88,6 @@ public class Animation implements Appearance {
 		}
 		return new Animation(this.meantime, newSprites);
 	}
-	
 
 	public Animation flipVertically(){
 		Sprite[] newSprites = new Sprite[this.sprites.length];

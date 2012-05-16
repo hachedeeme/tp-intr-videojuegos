@@ -60,6 +60,28 @@ public class LimitedAnimation extends Animation {
 	}
 	
 	@Override
+	public LimitedAnimation flipHorizontally() {
+		Sprite[] newSprites = new Sprite[this.getSprites().length];
+		int i = 0;
+		for (Sprite sprite : this.getSprites()){
+			newSprites[i] = sprite.flipHorizontally();
+			i++;
+		}
+		return new LimitedAnimation(this.getMeantime(), newSprites);
+	} 
+	
+	@Override
+	public LimitedAnimation flipVertically() {
+		Sprite[] newSprites = new Sprite[this.getSprites().length];
+		int i = 0;
+		for (Sprite sprite : this.getSprites()){
+			newSprites[i] = sprite.flipVertically();
+			i++;
+		}
+		return new LimitedAnimation(this.getMeantime(), newSprites);
+	}
+	
+	@Override
 	public void render(GameComponent<?> component, Graphics2D graphics) {
 		if (this.getCurrentIndex() < this.getSprites().length){
 			this.getCurrentSprite().render(component, graphics);
