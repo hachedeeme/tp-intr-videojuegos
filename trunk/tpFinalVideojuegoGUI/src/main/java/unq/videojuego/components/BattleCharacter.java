@@ -4,6 +4,7 @@ import unq.videojuego.enums.UnitDir;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Animation;
+import com.uqbar.vainilla.appearances.LimitedAnimation;
 import com.uqbar.videojuego.characters.CharEquipment;
 import com.uqbar.videojuego.characters.Character;
 import com.uqbar.videojuego.characters.StatsContainer;
@@ -64,16 +65,16 @@ public class BattleCharacter extends BattleUnit {
 		
 		// Attacking
 		String attackingDownName = this.getName() + "Attacking" + UnitDir.Down.name();
-		Animation attackingDown = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingDownName); 
+		LimitedAnimation attackingDown = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingDownName); 
 		
 		String attackingRightName = this.getName() + "Attacking" + UnitDir.Right.name();
-		ImageHandler.INSTANCE.addAnimation(attackingRightName, attackingDown.flipHorizontally());
+		ImageHandler.INSTANCE.addLimitedAnimation(attackingRightName, attackingDown.flipHorizontally());
 		
 		String attackingLeftName = this.getName() + "Attacking" + UnitDir.Left.name();
-		Animation attackingLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingLeftName); 
+		LimitedAnimation attackingLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingLeftName); 
 		
 		String attackingUpName = this.getName() + "Attacking" + UnitDir.Up.name();
-		ImageHandler.INSTANCE.addAnimation(attackingUpName, attackingLeft.flipHorizontally());
+		ImageHandler.INSTANCE.addLimitedAnimation(attackingUpName, attackingLeft.flipHorizontally());
 
 		
 		this.updateAppearance();
