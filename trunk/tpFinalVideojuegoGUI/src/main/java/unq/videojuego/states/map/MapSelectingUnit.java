@@ -1,6 +1,7 @@
 package unq.videojuego.states.map;
 
 import unq.videojuego.components.BattleMap;
+import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.State;
 import unq.videojuego.states.character.CharSelected;
 
@@ -16,11 +17,14 @@ public class MapSelectingUnit extends State {
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
 		BattleMap map = (BattleMap) comp;
+		BattleScene scene = map.getScene();
 		map.nextSelectedUnit();
 		map.addSelectedTileInSelectedUnit();
 		map.getSelectedUnit().setState(new CharSelected());
-		map.setState(new MapWaitingForOrders());
-		
+		map.setState(new MapWaitingForCommand());
+		if (scene.getActiveWindow() == null){
+			scene.addActiveWindow(scene.getBattleCommandsWindow());
+		}
 	}
 
 }

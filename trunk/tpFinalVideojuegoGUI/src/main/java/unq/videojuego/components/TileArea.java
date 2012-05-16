@@ -1,11 +1,11 @@
 package unq.videojuego.components;
 
-import unq.videojuego.scenes.VideojuegoScene;
+import com.uqbar.vainilla.ImageHandler;
 
 public class TileArea extends BattleComponent {
 	public TileArea(int x, int y) {
 		super(x, y);
 		this.setZ(-2);
-		this.setAppearance(VideojuegoScene.imageH.getAnimation("TileArea"));
+		this.setAppearance(ImageHandler.INSTANCE.getAnimation("TileArea"));
 	}
 }

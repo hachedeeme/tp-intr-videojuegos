@@ -4,31 +4,27 @@ import unq.videojuego.enums.UnitDir;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Animation;
-import com.uqbar.videojuego.characters.CharEquipment;
-import com.uqbar.videojuego.characters.Character;
-import com.uqbar.videojuego.characters.StatsContainer;
+import com.uqbar.videojuego.characters.Enemy;
 
-public class BattleCharacter extends BattleUnit {
-	private Character character;
+public class BattleEnemy extends BattleUnit {
+	private Enemy enemy;
 
-	public BattleCharacter(String name, UnitDir dir) {
+	public BattleEnemy(String name, UnitDir dir) {
 		super(name, dir);
-		StatsContainer stats = new StatsContainer(250, 60, 30, 20, 16, 10, 8);
-		CharEquipment equip = new CharEquipment();
-		this.character = new Character(name, stats, equip);
+		this.enemy = new Enemy(name, 200, 100, 27, 30, 26, 19, 20);
 	}
-
+	
 	@Override
 	public void createImagesMap() {		
 		// Waiting
 		String waitingDownName = this.getName() + "Waiting" + UnitDir.Down.name();
-		Animation waitingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, waitingDownName); 
+		Animation waitingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, waitingDownName); 
 
 		String waitingRightName = this.getName() + "Waiting" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(waitingRightName, waitingDown.flipHorizontally());
 		
 		String waitingLeftName = this.getName() + "Waiting" + UnitDir.Left.name();
-		Animation waitingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, waitingLeftName); 
+		Animation waitingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, waitingLeftName); 
 
 		String waitingUpName = this.getName() + "Waiting" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(waitingUpName, waitingLeft.flipHorizontally());
@@ -36,13 +32,13 @@ public class BattleCharacter extends BattleUnit {
 		
 		// Selected
 		String selectedDownName = this.getName() + "Selected" + UnitDir.Down.name();
-		Animation selectedDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, selectedDownName); 
+		Animation selectedDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, selectedDownName); 
 		
 		String selectedRightName = this.getName() + "Selected" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(selectedRightName, selectedDown.flipHorizontally());
 		
 		String selectedLeftName = this.getName() + "Selected" + UnitDir.Left.name();
-		Animation selectedLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, selectedLeftName); 
+		Animation selectedLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, selectedLeftName); 
 		
 		String selectedUpName = this.getName() + "Selected" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(selectedUpName, selectedLeft.flipHorizontally());
@@ -50,13 +46,13 @@ public class BattleCharacter extends BattleUnit {
 		
 		// Walking
 		String walkingDownName = this.getName() + "Walking" + UnitDir.Down.name();
-		Animation walkingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, walkingDownName); 
+		Animation walkingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 700, 120, 100, 120, walkingDownName); 
 		
 		String walkingRightName = this.getName() + "Walking" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(walkingRightName, walkingDown.flipHorizontally());
 		
 		String walkingLeftName = this.getName() + "Walking" + UnitDir.Left.name();
-		Animation walkingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 600, 120, 100, 120, walkingLeftName); 
+		Animation walkingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 700, 120, 100, 120, walkingLeftName); 
 		
 		String walkingUpName = this.getName() + "Walking" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(walkingUpName, walkingLeft.flipHorizontally());
@@ -80,13 +76,13 @@ public class BattleCharacter extends BattleUnit {
 	}
 	
 	@Override
-	public int getMovility(){
-		return this.character.getMovility();
-	}
-	
-	@Override
-	public int getAttackRange() {
-		return this.character.getAttackRange();
+	public int getMovility() {
+		return this.enemy.getMovility();
 	}
 
+	@Override
+	public int getAttackRange() {
+		return this.enemy.getAttackRange();
+	}
+	
 }

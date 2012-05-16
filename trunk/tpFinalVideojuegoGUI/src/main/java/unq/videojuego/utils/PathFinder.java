@@ -10,7 +10,19 @@ import unq.videojuego.components.BattleComponent;
 public class PathFinder {
 	public static PathFinder INSTANCE = new PathFinder();
 	
-	public List<TTuple> getArea(Map<Integer, Map<Integer, BattleComponent>> map, int mapWidth, int mapHeight, Point start, int count){
+	public List<TTuple> getAreaWithoutObs(
+			Map<Integer, Map<Integer, BattleComponent>> grid, int width,
+			int height, Point startPoint, int range) {
+		return getArea(grid, width, height, startPoint, range, true);
+	}
+	
+	public List<TTuple> getAreaWithObs(
+			Map<Integer, Map<Integer, BattleComponent>> grid, int width,
+			int height, Point startPoint, int range) {
+		return getArea(grid, width, height, startPoint, range, false);
+	} 
+	
+	public List<TTuple> getArea(Map<Integer, Map<Integer, BattleComponent>> map, int mapWidth, int mapHeight, Point start, int count, boolean hasToRemoveObs){
 		List<TTuple> list = new ArrayList<TTuple>();
 		TTuple startTuple = new TTuple(start, 0);
 		list.add(startTuple);
@@ -20,7 +32,7 @@ public class PathFinder {
 		
 		for (int i = 0; i < count; i++) {
 			for (TTuple tuple : new ArrayList<TTuple>(temp)){
-				temp3 = this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight);
+				temp3 = this.getAdyacentDirections(list, map, tuple, mapWidth, mapHeight, hasToRemoveObs);
 				temp2.addAll(temp3);
 				list.addAll(temp3);
 			}
@@ -32,7 +44,7 @@ public class PathFinder {
 		return list;
 	}
 
-	private List<TTuple> getAdyacentDirections(List<TTuple> mainList, Map<Integer, Map<Integer, BattleComponent>> map, TTuple tuple, int mapWidth, int mapHeight) {
+	private List<TTuple> getAdyacentDirections(List<TTuple> mainList, Map<Integer, Map<Integer, BattleComponent>> map, TTuple tuple, int mapWidth, int mapHeight, boolean hasToRemoveObs) {
 		List<TTuple> list = new ArrayList<TTuple>();
 		list.add(new TTuple(tuple.getX(), tuple.getY()-1, tuple.getCounter()+1));
 		list.add(new TTuple(tuple.getX()+1, tuple.getY(), tuple.getCounter()+1));
@@ -45,12 +57,10 @@ public class PathFinder {
 			boolean isOutOfMap = ! (x >= 0 && x < mapWidth && y >= 0 && y < mapHeight);
 			if (isOutOfMap) {
 				list.remove(newTuple);
-			} else if (map.get(x).containsKey(y)){
+			} else if (map.get(x).containsKey(y) && hasToRemoveObs){
 				list.remove(newTuple);
 			}
 		}
-		
-		
 		
 		this.removeMatched(list, mainList);
 		return list;
@@ -70,4 +80,5 @@ public class PathFinder {
 			}
 		}
 	}
+
 }

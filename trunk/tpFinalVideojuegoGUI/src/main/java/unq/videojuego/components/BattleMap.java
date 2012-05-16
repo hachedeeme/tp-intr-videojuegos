@@ -10,13 +10,13 @@ import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
-import unq.videojuego.states.selectedTile.STileMoving;
 import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
+import com.uqbar.videojuego.characters.Enemy;
 
 public class BattleMap extends GameComponent<BattleScene> {
 	private PathFinder pathFinder = PathFinder.INSTANCE;
@@ -28,8 +28,10 @@ public class BattleMap extends GameComponent<BattleScene> {
 
 	private State state = new MapSelectingUnit();
 	
-	private BattleCharacter selectedUnit;
-	private List<BattleCharacter> units = new ArrayList<BattleCharacter>();
+	private BattleUnit selectedUnit;
+	private List<BattleUnit> units = new ArrayList<BattleUnit>();
+	private List<BattleCharacter> characters = new ArrayList<BattleCharacter>();
+	private List<BattleEnemy> enemies = new ArrayList<BattleEnemy>();
 	
 	private List<TileArea> markedTiles = new ArrayList<TileArea>();
 	private List<TTuple> areaTuples = new ArrayList<TTuple>();
@@ -120,10 +122,16 @@ public class BattleMap extends GameComponent<BattleScene> {
 		return this.getY();
 	}
 	
-	public List<TTuple> createTileArea(){
+	private List<TTuple> createMovingTileArea(){
 		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
-		int range = this.selectedUnit.getRange();
-		return pathFinder.getArea(grid, width, height, startPoint, range);
+		int range = this.selectedUnit.getMovility();
+		return this.pathFinder.getAreaWithoutObs(grid, width, height, startPoint, range);
+	}
+
+	private List<TTuple> createAttackingTileArea(){
+		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
+		int range = this.selectedUnit.getAttackRange();
+		return this.pathFinder.getAreaWithObs(grid, width, height, startPoint, range);
 	}
 	
 	public void removeArea(){
@@ -132,8 +140,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.areaTuples.clear();
 	}
 	
-	public void createSelectedUnitMovableArea() {
-		this.areaTuples = this.createTileArea();
+	private void createSelectedUnitArea(){
 		for (TTuple tuple : this.areaTuples){
 			int x = tuple.getX(); 
 			int y = tuple.getY();
@@ -142,6 +149,16 @@ public class BattleMap extends GameComponent<BattleScene> {
 			this.markedTiles.add(tileArea);
 		}
 		this.getScene().addComponents(this.markedTiles);
+	}
+	
+	public void createSelectedUnitMovableArea() {
+		this.areaTuples = this.createMovingTileArea();
+		this.createSelectedUnitArea();
+	}
+	
+	public void createSelectedUnitAttackableArea() {
+		this.areaTuples = this.createAttackingTileArea();
+		this.createSelectedUnitArea();
 	}
 	
 	public void addSelectedTileInSelectedUnit(){
@@ -163,9 +180,42 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.selectedTile.setState(new Sleeping());
 	}
 	
-	public void addUnit(BattleCharacter unit){
+	public void addUnit(BattleUnit unit){
 		this.units.add(unit);
 	}
+	
+	public void addCharacter(BattleCharacter character){
+		this.characters.add(character);
+		this.addUnit(character);
+	}
+	
+	public void addEnemy(BattleEnemy enemy){
+		this.enemies.add(enemy);
+		this.addUnit(enemy);
+	}
+	
+	public BattleEnemy getEnemy(TTuple tuple) {
+		BattleEnemy wantedEnemy = null;
+		for (BattleEnemy enemy : this.enemies){
+			if (enemy.getMapX() == tuple.getX() && enemy.getMapY() == tuple.getY()){
+				wantedEnemy = enemy;
+				break;
+			}
+		}
+		return wantedEnemy;
+	}
+	
+	public BattleCharacter getCharacter(TTuple tuple) {
+		BattleCharacter wantedCharacter = null;
+		for (BattleCharacter character : this.characters){
+			if (character.getMapX() == tuple.getX() && character.getMapY() == tuple.getY()){
+				wantedCharacter = character;
+				break;
+			}
+		}
+		return wantedCharacter;
+	}
+	
 	
 	public void nextSelectedUnit(){
 		this.selectedUnit = this.units.remove(0);
@@ -197,11 +247,11 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.height = height;
 	}
 
-	public BattleCharacter getSelectedUnit() {
+	public BattleUnit getSelectedUnit() {
 		return selectedUnit;
 	}
 
-	public void setSelectedUnit(BattleCharacter selectedUnit) {
+	public void setSelectedUnit(BattleUnit selectedUnit) {
 		this.selectedUnit = selectedUnit;
 	}
 
@@ -244,6 +294,5 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setTileSize(int tileSize) {
 		this.tileSize = tileSize;
 	}
-	
 	
 }

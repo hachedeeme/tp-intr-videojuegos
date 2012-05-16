@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.videojuego.VideojuegoGame;
 import unq.videojuego.components.SimpleComponent;
 import unq.videojuego.scenes.VideojuegoScene;
 
@@ -27,23 +28,29 @@ public class Window extends GameComponent<VideojuegoScene> {
 	private SimpleComponent botArrow;
 	private SimpleComponent pointer;
 	
+	private int showableHeight;
+	
 	public Window(double x, double y, Sprite image, List<Showable> showables) {
 		super();
-		this.topElements = new ArrayList<Showable>();
-		this.botElements = new ArrayList<Showable>();
+		this.setZ(10);
 		this.image = image;
 		this.setAppearance(image);
 		this.topArrow = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow"));
 		this.botArrow = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow").flipVertically());
 		this.pointer = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("pointer"));
 		this.pointerPos = 0;
+		this.showableHeight = 32;
 		double linesRoom =  this.image.getHeight() 
 							- this.topArrow.getAppearance().getHeight() 
 							- this.botArrow.getAppearance().getHeight();
-		this.maxCurLines = (int) Math.floor(linesRoom / showables.get(0).getHeight());
+		this.maxCurLines = (int) Math.floor(linesRoom / this.showableHeight);
 		this.addElements(showables);
 		this.placeWindow(x, y);
 		this.updatePointer();
+	}
+	
+	public Window(double x, double y, Sprite image) {
+		this(x, y, image, new ArrayList<Showable>());
 	}
 
 	//***********************//
@@ -53,19 +60,24 @@ public class Window extends GameComponent<VideojuegoScene> {
 	@Override
 	public void update(DeltaState deltaState) {
 		super.update(deltaState);
-		if (deltaState.isKeyPressed(Key.UP)){
-			if (this.pointerPos > 0){
-				this.pointerPos--;
-				this.updatePointer();
-			} else {
-				this.moveToBotElems();
-			}
-		} else if (deltaState.isKeyPressed(Key.DOWN)){
-			if (this.pointerPos < this.maxCurLines-1){
-				this.pointerPos++;
-				this.updatePointer();
-			} else {
-				this.moveToTopElems();
+		VideojuegoScene scene = this.getScene();
+		if (scene != null){
+			if (scene.getActiveWindow() == this){
+				if (deltaState.isKeyPressed(Key.UP)){
+					if (this.pointerPos > 0){
+						this.pointerPos--;
+						this.updatePointer();
+					} else {
+						this.moveToBotElems();
+					}
+				} else if (deltaState.isKeyPressed(Key.DOWN)){
+					if (this.pointerPos < this.elements.size()-1){
+						this.pointerPos++;
+						this.updatePointer();
+					} else {
+						this.moveToTopElems();
+					}
+				}
 			}
 		}
 	}
@@ -82,7 +94,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 		if (! this.botElements.isEmpty()){
 			this.botArrow.render(graphics);
 		}
-		this.pointer.render(graphics);
+		if (! this.elements.isEmpty()){
+			this.pointer.render(graphics);
+		}
 	}
 	
 	public void moveToTopElems(){
@@ -107,7 +121,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 	//*************//
 	
 	private void addElements(List<Showable> showables) {
+		this.topElements = new ArrayList<Showable>();
 		this.elements = new ArrayList<Showable>();
+		this.botElements = new ArrayList<Showable>();
 		for (int i = 0; i < this.maxCurLines; i++) {
 			if (showables.isEmpty()){
 				break;
@@ -148,7 +164,11 @@ public class Window extends GameComponent<VideojuegoScene> {
 		double pointerHeight = this.pointer.getAppearance().getHeight();
 		double topArrowHeight = this.topArrow.getAppearance().getHeight();
 		this.pointer.setX(this.getX());
-		this.pointer.setY(topArrowHeight + (this.pointerPos * pointerHeight));
+		this.pointer.setY(this.getY() + topArrowHeight + (this.pointerPos * pointerHeight));
+	}
+	
+	public Showable getElem(){
+		return this.elements.get(this.pointerPos);
 	}
 	
 	public int getHeight(){
@@ -177,6 +197,15 @@ public class Window extends GameComponent<VideojuegoScene> {
 	
 	public Sprite getImage() {
 		return image;
+	}
+
+	public int getPointerPos() {
+		return pointerPos;
+	}
+
+	public void setPointerPos(int pointerPos) {
+		this.pointerPos = pointerPos;
+		this.updatePointer();
 	}
 	
 }

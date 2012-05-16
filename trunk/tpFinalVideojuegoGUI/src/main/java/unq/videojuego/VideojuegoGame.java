@@ -3,10 +3,11 @@ package unq.videojuego;
 import java.awt.Dimension;
 
 import unq.videojuego.components.BattleCharacter;
+import unq.videojuego.components.BattleEnemy;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.Obstacle;
+import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.BattleScene;
-import unq.videojuego.scenes.MenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
@@ -58,18 +59,28 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		/*
 		ImageHandler imageH = ImageHandler.INSTANCE;
+		
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Down);
+		//BattleCharacter ash = new BattleCharacter("Ash", UnitDir.Down);
+		
+		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Up);
+		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
-		BattleScene battleScene = new BattleScene(this.tileSize, tileWidth, tileHeight);
-		battleScene.setMap(bm1);
-		battleScene.addBattleCharacter(new BattleCharacter("Ash"), 3, 3);
-		battleScene.addBattleCharacter(new BattleCharacter("Angel"), 6, 6);
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));//getAnimation("ki"), 1, 1));
-		battleScene.addObstacle(new Obstacle(imageH.getAnimation("FirePilar"), 5, 2));
-		battleScene.addComponent(new GameStatsLabel(10, this.screenHeight - 50));
-		this.setCurrentScene(battleScene);*/
+		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
+		battleScene.addComponent(new GameStatsLabel(10, 10));
+		
+		battleScene.addBattleCharacter(angel, 3, 3);
+		//battleScene.addBattleCharacter(ash, 6, 6);
+		battleScene.addBattleEnemy(slime, 4, 8);
+		
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));
+		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
+		
+		this.setCurrentScene(battleScene);
+		/*
 		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
+		 */
 	}
 	
 	public int getScreenWidth() {

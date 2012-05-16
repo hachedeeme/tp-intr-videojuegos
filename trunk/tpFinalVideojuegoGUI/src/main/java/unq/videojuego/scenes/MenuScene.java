@@ -3,7 +3,7 @@ package unq.videojuego.scenes;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.commands.Command;
+import unq.videojuego.commands.Action;
 import unq.videojuego.components.menus.BattleActionShowable;
 import unq.videojuego.components.menus.BattleItemShowable;
 import unq.videojuego.components.menus.BattleSkillShowable;
@@ -41,15 +41,7 @@ public class MenuScene extends VideojuegoScene {
 		showables2.add(new BattleSkillShowable(new Skill("Indignation", 150)));
 		Window win2 = new Window(0, 250, ImageHandler.INSTANCE.getSprite("LongBlueWindow"), showables2);
 		
-
-		showables3.add(new BattleActionShowable(new Command("Action")));
-		showables3.add(new BattleActionShowable(new Command("Move")));
-		showables3.add(new BattleActionShowable(new Command("Wait")));
-		showables3.add(new BattleActionShowable(new Command("Run")));
-		Window win3 = new Window(0, 500, ImageHandler.INSTANCE.getSprite("BlueWindow"), showables3);
 		this.addComponent(win1);
-		//this.addComponent(win2);
-		//this.addComponent(win3);
-		
+		this.addComponent(win2);
 	}
 }

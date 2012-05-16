@@ -2,17 +2,18 @@ package unq.videojuego.components.menus;
 
 import java.awt.Graphics2D;
 
-import unq.videojuego.commands.Command;
+import unq.videojuego.commands.Action;
+import unq.videojuego.scenes.VideojuegoScene;
 
 public class BattleActionShowable extends Showable{
 	private double x;
 	private double y;
-	private Command command;
+	private Action action;
 	private TextElement text;
 
-	public BattleActionShowable(Command aCommand) {
-		this.command = aCommand;
-		this.text = new TextElement(0, 0, 0, this.command.getName());
+	public BattleActionShowable(Action aCommand) {
+		this.action = aCommand;
+		this.text = new TextElement(0, 0, 0, this.action.getName());
 	}
 	
 	//***********************//
@@ -38,11 +39,15 @@ public class BattleActionShowable extends Showable{
 		this.text.setY(y);
 	}
 	
+	public void execute(VideojuegoScene scene){
+		this.action.execute(scene);
+	}
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//
-	public Command getCommand() {
-		return command;
+	public Action getCommand() {
+		return action;
 	}
 	
 	public double getX() {

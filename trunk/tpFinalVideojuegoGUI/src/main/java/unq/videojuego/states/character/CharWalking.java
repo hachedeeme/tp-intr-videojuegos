@@ -5,7 +5,9 @@ import java.util.List;
 
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
-import unq.videojuego.enums.CharDir;
+import unq.videojuego.components.BattleUnit;
+import unq.videojuego.enums.UnitDir;
+import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
 import unq.videojuego.utils.TTuple;
@@ -40,21 +42,21 @@ public class CharWalking extends State {
 		this.ySpeed = tileSize/4 * yDir;
 	}
 
-	private void updateDir(BattleCharacter bChar) {
+	private void updateDir(BattleUnit bChar) {
 		int curMapX = bChar.getMapX();
 		int curMapY = bChar.getMapY();
 		boolean changed = false;
-		if (this.newMapX > curMapX && bChar.getDir() != CharDir.Right){
-			bChar.setDir(CharDir.Right);
+		if (this.newMapX > curMapX && bChar.getDir() != UnitDir.Right){
+			bChar.setDir(UnitDir.Right);
 			changed = true;
-		} else if (this.newMapX < curMapX && bChar.getDir() != CharDir.Left){
-			bChar.setDir(CharDir.Left);
+		} else if (this.newMapX < curMapX && bChar.getDir() != UnitDir.Left){
+			bChar.setDir(UnitDir.Left);
 			changed = true;
-		} else if (this.newMapY > curMapY && bChar.getDir() != CharDir.Down){
-			bChar.setDir(CharDir.Down);
+		} else if (this.newMapY > curMapY && bChar.getDir() != UnitDir.Down){
+			bChar.setDir(UnitDir.Down);
 			changed = true;
-		} else if (this.newMapY < curMapY && bChar.getDir() != CharDir.Up){
-			bChar.setDir(CharDir.Up);
+		} else if (this.newMapY < curMapY && bChar.getDir() != UnitDir.Up){
+			bChar.setDir(UnitDir.Up);
 			changed = true;
 		}
 		if (changed){
@@ -84,11 +86,12 @@ public class CharWalking extends State {
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
-		BattleCharacter bChar = (BattleCharacter) comp;
+		BattleUnit bChar = (BattleUnit) comp;
 		BattleMap map = bChar.getScene().getMap();
 		double delta = deltaState.getDelta();
 		if (! this.moving){
 			if (this.tuplesPath.isEmpty()){
+				BattleScene scene = bChar.getScene();
 				bChar.setState(new CharWaiting());
 				map.addUnit(bChar);
 				map.setState(new MapSelectingUnit());
@@ -110,14 +113,13 @@ public class CharWalking extends State {
 		} else if (this.notReachedTile(bChar)){
 				bChar.move(this.xSpeed * delta, this.ySpeed * delta);
 		} else {
-			bChar.getScene().getMap().setMapComponentCoords(bChar, this.newMapX, this.newMapY);
-			//bChar.updateAppearance();
+			map.setMapComponentCoords(bChar, this.newMapX, this.newMapY);
 			this.moving = false;
 		}
 
 	}
 	
-	private boolean notReachedTile(BattleCharacter bChar){
+	private boolean notReachedTile(BattleUnit bChar){
 		return 	this.xSpeed > 0 && bChar.getX() < this.newRealX ||
 				this.xSpeed < 0 && bChar.getX() > this.newRealX &&
 				this.ySpeed > 0 && bChar.getY() < this.newRealY ||
