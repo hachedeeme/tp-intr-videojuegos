@@ -96,28 +96,24 @@ public class StatsHandler extends StatsContainer {
 	//** DAMAGE AND DEFENCE CALCULATIONS **//
 	//*************************************//
 	public int calculatePhysicalDamage(){
-		Random rand = new Random();
-		int damage = this.getStrength() + this.getAttackPower() + rand.nextInt(10);
-		return damage;
+		return this.getStrength() + this.getAttackPower() + this.getVariance();
 	}
 	
 	public int calculatePhysicalDefence(){
-		Random rand = new Random();
-		int defence = this.getArmor() + this.getStamina()*20/100 + rand.nextInt(10);
-		return defence;
+		return this.getArmor() + this.getStamina()*20/100 + this.getVariance();
 	}
 	
 	public int calculateMagicDamage(){
-		Random rand = new Random();
-		int damage = this.getIntellect() + this.getSpellPower() + rand.nextInt(10);
-		return damage;
+		return this.getIntellect() + this.getSpellPower() + this.getVariance();
 	}
 	
-	
 	public int calculateMagicDefence(){
-		Random rand = new Random();
-		int defence = this.getMagicResist() + this.getWisdom()*20/100 + rand.nextInt(10);
-		return defence;
+		return this.getMagicResist() + this.getWisdom()*20/100 + this.getVariance();
+	}
+	
+	public int getVariance(){
+		Random rand = new Random();		
+		return rand.nextInt(10);
 	}
 	//**************//
 	//** ACCESORS **//

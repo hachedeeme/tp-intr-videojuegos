@@ -21,15 +21,24 @@ public abstract class Unit {
 	 * Ataca a la Unit pasada por parámetro y le reduce el HP calculando el daño, si daño
 	 * de la Unit atacante es mayor a la defensa de la Unit atacada, se le inflinge la 
 	 * diferencia como daño a su currentHP, sino, le inflinge 1 de daño. 
-	 * @param anUnit
+	 * @param aUnit
 	 */
-	public void attack(Unit anUnit){
+	public void attack(Unit aUnit){
 		int damage   = this.getPhysicalDamage();
-		int defence  = anUnit.getPhysicalDefence();
+		int defence  = aUnit.getPhysicalDefence();
 		if(damage > defence)
-			anUnit.inflictDamage(damage - defence);
+			aUnit.inflictDamage(damage - defence);
 		else
-			anUnit.inflictDamage(1);
+			aUnit.inflictDamage(1);
+	}
+	
+	public void attackWith(Skill aSkill, Unit aUnit){
+		int damage   = aSkill.calculeDamageOf(this);
+		int defence  = aSkill.calculeDefenceOf(aUnit);
+		if(damage > defence)
+			aUnit.inflictDamage(damage - defence);
+		else
+			aUnit.inflictDamage(1);
 	}
 	
 	/**
