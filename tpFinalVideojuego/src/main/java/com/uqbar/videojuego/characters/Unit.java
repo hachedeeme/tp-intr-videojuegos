@@ -18,31 +18,32 @@ public abstract class Unit {
 	//** METHODS **//
 	//*************//
 	/**
-	 * Ataca a la Unit pasada por parámetro y le reduce el HP calculando el daño, si daño
+	 * Ataca a la Unit pasada por parï¿½metro y le reduce el HP calculando el daï¿½o, si daï¿½o
 	 * de la Unit atacante es mayor a la defensa de la Unit atacada, se le inflinge la 
-	 * diferencia como daño a su currentHP, sino, le inflinge 1 de daño. 
+	 * diferencia como daï¿½o a su currentHP, sino, le inflinge 1 de daï¿½o. 
 	 * @param aUnit
 	 */
 	public void attack(Unit aUnit){
 		int damage   = this.getPhysicalDamage();
 		int defence  = aUnit.getPhysicalDefence();
-		if(damage > defence)
-			aUnit.inflictDamage(damage - defence);
-		else
-			aUnit.inflictDamage(1);
+		applyDamage(aUnit, damage, defence);
 	}
+
 	
 	public void attackWith(Skill aSkill, Unit aUnit){
 		int damage   = aSkill.calculeDamageOf(this);
 		int defence  = aSkill.calculeDefenceOf(aUnit);
+		applyDamage(aUnit, damage, defence);
+	}
+	
+	private void applyDamage(Unit aUnit, int damage, int defence) {
 		if(damage > defence)
 			aUnit.inflictDamage(damage - defence);
 		else
 			aUnit.inflictDamage(1);
 	}
-	
 	/**
-	 * Retorna el daño fisico que puede llegar a causar según sus stats.
+	 * Retorna el daï¿½o fisico que puede llegar a causar segï¿½n sus stats.
 	 * @return int
 	 */
 	private int getPhysicalDamage(){
@@ -50,7 +51,7 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Retorna la defensa fisica de la Unit según sus stats.
+	 * Retorna la defensa fisica de la Unit segï¿½n sus stats.
 	 * @return int
 	 */
 	private int getPhysicalDefence(){
@@ -58,7 +59,7 @@ public abstract class Unit {
 	}
 	
 	/**
-	 * Recibe una cantidad de daño por parámetro y se lo resta a su currentHP.
+	 * Recibe una cantidad de daï¿½o por parï¿½metro y se lo resta a su currentHP.
 	 * @param amount
 	 */
 	private void inflictDamage(int amount){

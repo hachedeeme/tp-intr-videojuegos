@@ -18,7 +18,7 @@ public class Skill {
 		this.type = type;
 	}
 	
-	public int percentageOfCost(int percentage){
+	private int percentageOfCost(int percentage){
 		return this.cost * percentage / 100;
 	}
 	
@@ -27,9 +27,11 @@ public class Skill {
 	}
 	
 	public void reduceCost(){
-		this.currentCost -= this.percentageOfCost(10);
-		if(this.currentCost < this.cost)
-			this.currentCost = this.cost;
+		if(this.currentCost > this.cost){
+			this.currentCost -= this.percentageOfCost(34);
+			if(this.currentCost < this.cost)
+				this.currentCost = this.cost;
+		}
 	}
 	
 	public int calculeDamageOf(Unit aUnit){
