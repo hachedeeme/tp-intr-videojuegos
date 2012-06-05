@@ -8,7 +8,6 @@ public abstract class Unit {
 	protected String name;
 	protected StatsHandler stats;
 	protected List<Skill> skills;
-	protected int movility = 3;
 	protected int attackRange = 1;
 	
 	protected Unit() {
@@ -99,10 +98,6 @@ public abstract class Unit {
 		return stats;
 	}
 	
-	public int getMovility() {
-		return movility;
-	}
-	
 	public int getAttackRange() {
 		return attackRange;
 	}
@@ -111,12 +106,12 @@ public abstract class Unit {
 		return this.stats.getSpeed();
 	}
 	
-	public void setMovility(int movility) {
-		this.movility = movility;
-	}
-	
 	public void setAttackRange(int attackRange) {
 		this.attackRange = attackRange;
+	}
+	
+	public int getMovility(){
+		return this.stats.getMovility();
 	}
 	
 }

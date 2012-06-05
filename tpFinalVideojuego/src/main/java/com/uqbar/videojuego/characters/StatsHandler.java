@@ -142,6 +142,11 @@ public class StatsHandler extends StatsContainer {
 		return spellPower;
 	}
 	
+	@Override
+	public int getMovility() {
+		return this.movility;
+	}
+	
 	//**************//
 	//** PRINTING **//
 	//**************//
