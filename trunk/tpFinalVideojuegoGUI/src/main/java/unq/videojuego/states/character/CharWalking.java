@@ -111,7 +111,7 @@ public class CharWalking extends State {
 				this.moving = true;
 			}
 		} else if (this.notReachedTile(bChar)){
-				bChar.move(this.xSpeed * delta, this.ySpeed * delta);
+				bChar.move(this.xSpeed * delta * 1.3, this.ySpeed * delta * 1.3);
 		} else {
 			map.setMapComponentCoords(bChar, this.newMapX, this.newMapY);
 			this.moving = false;
