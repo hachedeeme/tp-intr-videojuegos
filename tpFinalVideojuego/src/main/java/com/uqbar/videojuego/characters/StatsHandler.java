@@ -25,36 +25,16 @@ public class StatsHandler extends StatsContainer {
 	//*************//
 	//** METHODS **//
 	//*************//
-	
-	/*
-	 * Calculos de stats, hasta ahora la formula es, 40% de su primer atributo sumado a
-	 * el 20% de su segundo atributo. Esto está así por ahora porque es para probar, tengo
-	 * la tendencia de hacer algún otro tipo de formula con respecto a esto y a los daños. */
-	//************************//
-	//** STATS CALCULATIONS **//
-	//************************//
-	public int calculateAttackPower(){
-		return this.strength * 40/100 + this.stamina * 20/100;
-	}
-	
-	public int calculateSpellPower(){
-		return this.intellect * 40/100 + this.wisdom * 20/100;
-	}
-	
-	public int calculateArmor(){
-		return this.stamina * 40/100 + this.strength * 20/100;
-	}
-	
-	public int calculateMagicResist(){
-		return this.wisdom * 40/100 + this.intellect * 20/100;
-	}
-	
 	/**
-	 * Cada 100 puntos de agility es uno de movility.
+	 * Obtiene la variansa del valor pasado por parámetro, la variansa es un numero 
+	 * random de 0 hasta el 10% del valor pasado.
+	 * @param aValue
 	 * @return
 	 */
-	public int calculateMovility(){
-		return this.agility/100;
+	public int getVarianceOf(int aValue){
+		Random rand = new Random();
+		int value = aValue * 10 / 100;
+		return rand.nextInt(value);
 	}
 	
 	public void decreaseHP(int amount){
@@ -85,36 +65,56 @@ public class StatsHandler extends StatsContainer {
 			this.currentMp = this.mp;
 	}
 	
-	/*
-	 * Hasta ahora, los cálculos de daño fisico y mágico son: su atributo especifico(Fuerza
-	 * en caso de daño físico) más su ataque especifico más un random de 0 a 10 para que
-	 * los ataques varien un poco, estuve viendo ejemplos y se usa bastante y lo llaman 
-	 * varianza, lo puse para probar que onda y por ahora va... como dije en el comentario 
-	 * aterior, estoy en busca de una que me paresca mejor y mas copada, esta me va, pero por
-	 * ahora. Despues hablaremos sobre eso supongo :P .*/
+	//************************//
+	//** STATS CALCULATIONS **//
+	//************************//
+	public int calculateAttackPower(){
+		return this.strength * 40/100 + this.stamina * 20/100;
+	}
+	
+	public int calculateSpellPower(){
+		return this.intellect * 40/100 + this.wisdom * 20/100;
+	}
+	
+	public int calculateArmor(){
+		return this.stamina * 40/100 + this.strength * 20/100;
+	}
+	
+	public int calculateMagicResist(){
+		return this.wisdom * 40/100 + this.intellect * 20/100;
+	}
+	
 	//*************************************//
 	//** DAMAGE AND DEFENCE CALCULATIONS **//
 	//*************************************//
 	public int calculatePhysicalDamage(){
-		return this.getStrength() + this.getAttackPower() + this.getVariance();
+		return this.calculateStats(this.strength, this.attackPower);
 	}
 	
 	public int calculatePhysicalDefence(){
-		return this.getArmor() + this.getStamina()*20/100 + this.getVariance();
+		return this.calculateStats(this.armor, this.stamina*20/100);
 	}
 	
 	public int calculateMagicDamage(){
-		return this.getIntellect() + this.getSpellPower() + this.getVariance();
+		return this.calculateStats(this.intellect, this.spellPower);
 	}
 	
 	public int calculateMagicDefence(){
-		return this.getMagicResist() + this.getWisdom()*20/100 + this.getVariance();
+		return this.calculateStats(this.magicResist, this.wisdom/20/100);
 	}
 	
-	public int getVariance(){
-		Random rand = new Random();		
-		return rand.nextInt(10);
+	/**
+	 * Recive los valores de dos stats por parámetro, los suma y le suma una variansa.
+	 * @param firstStat
+	 * @param secondStat
+	 * @return
+	 */
+	private int calculateStats(int firstStat, int secondStat){
+		int res = firstStat + secondStat;
+		res += this.getVarianceOf(res);
+		return 0;
 	}
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//

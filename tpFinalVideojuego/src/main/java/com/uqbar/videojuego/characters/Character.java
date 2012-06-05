@@ -41,15 +41,7 @@ public class Character extends Unit{
 		this.recalculateStats();
 	}
 	
-	/**
-	 * Retorna la movilidad del Character.
-	 * @return int
-	 */
-	@Override
-	public int getMovility() {
-		return super.movility + this.stats.calculateMovility();
-	}
-	
+
 	/**
 	 * Retorna el rango de ataque que tiene un Character, si tiene un arma Equipada
 	 * devuelve el rango del arma, sino devuelve rango 1.
@@ -57,7 +49,7 @@ public class Character extends Unit{
 	 */
 	@Override
 	public int getAttackRange() {
-		if(this.equipment.haveMainHand())
+		if(this.equipment.haveMainHand() && this.equipment.getMainHand().getRange() > 1)
 			return this.equipment.getMainHand().getRange();			
 		return super.getAttackRange();
 	}

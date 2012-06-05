@@ -9,6 +9,7 @@ public class Skill {
 	private int cost;
 	private int currentCost;
 	private int basicDamage;
+	private int extraCost;
 	
 	public Skill(String name, int cost, int basicDamage, DamageType type) {
 		this.name = name;
@@ -63,5 +64,9 @@ public class Skill {
 	
 	public DamageType getType() {
 		return type;
+	}
+	
+	public int getExtraCost() {
+		return extraCost;
 	}
 }

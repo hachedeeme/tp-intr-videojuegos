@@ -3,17 +3,17 @@ package com.uqbar.videojuego.characters;
 public class StatsContainer {
 	protected int hp;
 	protected int mp;
-	protected int agility;
+	protected int speed;
 	protected int strength;
 	protected int stamina;
 	protected int intellect;
 	protected int wisdom;
 	
-	public StatsContainer(int hp, int mp, int agility, int strength,
+	public StatsContainer(int hp, int mp, int speed, int strength,
 						  int stamina, int intellect, int wisdom) {
 		this.hp = hp;
 		this.mp = mp;
-		this.agility = agility;
+		this.speed = speed;
 		this.strength = strength;
 		this.stamina = stamina;
 		this.intellect = intellect;
@@ -31,7 +31,7 @@ public class StatsContainer {
 	public void sumStats(StatsContainer stats){
 		this.hp += stats.getHp();
 		this.mp += stats.getMp();
-		this.agility += stats.getAgility();
+		this.speed += stats.getSpeed();
 		this.strength += stats.getStrength();
 		this.stamina += stats.getStamina();
 		this.intellect += stats.getIntellect();
@@ -60,8 +60,8 @@ public class StatsContainer {
 		return mp;
 	}
 
-	public int getAgility() {
-		return agility;
+	public int getSpeed() {
+		return speed;
 	}
 
 	public int getStrength() {
@@ -85,13 +85,14 @@ public class StatsContainer {
 	//**************//
 	protected String statsToString(){
 		String enter = System.getProperty("line.separator");
-		String resString = "Agility = " + this.agility + enter;
-		resString += "Strength = " + this.strength + enter;
-		resString += "Stamina = " + this.stamina + enter;
+		String resString = "Speed = " + this.speed + enter;
+		resString += "Strength = "  + this.strength + enter;
+		resString += "Stamina = "   + this.stamina + enter;
 		resString += "Intellect = " + this.intellect + enter;
-		resString += "Wisdom = " + this.wisdom + enter;
+		resString += "Wisdom = "    + this.wisdom + enter;
 		return resString;
 	}
+	
 	@Override
 	public String toString() {
 		String enter = System.getProperty("line.separator");
