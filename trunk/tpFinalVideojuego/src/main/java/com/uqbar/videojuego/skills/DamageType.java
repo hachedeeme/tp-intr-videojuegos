@@ -9,16 +9,16 @@ public enum DamageType {
 	public int damageOf(Unit aUnit){
 		StatsHandler stats = aUnit.getStats();
 		if(this == PHYSICALDAMAGE){
-			return stats.getAttackPower() + stats.getVariance();
+			return stats.calculatePhysicalDamage();
 		}
-		return stats.getSpellPower() + stats.getVariance();
+		return stats.calculatePhysicalDefence();
 	}
 	
 	public int defenceOf(Unit aUnit){
 		StatsHandler stats = aUnit.getStats();
 		if(this == PHYSICALDAMAGE){
-			return stats.getArmor() + stats.getVariance();
+			return stats.calculateMagicDamage();
 		}
-		return stats.getMagicResist() + stats.getVariance();
+		return stats.calculateMagicDefence();
 	}
 }

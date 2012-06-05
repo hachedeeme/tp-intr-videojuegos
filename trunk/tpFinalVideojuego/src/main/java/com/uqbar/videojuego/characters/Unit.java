@@ -107,12 +107,8 @@ public abstract class Unit {
 		return attackRange;
 	}
 	
-	/**
-	 * Obtiene la agility de una Unit
-	 * @return int 
-	 */
-	public int getAgility(){
-		return this.stats.getAgility();
+	public int getSpeed(){
+		return this.stats.getSpeed();
 	}
 	
 	public void setMovility(int movility) {
