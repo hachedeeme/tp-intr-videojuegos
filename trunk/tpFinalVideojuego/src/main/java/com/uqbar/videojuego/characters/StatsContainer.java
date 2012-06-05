@@ -3,21 +3,28 @@ package com.uqbar.videojuego.characters;
 public class StatsContainer {
 	protected int hp;
 	protected int mp;
+	protected int movility;
 	protected int speed;
 	protected int strength;
 	protected int stamina;
 	protected int intellect;
 	protected int wisdom;
 	
-	public StatsContainer(int hp, int mp, int speed, int strength,
+	public StatsContainer(int hp, int mp,int movility, int speed, int strength,
 						  int stamina, int intellect, int wisdom) {
 		this.hp = hp;
 		this.mp = mp;
-		this.speed = speed;
-		this.strength = strength;
-		this.stamina = stamina;
+		this.movility  = movility;
+		this.speed     = speed;
+		this.strength  = strength;
+		this.stamina   = stamina;
 		this.intellect = intellect;
-		this.wisdom = wisdom;
+		this.wisdom    = wisdom;
+	}
+	
+	public StatsContainer(int hp, int mp, int speed,
+			int strength, int stamina, int intellect, int wisdom) {
+		this(hp, mp, 3, speed, strength, stamina, intellect, wisdom);
 	}
 
 	//*************//
@@ -31,6 +38,7 @@ public class StatsContainer {
 	public void sumStats(StatsContainer stats){
 		this.hp += stats.getHp();
 		this.mp += stats.getMp();
+		this.movility += stats.getMovility();
 		this.speed += stats.getSpeed();
 		this.strength += stats.getStrength();
 		this.stamina += stats.getStamina();
@@ -80,6 +88,10 @@ public class StatsContainer {
 		return wisdom;
 	}
 
+	public int getMovility() {
+		return movility;
+	}
+	
 	//**************//
 	//** PRINTING **//
 	//**************//
