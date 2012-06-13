@@ -1,8 +1,7 @@
 package unq.videojuego.states.map;
 
-import unq.videojuego.components.BattleCharacter;
-import unq.videojuego.components.BattleEnemy;
 import unq.videojuego.components.BattleMap;
+import unq.videojuego.components.BattleUnit;
 import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
@@ -27,12 +26,12 @@ public class MapChoosingTarget extends State {
             TTuple selectedTuple = new TTuple(map.getSelectedTile().getMapX(), map.getSelectedTile().getMapY());
             TTuple selectedTupleWithCounter = selectedTuple.getTupleFromCoords(map.getAreaTuples());
             boolean isInSelectionArea = selectedTupleWithCounter != null;
-            BattleEnemy enemy = map.getEnemy(selectedTuple);
+            BattleUnit target = map.getUnit(selectedTuple);
            
-            if (isInSelectionArea && enemy != null){
+            if (isInSelectionArea && target != null){
                 map.removeSelectedTile();
-                this.setFacingDir((BattleCharacter) map.getSelectedUnit(), enemy);
-                map.getSelectedUnit().setState(new CharAttacking());
+                this.setFacingDir(map.getSelectedUnit(), target);
+                map.getSelectedUnit().setState(new CharAttacking(target));
                 map.setState(new Sleeping());
                 map.removeArea();
             }
@@ -47,13 +46,13 @@ public class MapChoosingTarget extends State {
        
     }
 
-    private void setFacingDir(BattleCharacter character, BattleEnemy enemy) {
+    private void setFacingDir(BattleUnit caster, BattleUnit target) {
         UnitDir wantedDir;
        
-        int cx = character.getMapX();
-        int cy = character.getMapY();
-        int ex = enemy.getMapX();
-        int ey = enemy.getMapY();
+        int cx = caster.getMapX();
+        int cy = caster.getMapY();
+        int ex = target.getMapX();
+        int ey = target.getMapY();
 
         if (cx < ex){
             wantedDir = UnitDir.Right;
@@ -69,6 +68,6 @@ public class MapChoosingTarget extends State {
             }
         }
        
-        character.setDir(wantedDir);
+        caster.setDir(wantedDir);
     }
 }

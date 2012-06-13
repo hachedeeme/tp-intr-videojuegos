@@ -10,19 +10,24 @@ import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.LimitedAnimation;
 
 public class CharAttacking extends State {
-
-	public CharAttacking() {
+	private BattleUnit target;
+	
+	public CharAttacking(BattleUnit target) {
 		super("Attacking");
+		this.target = target;
 	}
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
-		BattleUnit unit = (BattleUnit) comp;
-		if (((LimitedAnimation) unit.getAppearance()).isAtEnd()){
-			BattleMap map = unit.getScene().getMap();
+		BattleUnit caster = (BattleUnit) comp;
+		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
+			caster.getUnit().attack(this.target.getUnit());
+			System.out.println("Caster: " + caster.getUnit().getCurrentHp() + "/" + caster.getUnit().getHp() + " - " + 
+							   "Target: " + this.target.getUnit().getCurrentHp() + "/" +this.target.getUnit().getHp());
+			BattleMap map = caster.getScene().getMap();
 			map.setState(new MapSelectingUnit());
-			unit.setState(new CharWaiting());
-			map.addUnit(unit);
+			caster.setState(new CharWaiting());
+			map.addUnit(caster);
 		}
 	}
 

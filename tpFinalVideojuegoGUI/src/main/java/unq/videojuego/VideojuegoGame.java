@@ -62,17 +62,17 @@ public class VideojuegoGame extends Game {
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		
 		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Down);
-		//BattleCharacter ash = new BattleCharacter("Ash", UnitDir.Down);
+		BattleCharacter ash = new BattleCharacter("Ash", UnitDir.Down);
 		
-		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Up);
+		//BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Up);
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
 		battleScene.addComponent(new GameStatsLabel(10, 10));
 		
 		battleScene.addBattleCharacter(angel, 3, 3);
-		//battleScene.addBattleCharacter(ash, 6, 6);
-		battleScene.addBattleEnemy(slime, 4, 8);
+		battleScene.addBattleCharacter(ash, 6, 6);
+		//battleScene.addBattleEnemy(slime, 4, 8);
 		
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));
 		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
