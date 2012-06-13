@@ -114,4 +114,19 @@ public abstract class Unit {
 		return this.stats.getMovility();
 	}
 	
+	public int getHp(){
+		return this.stats.getHp();
+	}
+	
+	public int getCurrentHp(){
+		return this.stats.getCurrentHp();
+	}
+	
+	public int getMp(){
+		return this.stats.getMp();
+	}
+	
+	public int getCurrentMp(){
+		return this.stats.getCurrentMp();
+	}
 }
