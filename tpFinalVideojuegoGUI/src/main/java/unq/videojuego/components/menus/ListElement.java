@@ -13,9 +13,9 @@ public class ListElement extends GameComponent<VideojuegoScene> {
 	private Color color;
 	private double width;
 
-	public ListElement(int x, int y, int z, Appearance anAppearance) {
+	public ListElement(double x, double y, int z, Appearance anAppearance) {
 		super(anAppearance,x,y);
-		this.font = new Font("monospaced", Font.BOLD, 17);
+		this.font = new Font(Font.MONOSPACED, Font.BOLD, 17);
 		this.color = Color.WHITE;
 		this.setZ(z);
 	}

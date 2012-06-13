@@ -17,6 +17,7 @@ import unq.videojuego.components.IsometricLines;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.components.menus.BattleActionShowable;
 import unq.videojuego.components.menus.Showable;
+import unq.videojuego.components.menus.UnitStats;
 import unq.videojuego.components.menus.Window;
 
 import com.uqbar.vainilla.ImageHandler;
@@ -34,6 +35,8 @@ public class BattleScene extends VideojuegoScene {
 	private Window battleActionsWindow;
 	//private Window skillsWindow;
 	//private Window itemsWindow;
+	
+	private UnitStats curUnitStats;
 	
 	public BattleScene(BattleMap map, int tileSize, int width, int height) {
 		super(tileSize * width, tileSize * height);
@@ -69,6 +72,20 @@ public class BattleScene extends VideojuegoScene {
 	public void addActiveWindow(Window window){
 		this.setActiveWindow(window);
 		this.addComponent(window);
+	}
+	
+	public void updateAndShowUnitStats() {
+		if (this.curUnitStats == null){
+			this.curUnitStats = new UnitStats();
+		}
+		this.curUnitStats.updateBUnit(this.getMap().getSelectedUnit());
+		this.curUnitStats.addToScene(this);
+	}
+	
+	public void removeCurUnitStats(){
+		if (this.curUnitStats != null){
+			this.curUnitStats.removeFromScene(this);
+		}
 	}
 
 	public boolean addBattleUnit(BattleUnit comp, int mapX, int mapY){

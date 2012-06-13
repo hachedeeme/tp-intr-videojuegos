@@ -3,12 +3,16 @@ package unq.videojuego.scenes;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.videojuego.commands.Action;
+import unq.videojuego.components.menus.BattleActionShowable;
 import unq.videojuego.components.menus.BattleItemShowable;
+import unq.videojuego.components.menus.BattleSkillShowable;
 import unq.videojuego.components.menus.Showable;
 import unq.videojuego.components.menus.Window;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.videojuego.items.Consumable;
+import com.uqbar.videojuego.skills.Skill;
 
 public class MenuScene extends VideojuegoScene {
 	
@@ -31,7 +35,7 @@ public class MenuScene extends VideojuegoScene {
 		
 		
 		
-		/*showables2.add(new BattleSkillShowable(new Skill("Demon Fang", 20)));
+		/*showables2.add(new BattleSkillShowable(new Skill("Demon Fang",1, 20)));
 		showables2.add(new BattleSkillShowable(new Skill("Tiger Blade", 40)));
 		showables2.add(new BattleSkillShowable(new Skill("Sword Rain", 60)));
 		showables2.add(new BattleSkillShowable(new Skill("Indignation", 150)));*/
