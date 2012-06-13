@@ -68,7 +68,7 @@ public class VideojuegoGame extends Game {
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
-		battleScene.addComponent(new GameStatsLabel(10, 10));
+		//battleScene.addComponent(new GameStatsLabel(10, 10));
 		
 		battleScene.addBattleCharacter(angel, 3, 3);
 		battleScene.addBattleCharacter(ash, 6, 6);

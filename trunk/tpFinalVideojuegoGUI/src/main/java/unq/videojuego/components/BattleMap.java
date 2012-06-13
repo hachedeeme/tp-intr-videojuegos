@@ -225,7 +225,6 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 	
 	
-	
 	///////////////////
 	///// GETTERS /////
 	///////////////////
@@ -293,5 +292,5 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setTileSize(int tileSize) {
 		this.tileSize = tileSize;
 	}
-	
+
 }
