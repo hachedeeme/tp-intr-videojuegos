@@ -1,6 +1,7 @@
 package com.uqbar.videojuego.characters;
 
 import java.util.List;
+import java.util.Random;
 
 import com.uqbar.videojuego.skills.Skill;
 
@@ -25,7 +26,7 @@ public abstract class Unit {
 	public void attack(Unit aUnit){
 		int damage   = this.getPhysicalDamage();
 		int defence  = aUnit.getPhysicalDefence();
-		applyDamage(aUnit, damage, defence);
+		this.applyDamage(aUnit, damage, defence);
 	}
 
 	
@@ -36,17 +37,23 @@ public abstract class Unit {
 	}
 	
 	private void applyDamage(Unit aUnit, int damage, int defence) {
-		if(damage > defence)
-			aUnit.inflictDamage(damage - defence);
+		if(damage > defence){
+			aUnit.inflictDamage(this.applyVariance(damage - defence));
+		}
 		else
 			aUnit.inflictDamage(1);
+	}
+	
+	public int applyVariance(int aValue){
+		Random rand = new Random();
+		return rand.nextInt(aValue * 10 / 100) + aValue;
 	}
 	/**
 	 * Retorna el da�o fisico que puede llegar a causar seg�n sus stats.
 	 * @return int
 	 */
 	private int getPhysicalDamage(){
-		return this.stats.calculatePhysicalDamage();
+		return this.stats.getAttackPower();
 	}
 	
 	/**
@@ -54,7 +61,7 @@ public abstract class Unit {
 	 * @return int
 	 */
 	private int getPhysicalDefence(){
-		return this.stats.calculatePhysicalDefence();
+		return this.stats.getArmor();
 	}
 	
 	/**

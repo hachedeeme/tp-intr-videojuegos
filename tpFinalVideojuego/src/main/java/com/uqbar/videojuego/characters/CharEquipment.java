@@ -29,7 +29,7 @@ public class CharEquipment {
 	 * @return StatsContainer
 	 */
 	public StatsContainer generateStatsContainer(){
-		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0);
+		StatsContainer stats = new StatsContainer(0, 0, 0, 0, 0, 0, 0, 0);
 		for (Equipment equip : this.equipment.values()) {
 			if(equip != null)
 				stats.sumStats(equip.getStats());
@@ -38,12 +38,12 @@ public class CharEquipment {
 	}
 	
 	/**
-	 * Recine un Equipment por parámetro y lo agrega al CharEquipment segun su EquipType.
-	 * Si ya había un Equipment de ese EquipType, es reemplazado por el nuevo. 
+	 * Recine un Equipment por parï¿½metro y lo agrega al CharEquipment segun su EquipType.
+	 * Si ya habï¿½a un Equipment de ese EquipType, es reemplazado por el nuevo. 
 	 * Si el Equipment a equipar es del tipo TWOHANDED, se acomoda en la "mainHand" y la
 	 * "offHand" queda en null.
 	 * Si el Equipment a equipar es del tipo ONEHANDED, se acomoda en la "mainHand" pero
-	 * si ya había uno en ese lugar, se acomoda en la "offHand". 
+	 * si ya habï¿½a uno en ese lugar, se acomoda en la "offHand". 
 	 * @param aEquipment
 	 */
 	public void putEquipment(Equipment aEquipment){

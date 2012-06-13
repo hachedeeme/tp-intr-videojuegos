@@ -24,14 +24,14 @@ public class StatsContainer {
 	
 	public StatsContainer(int hp, int mp, int speed,
 			int strength, int stamina, int intellect, int wisdom) {
-		this(hp, mp, 3, speed, strength, stamina, intellect, wisdom);
+		this(hp, mp, 2, speed, strength, stamina, intellect, wisdom);
 	}
 
 	//*************//
 	//** METHODS **//
 	//*************//
 	/**
-	 * Recibe un StatsContainer por parámetro y le suma los valores correspondientes a cada
+	 * Recibe un StatsContainer por parï¿½metro y le suma los valores correspondientes a cada
 	 * campo al objeto receptor.
 	 * @param stats
 	 */
@@ -97,7 +97,8 @@ public class StatsContainer {
 	//**************//
 	protected String statsToString(){
 		String enter = System.getProperty("line.separator");
-		String resString = "Speed = " + this.speed + enter;
+		String resString = "Movility = " + this.movility + enter;
+		resString += "Speed = " + this.speed + enter;
 		resString += "Strength = "  + this.strength + enter;
 		resString += "Stamina = "   + this.stamina + enter;
 		resString += "Intellect = " + this.intellect + enter;
