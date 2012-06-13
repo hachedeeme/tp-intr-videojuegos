@@ -5,7 +5,6 @@ import unq.videojuego.enums.UnitDir;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Animation;
 import com.uqbar.vainilla.appearances.LimitedAnimation;
-import com.uqbar.videojuego.characters.CharEquipment;
 import com.uqbar.videojuego.characters.Character;
 import com.uqbar.videojuego.characters.StatsContainer;
 import com.uqbar.videojuego.characters.Unit;
@@ -15,9 +14,9 @@ public class BattleCharacter extends BattleUnit {
 
 	public BattleCharacter(String name, UnitDir dir) {
 		super(name, dir);
-		StatsContainer stats = new StatsContainer(250, 60, 30, 20, 16, 10, 8);
-		CharEquipment equip = new CharEquipment();
-		this.character = new Character(name, stats, equip);
+		StatsContainer stats = new StatsContainer(40, 20, 0, 30, 30, 30, 10, 8);
+		this.character = new Character(name, stats);
+		System.out.println(this.character.getStats());
 	}
 
 	@Override
