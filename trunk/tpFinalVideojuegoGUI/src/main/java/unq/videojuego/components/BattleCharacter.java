@@ -8,6 +8,7 @@ import com.uqbar.vainilla.appearances.LimitedAnimation;
 import com.uqbar.videojuego.characters.CharEquipment;
 import com.uqbar.videojuego.characters.Character;
 import com.uqbar.videojuego.characters.StatsContainer;
+import com.uqbar.videojuego.characters.Unit;
 
 public class BattleCharacter extends BattleUnit {
 	private Character character;
@@ -88,6 +89,10 @@ public class BattleCharacter extends BattleUnit {
 	@Override
 	public int getAttackRange() {
 		return this.character.getAttackRange();
+	}
+	
+	public Unit getUnit(){
+		return this.character;
 	}
 
 }

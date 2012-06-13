@@ -16,7 +16,6 @@ import unq.videojuego.utils.TTuple;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.Sprite;
-import com.uqbar.videojuego.characters.Enemy;
 
 public class BattleMap extends GameComponent<BattleScene> {
 	private PathFinder pathFinder = PathFinder.INSTANCE;
@@ -194,9 +193,9 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.addUnit(enemy);
 	}
 	
-	public BattleEnemy getEnemy(TTuple tuple) {
-		BattleEnemy wantedEnemy = null;
-		for (BattleEnemy enemy : this.enemies){
+	public BattleUnit getUnit(TTuple tuple) {
+		BattleUnit wantedEnemy = null;
+		for (BattleUnit enemy : this.units){
 			if (enemy.getMapX() == tuple.getX() && enemy.getMapY() == tuple.getY()){
 				wantedEnemy = enemy;
 				break;

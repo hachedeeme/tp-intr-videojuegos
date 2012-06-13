@@ -5,6 +5,7 @@ import unq.videojuego.enums.UnitDir;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Animation;
 import com.uqbar.videojuego.characters.Enemy;
+import com.uqbar.videojuego.characters.Unit;
 
 public class BattleEnemy extends BattleUnit {
 	private Enemy enemy;
@@ -83,6 +84,10 @@ public class BattleEnemy extends BattleUnit {
 	@Override
 	public int getAttackRange() {
 		return this.enemy.getAttackRange();
+	}
+	
+	public Unit getUnit(){
+		return this.enemy;
 	}
 	
 }

@@ -6,13 +6,12 @@ import unq.videojuego.states.character.CharWaiting;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.ImageHandler;
-import com.uqbar.vainilla.appearances.Animation;
+import com.uqbar.videojuego.characters.Unit;
 
 public abstract class BattleUnit extends BattleComponent {
 	private String name;
 	private State state = new CharWaiting();
-	
-	private UnitDir dir = UnitDir.Down; 
+	private UnitDir dir = UnitDir.Down;
 	
 	public BattleUnit(String name, UnitDir dir){
 		super();
@@ -62,4 +61,5 @@ public abstract class BattleUnit extends BattleComponent {
 		this.name = name;
 	}
 	
+	public abstract Unit getUnit();
 }
