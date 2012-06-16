@@ -45,6 +45,7 @@ public class BattleScene extends VideojuegoScene {
 		this.tileSize = tileSize;
 		this.isometricLines = new IsometricLines(ImageHandler.INSTANCE.getSprite("IsometricLines"));
 		this.addComponent(this.isometricLines);
+		this.addComponent(new Background("Background"));
 		this.createWindows();
 		this.setMap(map);
 	}
