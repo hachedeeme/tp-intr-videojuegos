@@ -32,15 +32,17 @@ public class VideojuegoGame extends Game {
 	@Override
 	protected void initializeResources() {
 		ImageHandler imageH = ImageHandler.INSTANCE;
-		imageH.addSprites("BattleMap1", "IsometricLines", "SelectedTile",
+		imageH.addSprites("BattleMap1", "IsometricLines", "SelectedTile", "Background",
 				
 						  "Tree",
 				
-						  "pointer", "arrow", "BlueWindow", "BigBlueWindow", "LongBlueWindow",
+						  "pointer", "arrow", "BlueWindow", "BigBlueWindow", "LongBlueWindow", "UnitStatsBack",
 						  
 						  "HP Potion", "MP Potion",  
 						  
-						  "Dagger");
+						  "Dagger",
+						  
+						  "AngelAvatar", "AshAvatar");
 		
 		// Tile Selection 
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");

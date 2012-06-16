@@ -1,11 +1,10 @@
 package unq.videojuego.components.menus;
 
-
-import com.uqbar.vainilla.appearances.Sprite;
+import com.uqbar.vainilla.appearances.Appearance;
 
 public class PictureElement extends ListElement {
 
-	public PictureElement(int x, int y, int z, Sprite aPicture) {
+	public PictureElement(double x, double y, int z, Appearance aPicture) {
 		super(x, y, z, aPicture);
 		this.setWidth((int) aPicture.getWidth());
 	}
