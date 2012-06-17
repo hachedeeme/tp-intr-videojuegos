@@ -72,7 +72,7 @@ public class VideojuegoGame extends Game {
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
 		//battleScene.addComponent(new GameStatsLabel(10, 10));
 		
-		battleScene.addBattleCharacter(angel, 3, 3);
+		battleScene.addBattleCharacter(angel, 5, 6);
 		battleScene.addBattleCharacter(ash, 6, 6);
 		//battleScene.addBattleEnemy(slime, 4, 8);
 		
