@@ -18,8 +18,10 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 	private LabelComp nameShadow;
 	private LabelComp hp;
 	private LabelComp hpShadow;
+	private BarComp hpBar;
 	private LabelComp mp;
 	private LabelComp mpShadow;
+	private BarComp mpBar;
 	private ImageComp unitImage;
 	private BattleUnit bUnit;
 	
@@ -37,21 +39,33 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 	public void updateBUnit(BattleUnit bUnit){
 		this.bUnit = bUnit;
 		Unit unit = bUnit.getUnit();
+		int curHp = unit.getCurrentHp();
+		int curMp = unit.getCurrentMp();
+		int maxHp = unit.getHp();
+		int maxMp = unit.getMp();
 		
 		Font font1 = new Font(Font.MONOSPACED, Font.BOLD, 25);
 		this.name = new LabelComp(this.getX() + 110, this.getY() + 10, this.getZ()+2, new Label(font1, Color.WHITE, unit.getName()));
 		this.nameShadow = new LabelComp(this.getX() + 112, this.getY() + 12, this.getZ()+2, new Label(font1, Color.GRAY, unit.getName()));
 		
 		Font font2 = new Font(Font.MONOSPACED, Font.BOLD, 20);
-		this.hp = new LabelComp(this.getX() + 160, this.getY() + 67, this.getZ()+2, new Label(font2, Color.WHITE, unit.getCurrentHp() + "/" + unit.getHp()));
-		this.hpShadow = new LabelComp(this.getX() + 162, this.getY() + 69, this.getZ()+2, new Label(font2, Color.GRAY, unit.getCurrentHp() + "/" + unit.getHp()));
+		this.hp = new LabelComp(this.getX() + 160, this.getY() + 67, this.getZ()+2, new Label(font2, Color.WHITE, curHp + "/" + maxHp));
+		this.hpShadow = new LabelComp(this.getX() + 162, this.getY() + 69, this.getZ()+2, new Label(font2, Color.GRAY, curHp + "/" + maxHp));
 
-		this.mp = new LabelComp(this.getX() + 160, this.getY() + 120, this.getZ()+2, new Label(font2, Color.WHITE, unit.getCurrentMp() + "/" + unit.getMp()));
-		this.mpShadow = new LabelComp(this.getX() + 162, this.getY() + 122, this.getZ()+2, new Label(font2, Color.GRAY, unit.getCurrentMp() + "/" + unit.getMp()));
+		this.mp = new LabelComp(this.getX() + 160, this.getY() + 120, this.getZ()+2, new Label(font2, Color.WHITE, curMp + "/" + maxMp));
+		this.mpShadow = new LabelComp(this.getX() + 162, this.getY() + 122, this.getZ()+2, new Label(font2, Color.GRAY, curMp + "/" + maxMp));
 		
 		this.unitImage = new ImageComp(this.getX() + 5, this.getY() + 5, this.getZ()+1, ImageHandler.INSTANCE.getSprite(unit.getName() + "Avatar"));
+		double hpPerc = curHp*100/maxHp;
+		double mpPerc = curMp*100/maxMp;
+		this.hpBar = new BarComp(104, 95, this.getZ()+1, "HpBar", hpPerc/100);
+		this.mpBar = new BarComp(104, 148, this.getZ()+1, "MpBar", mpPerc/100);
 		
 		this.setAppearance(ImageHandler.INSTANCE.getSprite("UnitStatsBack"));
+	}
+	
+	public void updateBUnit(){
+		this.updateBUnit(this.bUnit);
 	}
 	
 	@Override
@@ -61,8 +75,10 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 		scene.addComponent(this.name);
 		scene.addComponent(this.hpShadow);
 		scene.addComponent(this.hp);
+		scene.addComponent(this.hpBar);
 		scene.addComponent(this.mpShadow);
 		scene.addComponent(this.mp);
+		scene.addComponent(this.mpBar);
 		scene.addComponent(this.unitImage);
 	}
 	
@@ -73,8 +89,10 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 		scene.removeComponent(this.name);
 		scene.removeComponent(this.hpShadow);
 		scene.removeComponent(this.hp);
+		scene.removeComponent(this.hpBar);
 		scene.removeComponent(this.mpShadow);
 		scene.removeComponent(this.mp);
+		scene.removeComponent(this.mpBar);
 		scene.removeComponent(this.unitImage);
 	}
 
