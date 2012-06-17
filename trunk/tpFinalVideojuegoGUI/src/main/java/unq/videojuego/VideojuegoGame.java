@@ -36,7 +36,7 @@ public class VideojuegoGame extends Game {
 				
 						  "Tree",
 				
-						  "pointer", "arrow", "BlueWindow", "BigBlueWindow", "LongBlueWindow", "UnitStatsBack",
+						  "pointer", "arrow", "BlueWindow", "BigBlueWindow", "LongBlueWindow", "UnitStatsBack", "HpBar", "MpBar",
 						  
 						  "HP Potion", "MP Potion",  
 						  
