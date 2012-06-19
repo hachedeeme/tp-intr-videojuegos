@@ -4,6 +4,7 @@ import unq.videojuego.enums.UnitDir;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Animation;
+import com.uqbar.vainilla.appearances.LimitedAnimation;
 import com.uqbar.videojuego.characters.Enemy;
 import com.uqbar.videojuego.characters.Unit;
 
@@ -61,16 +62,29 @@ public class BattleEnemy extends BattleUnit {
 		
 		// Attacking
 		String attackingDownName = this.getName() + "Attacking" + UnitDir.Down.name();
-		Animation attackingDown = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingDownName); 
+		Animation attackingDown = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 900, 120, 150, 120, attackingDownName); 
 		
 		String attackingRightName = this.getName() + "Attacking" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(attackingRightName, attackingDown.flipHorizontally());
 		
 		String attackingLeftName = this.getName() + "Attacking" + UnitDir.Left.name();
-		Animation attackingLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 400, 120, 100, 120, attackingLeftName); 
+		Animation attackingLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.10, 1, 900, 120, 150, 120, attackingLeftName); 
 		
 		String attackingUpName = this.getName() + "Attacking" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(attackingUpName, attackingLeft.flipHorizontally());
+		
+		// Taking Damage
+		String takingDamageDownName = this.getName() + "TakingDamage" + UnitDir.Down.name();
+		LimitedAnimation takingDamageDown = ImageHandler.INSTANCE.addLimitedAnimation(0.1, 1, 600, 120, 150, 120, takingDamageDownName); 
+		
+		String takingDamageRightName = this.getName() + "TakingDamage" + UnitDir.Right.name();
+		ImageHandler.INSTANCE.addLimitedAnimation(takingDamageRightName, takingDamageDown.flipHorizontally());
+		
+		String takingDamageLeftName = this.getName() + "TakingDamage" + UnitDir.Left.name();
+		LimitedAnimation takingDamageLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.1, 1, 600, 120, 150, 120, takingDamageLeftName); 
+		
+		String takingDamageUpName = this.getName() + "TakingDamage" + UnitDir.Up.name();
+		ImageHandler.INSTANCE.addLimitedAnimation(takingDamageUpName, takingDamageLeft.flipHorizontally());
 
 		
 		this.updateAppearance();
