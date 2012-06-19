@@ -3,6 +3,7 @@ package unq.videojuego;
 import java.awt.Dimension;
 
 import unq.videojuego.components.BattleCharacter;
+import unq.videojuego.components.BattleEnemy;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.enums.UnitDir;
@@ -41,7 +42,7 @@ public class VideojuegoGame extends Game {
 						  
 						  "Dagger",
 						  
-						  "AngelAvatar", "AshAvatar");
+						  "AngelAvatar", "AshAvatar", "SlimeAvatar");
 		
 		// Tile Selection 
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");
@@ -66,15 +67,15 @@ public class VideojuegoGame extends Game {
 		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Down);
 		BattleCharacter ash = new BattleCharacter("Ash", UnitDir.Down);
 		
-		//BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Up);
+		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Up);
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
-		battleScene.addComponent(new GameStatsLabel(10, 10));
+		//battleScene.addComponent(new GameStatsLabel(10, 10));
 		
 		battleScene.addBattleCharacter(angel, 5, 6);
 		battleScene.addBattleCharacter(ash, 6, 6);
-		//battleScene.addBattleEnemy(slime, 4, 8);
+		battleScene.addBattleEnemy(slime, 4, 8);
 		
 		battleScene.addObstacle(new Obstacle("Tree", 1, 1));
 		battleScene.addObstacle(new Obstacle("Tree", 5, 2));
