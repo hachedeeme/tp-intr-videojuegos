@@ -65,8 +65,8 @@ public class GameComponent<SceneType extends GameScene> {
 		scene.addComponent(this);
 	}
 	
-	public void removeFromScene(GameScene scene){
-		scene.removeComponent(this);
+	public void removeFromScene(){
+		this.getScene().removeComponent(this);
 	}
 
 	// ****************************************************************
