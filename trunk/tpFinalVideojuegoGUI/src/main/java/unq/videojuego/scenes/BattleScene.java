@@ -7,6 +7,7 @@ import unq.videojuego.commands.ActionAction;
 import unq.videojuego.commands.AttackAction;
 import unq.videojuego.commands.MoveAction;
 import unq.videojuego.commands.PassAction;
+import unq.videojuego.components.AttackComp;
 import unq.videojuego.components.Background;
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleComponent;
@@ -85,7 +86,7 @@ public class BattleScene extends VideojuegoScene {
 	
 	public void removeCurUnitStats(){
 		if (this.curUnitStats != null){
-			this.curUnitStats.removeFromScene(this);
+			this.curUnitStats.removeFromScene();
 		}
 	}
 
@@ -122,6 +123,11 @@ public class BattleScene extends VideojuegoScene {
 		if (added){
 			this.map.setMapComponentCoords(comp, comp.getMapX(), comp.getMapY());
 		}
+	}
+	
+	public void addAttack(AttackComp comp){
+		this.map.setBattleComponentCoords(comp, comp.getMapX(), comp.getMapY());
+		comp.addToScene(this);
 	}
 
 	public Background getBackground() {

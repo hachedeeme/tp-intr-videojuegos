@@ -2,8 +2,6 @@ package unq.videojuego.components.menus;
 
 import java.awt.Color;
 import java.awt.Font;
-import java.util.HashMap;
-import java.util.Map;
 
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.components.ImageComp;
@@ -70,7 +68,6 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 	}
 	
 	private Color getStatColor(double perc) {
-		System.out.println(perc);
 		return perc <= 1 && perc > 0.5 	
 					? Color.WHITE
 					: perc <= 0.5 && perc > 0.2
@@ -97,8 +94,8 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 	}
 	
 	@Override
-	public void removeFromScene(GameScene scene) {
-		super.removeFromScene(scene);
+	public void removeFromScene() {
+		VideojuegoScene scene = this.getScene();
 		scene.removeComponent(this.nameShadow);
 		scene.removeComponent(this.name);
 		scene.removeComponent(this.hpShadow);
@@ -108,6 +105,7 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 		scene.removeComponent(this.mp);
 		scene.removeComponent(this.mpBar);
 		scene.removeComponent(this.unitImage);
+		super.removeFromScene();
 	}
 
 	public BattleUnit getbUnit() {

@@ -90,10 +90,10 @@ public class BattleMap extends GameComponent<BattleScene> {
 		comp.setMapY(y);
 	}
 	
-	public void setBattleComponentCoords(BattleComponent comp, int x, int y) {
-		this.setRealCoords(comp, x, y);
-		comp.setMapX(x);
-		comp.setMapY(y);
+	public void setBattleComponentCoords(BattleComponent comp, int mapX, int mapY) {
+		this.setRealCoords(comp, mapX, mapY);
+		comp.setMapX(mapX);
+		comp.setMapY(mapY);
 	}
 
 	public void setRealCoords(BattleComponent comp, int x, int y) {

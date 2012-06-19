@@ -49,8 +49,9 @@ public class VideojuegoGame extends Game {
 		imageH.addAnimation(0.07, 1, 1200, 150, 100, 150, "SelectionCone");
 		
 		// Attacks
-		imageH.addAnimation(0.1, 1, 126, 128, 126, 64, "ki");
-		imageH.addAnimation(0.1, 1.5, 560, 104, 80, 104, "FirePilar");
+		imageH.addLimitedAnimation(0.1, 1, 324, 100, 81, 100, "attacks/BasicAttack");
+		imageH.addLimitedAnimation(0.1, 1, 126, 128, 126, 64, "attacks/Ki");
+		imageH.addLimitedAnimation(0.1, 1.5, 560, 104, 80, 104, "attacks/FirePilar");
 	}
 
 	@Override
@@ -76,8 +77,8 @@ public class VideojuegoGame extends Game {
 		battleScene.addBattleCharacter(ash, 6, 6);
 		//battleScene.addBattleEnemy(slime, 4, 8);
 		
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"),1,1));
-		battleScene.addObstacle(new Obstacle(imageH.getSprite("Tree"), 5, 2));
+		battleScene.addObstacle(new Obstacle("Tree", 1, 1));
+		battleScene.addObstacle(new Obstacle("Tree", 5, 2));
 		
 		this.setCurrentScene(battleScene);
 		/*
