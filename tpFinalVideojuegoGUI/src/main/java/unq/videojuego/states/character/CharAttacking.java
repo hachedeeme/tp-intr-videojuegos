@@ -1,5 +1,6 @@
 package unq.videojuego.states.character;
 
+import unq.videojuego.components.AttackComp;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.states.State;
@@ -22,12 +23,11 @@ public class CharAttacking extends State {
 		BattleUnit caster = (BattleUnit) comp;
 		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
 			caster.getUnit().attack(this.target.getUnit());
-			System.out.println("Caster: " + caster.getUnit().getCurrentHp() + "/" + caster.getUnit().getHp() + " - " + 
-							   "Target: " + this.target.getUnit().getCurrentHp() + "/" +this.target.getUnit().getHp());
 			BattleMap map = caster.getScene().getMap();
 			map.setState(new MapSelectingUnit());
 			caster.setState(new CharWaiting());
 			map.addUnit(caster);
+			caster.getScene().addAttack(new AttackComp(target.getMapX(), target.getMapY(), "BasicAttack"));
 		}
 	}
 
