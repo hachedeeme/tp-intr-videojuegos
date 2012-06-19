@@ -76,6 +76,18 @@ public class BattleCharacter extends BattleUnit {
 		String attackingUpName = this.getName() + "Attacking" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addLimitedAnimation(attackingUpName, attackingLeft.flipHorizontally());
 
+		// Taking Damage
+		String takingDamageDownName = this.getName() + "TakingDamage" + UnitDir.Down.name();
+		LimitedAnimation takingDamageDown = ImageHandler.INSTANCE.addLimitedAnimation(0.2, 1, 200, 120, 100, 120, takingDamageDownName); 
+		
+		String takingDamageRightName = this.getName() + "TakingDamage" + UnitDir.Right.name();
+		ImageHandler.INSTANCE.addLimitedAnimation(takingDamageRightName, takingDamageDown.flipHorizontally());
+		
+		String takingDamageLeftName = this.getName() + "TakingDamage" + UnitDir.Left.name();
+		LimitedAnimation takingDamageLeft = ImageHandler.INSTANCE.addLimitedAnimation(0.2, 1, 200, 120, 100, 120, takingDamageLeftName); 
+		
+		String takingDamageUpName = this.getName() + "TakingDamage" + UnitDir.Up.name();
+		ImageHandler.INSTANCE.addLimitedAnimation(takingDamageUpName, takingDamageLeft.flipHorizontally());
 		
 		this.updateAppearance();
 	}
