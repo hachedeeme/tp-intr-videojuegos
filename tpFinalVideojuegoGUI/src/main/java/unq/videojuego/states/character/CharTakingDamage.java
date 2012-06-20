@@ -2,6 +2,7 @@ package unq.videojuego.states.character;
 
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
+import unq.videojuego.enums.UnitDir;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
 
@@ -12,25 +13,24 @@ import com.uqbar.vainilla.appearances.LimitedAnimation;
 public class CharTakingDamage extends State {
 
 	private BattleUnit caster;
+	private UnitDir originDir;
 
-	public CharTakingDamage(BattleUnit caster) {
+	public CharTakingDamage(BattleUnit caster, UnitDir originDir) {
 		super("TakingDamage");
 		this.caster = caster;
+		this.originDir = originDir;
 	}
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
-		BattleUnit caster = (BattleUnit) comp;
-		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
-			caster.setState(new CharWaiting());
-			BattleMap map = caster.getScene().getMap();
+		BattleUnit target = (BattleUnit) comp;
+		if (((LimitedAnimation) target.getAppearance()).isAtEnd()){
+			target.setDir(this.originDir);
+			target.setState(new CharWaiting());
+			BattleMap map = target.getScene().getMap();
 			map.setState(new MapSelectingUnit());
-			caster.setState(new CharWaiting());
+			target.setState(new CharWaiting());
 			map.addUnit(this.caster);
 		}
-	}
-
-	public BattleUnit getCaster() {
-		return caster;
 	}
 }
