@@ -23,7 +23,7 @@ public class CharAttacking extends State {
 		UnitDir originDir = this.target.getDir();
 		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
 			caster.getUnit().attack(this.target.getUnit());
-			this.target.setDir(caster.getDir().getOpposed());
+			this.target.setOpposedDir(caster.getDir());
 			this.target.setState(new CharTakingDamage(caster, originDir));
 			caster.setState(new CharWaiting());
 			caster.getScene().addAttack(new AttackComp(target.getMapX(), target.getMapY(), "BasicAttack"));

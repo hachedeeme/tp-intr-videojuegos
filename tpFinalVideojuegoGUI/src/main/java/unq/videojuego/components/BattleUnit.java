@@ -62,4 +62,8 @@ public abstract class BattleUnit extends BattleComponent {
 	}
 	
 	public abstract Unit getUnit();
+	
+	public void setOpposedDir(UnitDir aUnitDir){
+		this.dir = aUnitDir.getOpposed();
+	}
 }
