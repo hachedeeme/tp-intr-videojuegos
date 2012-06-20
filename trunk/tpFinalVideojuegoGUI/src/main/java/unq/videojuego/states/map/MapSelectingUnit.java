@@ -23,6 +23,7 @@ public class MapSelectingUnit extends State {
 		map.addSelectedTileInSelectedUnit();
 		map.getSelectedUnit().setState(new CharSelected());
 		map.setState(new MapWaitingForCommand());
+		map.updateHPBars();
 		if (scene.getActiveWindow() == null){
 			scene.addActiveWindow(scene.getBattleCommandsWindow());
 		}

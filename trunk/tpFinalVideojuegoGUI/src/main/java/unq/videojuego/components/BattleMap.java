@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import unq.videojuego.components.menus.HPBar;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
@@ -31,6 +32,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 	private List<BattleUnit> units = new ArrayList<BattleUnit>();
 	private List<BattleCharacter> characters = new ArrayList<BattleCharacter>();
 	private List<BattleEnemy> enemies = new ArrayList<BattleEnemy>();
+	private List<HPBar> hpBars = new ArrayList<HPBar>();
 	
 	private List<TileArea> markedTiles = new ArrayList<TileArea>();
 	private List<TTuple> areaTuples = new ArrayList<TTuple>();
@@ -222,6 +224,19 @@ public class BattleMap extends GameComponent<BattleScene> {
 	
 	public boolean isOutOfMap(int x, int y){
 		return x < 0 || x >= this.width || y < 0 || y >= this.height;
+	}
+	
+	public void updateHPBars() {
+		for (HPBar bar : this.hpBars){
+			bar.removeFromScene();
+		}
+		
+		this.hpBars = new ArrayList<HPBar>();
+		for (BattleUnit unit : this.units){
+			HPBar bar = new HPBar(0.4, unit);
+			hpBars.add(bar);
+			bar.addToScene(this.getScene());
+		}
 	}
 	
 	

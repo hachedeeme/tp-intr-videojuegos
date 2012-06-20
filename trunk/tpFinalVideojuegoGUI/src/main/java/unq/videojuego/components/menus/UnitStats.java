@@ -61,8 +61,8 @@ public class UnitStats extends GameComponent<VideojuegoScene> {
 		this.mpShadow = new LabelComp(this.getX() + 162, this.getY() + 122, this.getZ()+2, new Label(font2, gray, curMp + "/" + maxMp));
 		
 		this.unitImage = new ImageComp(this.getX() + 5, this.getY() + 5, this.getZ()+1, ImageHandler.INSTANCE.getSprite(unit.getName() + "Avatar"));
-		this.hpBar = new BarComp(104, 95, this.getZ()+1, "HpBar", hpPerc/100);
-		this.mpBar = new BarComp(104, 148, this.getZ()+1, "MpBar", mpPerc/100);
+		this.hpBar = new BarComp(1, 104, 95, this.getZ()+1, "HpBar", hpPerc/100);
+		this.mpBar = new BarComp(1, 104, 148, this.getZ()+1, "MpBar", mpPerc/100);
 		
 		this.setAppearance(ImageHandler.INSTANCE.getSprite("UnitStatsBack"));
 	}

@@ -10,15 +10,15 @@ import com.uqbar.vainilla.appearances.Sprite;
 public class BarComp extends GameComponent<VideojuegoScene> {
 	private Sprite bar;
 	
-	public BarComp(double x, double y, int z, String imageName) {
+	public BarComp(double scale, double x, double y, int z, String imageName) {
 		super(x, y);
-		this.bar = ImageHandler.INSTANCE.getSprite(imageName);
+		this.bar = ImageHandler.INSTANCE.getSprite(imageName).scale(scale);
 		this.setZ(z);
 		this.setAppearance(bar);
 	}
 	
-	public BarComp(double x, double y, int z, String imageName, double perc) {
-		this(x, y, z, imageName);
+	public BarComp(double scale, double x, double y, int z, String imageName, double perc) {
+		this(scale, x, y, z, imageName);
 		this.updateBar(perc);
 	}
 	
@@ -29,5 +29,18 @@ public class BarComp extends GameComponent<VideojuegoScene> {
 			Sprite newImage = bar.crop((int) (bar.getWidth() * perc), (int) bar.getHeight());
 			this.setAppearance(newImage);
 		}
+	}
+
+	public double getFullWidth() {
+		return this.bar.getWidth();
+	}
+
+	public double getFullHeight() {
+		return this.bar.getHeight();
+	}
+
+	public void changeCoords(double x, double y) {
+		this.setX(x);
+		this.setY(y);
 	}
 }
