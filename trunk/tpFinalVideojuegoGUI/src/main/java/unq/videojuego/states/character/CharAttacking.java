@@ -2,6 +2,7 @@ package unq.videojuego.states.character;
 
 import unq.videojuego.components.AttackComp;
 import unq.videojuego.components.BattleUnit;
+import unq.videojuego.enums.UnitDir;
 import unq.videojuego.states.State;
 
 import com.uqbar.vainilla.DeltaState;
@@ -19,9 +20,11 @@ public class CharAttacking extends State {
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
 		BattleUnit caster = (BattleUnit) comp;
+		UnitDir originDir = this.target.getDir();
 		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
 			caster.getUnit().attack(this.target.getUnit());
-			this.target.setState(new CharTakingDamage(caster));
+			this.target.setDir(caster.getDir().getOpposed());
+			this.target.setState(new CharTakingDamage(caster, originDir));
 			caster.setState(new CharWaiting());
 			caster.getScene().addAttack(new AttackComp(target.getMapX(), target.getMapY(), "BasicAttack"));
 		}
