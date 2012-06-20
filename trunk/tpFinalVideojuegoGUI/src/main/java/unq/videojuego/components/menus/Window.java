@@ -4,8 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.VideojuegoGame;
-import unq.videojuego.components.SimpleComponent;
+import unq.videojuego.components.ImageComp;
 import unq.videojuego.scenes.VideojuegoScene;
 
 import com.uqbar.vainilla.DeltaState;
@@ -24,9 +23,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 	private int maxCurLines;
 	private int pointerPos; 
 	
-	private SimpleComponent topArrow;
-	private SimpleComponent botArrow;
-	private SimpleComponent pointer;
+	private ImageComp topArrow;
+	private ImageComp botArrow;
+	private ImageComp pointer;
 	
 	private int showableHeight;
 	
@@ -35,9 +34,9 @@ public class Window extends GameComponent<VideojuegoScene> {
 		this.setZ(10);
 		this.image = image;
 		this.setAppearance(image);
-		this.topArrow = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow"));
-		this.botArrow = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow").flipVertically());
-		this.pointer = new SimpleComponent(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("pointer"));
+		this.topArrow = new ImageComp(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow"));
+		this.botArrow = new ImageComp(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("arrow").flipVertically());
+		this.pointer = new ImageComp(0, 0, this.getZ()+1, ImageHandler.INSTANCE.getSprite("pointer"));
 		this.pointerPos = 0;
 		this.showableHeight = 32;
 		double linesRoom =  this.image.getHeight() 

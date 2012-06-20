@@ -20,8 +20,8 @@ public class CharAttacking extends State {
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
 		BattleUnit caster = (BattleUnit) comp;
-		UnitDir originDir = this.target.getDir();
 		if (((LimitedAnimation) caster.getAppearance()).isAtEnd()){
+			UnitDir originDir = this.target.getDir();
 			caster.getUnit().attack(this.target.getUnit());
 			this.target.setOpposedDir(caster.getDir());
 			this.target.setState(new CharTakingDamage(caster, originDir));
