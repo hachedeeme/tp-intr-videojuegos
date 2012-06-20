@@ -11,7 +11,6 @@ import unq.videojuego.scenes.BattleScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
-import com.uqbar.vainilla.GameStatsLabel;
 import com.uqbar.vainilla.ImageHandler;
 
 public class VideojuegoGame extends Game {

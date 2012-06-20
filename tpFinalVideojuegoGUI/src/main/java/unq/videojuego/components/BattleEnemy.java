@@ -20,13 +20,13 @@ public class BattleEnemy extends BattleUnit {
 	public void createImagesMap() {		
 		// Waiting
 		String waitingDownName = this.getName() + "Waiting" + UnitDir.Down.name();
-		Animation waitingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, waitingDownName); 
+		Animation waitingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 750, 120, 150, 120, waitingDownName); 
 
 		String waitingRightName = this.getName() + "Waiting" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(waitingRightName, waitingDown.flipHorizontally());
 		
 		String waitingLeftName = this.getName() + "Waiting" + UnitDir.Left.name();
-		Animation waitingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, waitingLeftName); 
+		Animation waitingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 750, 120, 150, 120, waitingLeftName); 
 
 		String waitingUpName = this.getName() + "Waiting" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(waitingUpName, waitingLeft.flipHorizontally());
@@ -34,13 +34,13 @@ public class BattleEnemy extends BattleUnit {
 		
 		// Selected
 		String selectedDownName = this.getName() + "Selected" + UnitDir.Down.name();
-		Animation selectedDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, selectedDownName); 
+		Animation selectedDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 750, 120, 150, 120, selectedDownName); 
 		
 		String selectedRightName = this.getName() + "Selected" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(selectedRightName, selectedDown.flipHorizontally());
 		
 		String selectedLeftName = this.getName() + "Selected" + UnitDir.Left.name();
-		Animation selectedLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 500, 120, 100, 120, selectedLeftName); 
+		Animation selectedLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 750, 120, 150, 120, selectedLeftName); 
 		
 		String selectedUpName = this.getName() + "Selected" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(selectedUpName, selectedLeft.flipHorizontally());
@@ -48,13 +48,13 @@ public class BattleEnemy extends BattleUnit {
 		
 		// Walking
 		String walkingDownName = this.getName() + "Walking" + UnitDir.Down.name();
-		Animation walkingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 700, 120, 100, 120, walkingDownName); 
+		Animation walkingDown = ImageHandler.INSTANCE.addAnimation(0.10, 1, 1050, 120, 150, 120, walkingDownName); 
 		
 		String walkingRightName = this.getName() + "Walking" + UnitDir.Right.name();
 		ImageHandler.INSTANCE.addAnimation(walkingRightName, walkingDown.flipHorizontally());
 		
 		String walkingLeftName = this.getName() + "Walking" + UnitDir.Left.name();
-		Animation walkingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 700, 120, 100, 120, walkingLeftName); 
+		Animation walkingLeft = ImageHandler.INSTANCE.addAnimation(0.10, 1, 1050, 120, 150, 120, walkingLeftName); 
 		
 		String walkingUpName = this.getName() + "Walking" + UnitDir.Up.name();
 		ImageHandler.INSTANCE.addAnimation(walkingUpName, walkingLeft.flipHorizontally());
