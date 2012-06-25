@@ -3,8 +3,10 @@ package unq.videojuego.states.character;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.enums.UnitDir;
+import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
+import unq.videojuego.states.map.MapWaitingForCommand;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
@@ -26,11 +28,19 @@ public class CharTakingDamage extends State {
 		BattleUnit target = (BattleUnit) comp;
 		if (((LimitedAnimation) target.getAppearance()).isAtEnd()){
 			target.setDir(this.originDir);
-			target.setState(new CharWaiting());
-			BattleMap map = target.getScene().getMap();
-			map.setState(new MapSelectingUnit());
-			target.setState(new CharWaiting());
-			map.addUnit(this.caster);
+			BattleScene scene = target.getScene();
+			BattleMap map = scene.getMap();
+			if (scene.turnEnded()){
+				target.setState(new CharWaiting());
+				map.setState(new MapSelectingUnit());
+				map.addUnit(this.caster);
+				scene.resetCommands();
+			} else {
+				scene.getBattleCommandsWindow().removeCurElement();
+				target.setState(new CharSelected());
+				map.addSameUnit();
+				map.setState(new MapSelectingUnit());
+			}
 		}
 	}
 }

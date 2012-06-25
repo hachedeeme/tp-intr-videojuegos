@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import unq.videojuego.commands.Action;
 import unq.videojuego.scenes.VideojuegoScene;
 
-public class BattleActionShowable extends Showable{
+public class BattleActionShowable extends Showable {
 	private double x;
 	private double y;
 	private Action action;

@@ -4,6 +4,7 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
+import unq.videojuego.commands.Action;
 import unq.videojuego.components.ImageComp;
 import unq.videojuego.scenes.VideojuegoScene;
 
@@ -132,6 +133,13 @@ public class Window extends GameComponent<VideojuegoScene> {
 		}
 		this.botElements.addAll(showables);
 	}
+	
+	public void removeCurElement(){
+		this.elements.remove(this.pointerPos);
+		this.updateElementsCoords();
+		//this.setPointerPos(0);
+	}
+	
 	public void placeWindow(){
 		this.placeWindow(0, this.getScene().getScreenHeight() - this.getHeight());
 	}

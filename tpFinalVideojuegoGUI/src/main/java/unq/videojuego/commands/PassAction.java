@@ -23,6 +23,7 @@ public class PassAction extends Action {
 		map.removeSelectedTile();
 		map.setState(new MapSelectingUnit());
 		bScene.getActiveWindow().setPointerPos(0);
+		bScene.resetCommands();
 	}
 
 }

@@ -185,6 +185,10 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.units.add(unit);
 	}
 	
+	public void addSameUnit() {
+		this.units.add(0, this.selectedUnit);
+	}
+	
 	public void addCharacter(BattleCharacter character){
 		this.characters.add(character);
 		this.addUnit(character);
@@ -307,5 +311,4 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setTileSize(int tileSize) {
 		this.tileSize = tileSize;
 	}
-
 }
