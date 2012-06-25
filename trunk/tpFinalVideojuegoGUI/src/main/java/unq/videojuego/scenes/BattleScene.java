@@ -37,6 +37,9 @@ public class BattleScene extends VideojuegoScene {
 	//private Window skillsWindow;
 	//private Window itemsWindow;
 	
+	private boolean attacked;
+	private boolean moved;
+	
 	private UnitStats curUnitStats;
 	
 	public BattleScene(BattleMap map, int tileSize, int width, int height) {
@@ -53,17 +56,22 @@ public class BattleScene extends VideojuegoScene {
 	
 	private void createWindows() {
 		Sprite blueWindow = ImageHandler.INSTANCE.getSprite("BlueWindow");
-		List<Showable> battleCommands = new ArrayList<Showable>();
-		battleCommands.add(new BattleActionShowable(new ActionAction()));
-		battleCommands.add(new BattleActionShowable(new MoveAction()));
-		battleCommands.add(new BattleActionShowable(new PassAction()));
-		this.battleCommandsWindow = new Window(0, this.getScreenHeight() - blueWindow.getHeight(), blueWindow, battleCommands);
+		
+		this.createCommandsWindow(blueWindow);
 		
 		List<Showable> battleActions = new ArrayList<Showable>();
 		battleActions.add(new BattleActionShowable(new AttackAction()));
 		this.battleActionsWindow = new Window(this.battleCommandsWindow.getWidth(), this.getScreenHeight() - blueWindow.getHeight(), blueWindow, battleActions);
 		
 		this.addActiveWindow(this.battleCommandsWindow);
+	}
+	
+	public void createCommandsWindow(Sprite blueWindow){
+		List<Showable> battleCommands = new ArrayList<Showable>();
+		battleCommands.add(new BattleActionShowable(new ActionAction()));
+		battleCommands.add(new BattleActionShowable(new MoveAction()));
+		battleCommands.add(new BattleActionShowable(new PassAction()));
+		this.battleCommandsWindow = new Window(0, this.getScreenHeight() - blueWindow.getHeight(), blueWindow, battleCommands);
 	}
 	
 	public void removeActiveWindow(){
@@ -74,6 +82,19 @@ public class BattleScene extends VideojuegoScene {
 	public void addActiveWindow(Window window){
 		this.setActiveWindow(window);
 		this.addComponent(window);
+	}
+	
+	public void resetCommands(){
+		this.setAttacked(false);
+		this.setMoved(false);
+		this.removeComponent(this.battleCommandsWindow);
+		Sprite blueWindow = ImageHandler.INSTANCE.getSprite("BlueWindow");
+		this.createCommandsWindow(blueWindow);
+		this.addActiveWindow(this.battleCommandsWindow);
+	}
+	
+	public boolean turnEnded(){
+		return this.attacked && this.moved;
 	}
 	
 	public void updateAndShowUnitStats() {
@@ -193,6 +214,22 @@ public class BattleScene extends VideojuegoScene {
 
 	public void setBattleActionsWindow(Window battleActionsWindow) {
 		this.battleActionsWindow = battleActionsWindow;
+	}
+
+	public boolean isAttacked() {
+		return attacked;
+	}
+
+	public void setAttacked(boolean attacked) {
+		this.attacked = attacked;
+	}
+
+	public boolean isMoved() {
+		return moved;
+	}
+
+	public void setMoved(boolean moved) {
+		this.moved = moved;
 	}
 	
 }

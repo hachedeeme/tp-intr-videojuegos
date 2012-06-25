@@ -22,6 +22,7 @@ public class MapChoosingTarget extends State {
     @Override
     public void update(GameComponent comp, DeltaState deltaState) {
         BattleMap map = (BattleMap) comp;
+        BattleScene scene = map.getScene();
         if (deltaState.isKeyPressed(Key.X)){
             TTuple selectedTuple = new TTuple(map.getSelectedTile().getMapX(), map.getSelectedTile().getMapY());
             TTuple selectedTupleWithCounter = selectedTuple.getTupleFromCoords(map.getAreaTuples());
@@ -34,9 +35,9 @@ public class MapChoosingTarget extends State {
                 map.getSelectedUnit().setState(new CharAttacking(target));
                 map.setState(new Sleeping());
                 map.removeArea();
+                scene.setAttacked(true);
             }
         } else if (deltaState.isKeyPressed(Key.Z)){
-            BattleScene scene = map.getScene();
             scene.addActiveWindow(scene.getBattleCommandsWindow());
             map.removeSelectedTile();
             map.addSelectedTileInSelectedUnit();

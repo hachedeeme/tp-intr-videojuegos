@@ -22,5 +22,4 @@ public class MoveAction extends Action {
 		map.setState(new MapChoosingDestination());
 	}
 
-	
 }
