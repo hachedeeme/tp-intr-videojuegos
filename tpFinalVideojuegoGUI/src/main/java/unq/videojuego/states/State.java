@@ -6,7 +6,7 @@ import com.uqbar.vainilla.GameComponent;
 public abstract class State {
 	private String name;
 	
-	protected State(String name) {
+	public State(String name) {
 		this.name = name;
 	}
 	
