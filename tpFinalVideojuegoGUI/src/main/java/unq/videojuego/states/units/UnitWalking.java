@@ -1,22 +1,20 @@
 package unq.videojuego.states.units;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
-import unq.videojuego.states.map.MapWaitingForCommand;
+import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 
-public class CharWalking extends State {
+public class UnitWalking extends State {
 	private List<TTuple> tuplesPath;
 	
 	private double xSpeed;
@@ -29,12 +27,18 @@ public class CharWalking extends State {
 	
 	private boolean moving = false;
 
-	public CharWalking(TTuple selectedTuple, List<TTuple> areaTuples, int tileSize) {
+	public UnitWalking(TTuple selectedTuple, List<TTuple> areaTuples, int tileSize) {
 		super("Walking");
-		this.tuplesPath = this.createPath(selectedTuple, areaTuples);
+		this.tuplesPath = PathFinder.INSTANCE.createPath(selectedTuple, areaTuples);
 		this.tileSize = tileSize;
 	}
 	
+	public UnitWalking(List<TTuple> tuplesPath, int tileSize) {
+		super("Walking");
+		this.tuplesPath = tuplesPath;
+		this.tileSize = tileSize;
+	}
+
 	private void calculateSpeeds(double curX, double curY, double tileSize) {
 		int xDir = (curX < this.newRealX) ? 2 : -2;
 		int yDir = (curY < this.newRealY) ? 2 : -2;		
@@ -65,26 +69,6 @@ public class CharWalking extends State {
 		}
 	}
 
-	private List<TTuple> createPath(TTuple selectedTuple, List<TTuple> areaTuples) {
-		List<TTuple> path = new ArrayList<TTuple>();
-		path.add(selectedTuple);
-		TTuple curTuple = selectedTuple;
-		TTuple curAdyacent = selectedTuple;
-		
-		for (int i = 0; i < selectedTuple.getCounter() - 1; i++) {
-			for (TTuple tuple : new ArrayList<TTuple>(areaTuples)){
-				if (curTuple.isAdyacent(tuple) && tuple.counterSmaller(curAdyacent)){
-					curAdyacent = tuple;
-				}
-			}
-			curTuple = curAdyacent;
-			
-			path.add(0, curTuple);
-		}
-		
-		return path;
-	}
-
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
 		BattleUnit bChar = (BattleUnit) comp;
@@ -95,13 +79,13 @@ public class CharWalking extends State {
 				BattleScene scene = bChar.getScene();
 				scene.setMoved(true);
 				if (scene.turnEnded()){
-					bChar.setState(new CharWaiting());
+					bChar.setState(new UnitWaiting());
 					map.addUnit(bChar);
 					map.setState(new MapSelectingUnit());
 					scene.resetCommands();
 				} else {
 					scene.getBattleCommandsWindow().removeCurElement();
-					bChar.setState(new CharSelected());
+					bChar.setState(new UnitSelected());
 					map.addSameUnit();
 					map.setState(new MapSelectingUnit());
 				}

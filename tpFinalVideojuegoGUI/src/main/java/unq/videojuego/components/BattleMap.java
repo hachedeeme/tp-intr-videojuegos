@@ -38,6 +38,8 @@ public class BattleMap extends GameComponent<BattleScene> {
 	private List<TTuple> areaTuples = new ArrayList<TTuple>();
 	private SelectedTile selectedTile = new SelectedTile(this, 0, 0);
 	
+	private BattleUnit enemyTarget;
+	
 	public BattleMap(Sprite image, int tileSize, int width, int height) {
 		this.setZ(-10);
 		this.tileSize = tileSize;
@@ -127,6 +129,12 @@ public class BattleMap extends GameComponent<BattleScene> {
 		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
 		int range = this.selectedUnit.getMovility();
 		return this.pathFinder.getAreaWithoutObs(grid, width, height, startPoint, range);
+	}
+	
+	public List<TTuple> createFullTileArea(TTuple exception){
+		Point startPoint = new Point(this.selectedUnit.getMapX(), this.selectedUnit.getMapY());
+		int range = this.width + this.height - 2;
+		return this.pathFinder.getAreaWithoutObsWithException(grid, width, height, startPoint, range, exception);
 	}
 
 	private List<TTuple> createAttackingTileArea(){
@@ -339,4 +347,13 @@ public class BattleMap extends GameComponent<BattleScene> {
 	public void setEnemies(List<BattleEnemy> enemies) {
 		this.enemies = enemies;
 	}
+
+	public BattleUnit getEnemyTarget() {
+		return enemyTarget;
+	}
+
+	public void setEnemyTarget(BattleUnit enemyTarget) {
+		this.enemyTarget = enemyTarget;
+	}
+	
 }

@@ -12,12 +12,12 @@ import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.LimitedAnimation;
 
-public class CharTakingDamage extends State {
+public class UnitTakingDamage extends State {
 
 	private BattleUnit caster;
 	private UnitDir originDir;
 
-	public CharTakingDamage(BattleUnit caster, UnitDir originDir) {
+	public UnitTakingDamage(BattleUnit caster, UnitDir originDir) {
 		super("TakingDamage");
 		this.caster = caster;
 		this.originDir = originDir;
@@ -31,13 +31,13 @@ public class CharTakingDamage extends State {
 			BattleScene scene = target.getScene();
 			BattleMap map = scene.getMap();
 			if (scene.turnEnded()){
-				target.setState(new CharWaiting());
+				target.setState(new UnitWaiting());
 				map.setState(new MapSelectingUnit());
 				map.addUnit(this.caster);
 				scene.resetCommands();
 			} else {
 				scene.getBattleCommandsWindow().removeCurElement();
-				target.setState(new CharSelected());
+				target.setState(new UnitSelected());
 				map.addSameUnit();
 				map.setState(new MapSelectingUnit());
 			}

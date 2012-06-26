@@ -1,13 +1,14 @@
 package unq.videojuego.states.units;
 
-import unq.videojuego.states.State;
-
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 
-public class CharWaiting extends State {
-	public CharWaiting(){
-		super("Waiting");
+import unq.videojuego.states.State;
+
+public class UnitSelected extends State {
+	
+	public UnitSelected() {
+		super("Selected");
 	}
 
 	@Override

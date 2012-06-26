@@ -19,6 +19,10 @@ public class TTuple {
 		this((int)point.getX(), (int)point.getY(), counter);
 	}
 	
+	public TTuple(Point point){
+		this(point, 0);
+	}
+	
 	public TTuple(int x, int y){
 		this(x, y, 0);
 	}
