@@ -4,8 +4,8 @@ import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.scenes.VideojuegoScene;
-import unq.videojuego.states.character.CharWaiting;
 import unq.videojuego.states.map.MapSelectingUnit;
+import unq.videojuego.states.units.CharWaiting;
 
 public class PassAction extends Action {
 
