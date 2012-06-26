@@ -20,7 +20,6 @@ public class HPBar extends GameComponent<BattleScene> {
 		this.setZ(unitZ);
 		this.bar = new BarComp(scale, 0, 0, unitZ, "HpBar", this.getPerc());
 		double dif = Math.ceil(2*scale);
-		System.out.println(dif);
 		this.bar.changeCoords(this.getRealX() + dif, this.getRealY() + dif);
 		this.updateBar();
 		this.setAppearance(ImageHandler.INSTANCE.getSprite("HpBarBack").scale(scale));
