@@ -199,6 +199,10 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.addUnit(enemy);
 	}
 	
+	public boolean curIsEnemy() {
+		return this.enemies.contains(this.selectedUnit);
+	}
+	
 	public BattleUnit getUnit(TTuple tuple) {
 		BattleUnit wantedEnemy = null;
 		for (BattleUnit enemy : this.units){
@@ -310,5 +314,29 @@ public class BattleMap extends GameComponent<BattleScene> {
 
 	public void setTileSize(int tileSize) {
 		this.tileSize = tileSize;
+	}
+
+	public List<BattleUnit> getUnits() {
+		return units;
+	}
+
+	public void setUnits(List<BattleUnit> units) {
+		this.units = units;
+	}
+
+	public List<BattleCharacter> getCharacters() {
+		return characters;
+	}
+
+	public void setCharacters(List<BattleCharacter> characters) {
+		this.characters = characters;
+	}
+
+	public List<BattleEnemy> getEnemies() {
+		return enemies;
+	}
+
+	public void setEnemies(List<BattleEnemy> enemies) {
+		this.enemies = enemies;
 	}
 }
