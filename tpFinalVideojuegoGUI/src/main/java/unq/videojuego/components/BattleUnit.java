@@ -2,7 +2,7 @@ package unq.videojuego.components;
 
 import unq.videojuego.enums.UnitDir;
 import unq.videojuego.states.State;
-import unq.videojuego.states.character.CharWaiting;
+import unq.videojuego.states.units.CharWaiting;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.ImageHandler;
@@ -29,6 +29,38 @@ public abstract class BattleUnit extends BattleComponent {
 	public void updateAppearance() {
 		this.setAppearance(ImageHandler.INSTANCE.getAnimation(this.name + this.state.getName() + this.dir.name()));
 	}
+	
+	public int getDistance(BattleUnit unit){
+		int unitX = unit.getMapX();
+		int unitY = unit.getMapY();
+		
+		return Math.abs(unitX - this.getMapX()) + Math.abs(unitY - this.getMapY()) - this.getAttackRange(); 
+	}
+	
+	public void setFacingDir(BattleUnit target) {
+        UnitDir wantedDir;
+       
+        int cx = this.getMapX();
+        int cy = this.getMapY();
+        int ex = target.getMapX();
+        int ey = target.getMapY();
+
+        if (cx < ex){
+            wantedDir = UnitDir.Right;
+        } else {
+            wantedDir = UnitDir.Left;
+        }
+         
+        if (Math.abs(cx - ex) < Math.abs(cy - ey)){
+            if (cy < ey){
+                wantedDir = UnitDir.Down;
+            } else {
+                wantedDir = UnitDir.Up;
+            }
+        }
+       
+        this.setDir(wantedDir);
+    }
 
 	public abstract void createImagesMap();
 	
