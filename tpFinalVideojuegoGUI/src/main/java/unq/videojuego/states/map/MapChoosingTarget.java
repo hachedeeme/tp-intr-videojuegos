@@ -6,7 +6,7 @@ import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
-import unq.videojuego.states.character.CharAttacking;
+import unq.videojuego.states.units.UnitAttacking;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
@@ -31,8 +31,8 @@ public class MapChoosingTarget extends State {
            
             if (isInSelectionArea && target != null){
                 map.removeSelectedTile();
-                this.setFacingDir(map.getSelectedUnit(), target);
-                map.getSelectedUnit().setState(new CharAttacking(target));
+                map.getSelectedUnit().setFacingDir(target);
+                map.getSelectedUnit().setState(new UnitAttacking(target));
                 map.setState(new Sleeping());
                 map.removeArea();
                 scene.setAttacked(true);
@@ -47,28 +47,4 @@ public class MapChoosingTarget extends State {
        
     }
 
-    private void setFacingDir(BattleUnit caster, BattleUnit target) {
-        UnitDir wantedDir;
-       
-        int cx = caster.getMapX();
-        int cy = caster.getMapY();
-        int ex = target.getMapX();
-        int ey = target.getMapY();
-
-        if (cx < ex){
-            wantedDir = UnitDir.Right;
-        } else {
-            wantedDir = UnitDir.Left;
-        }
-         
-        if (Math.abs(cx - ex) < Math.abs(cy - ey)){
-            if (cy < ey){
-                wantedDir = UnitDir.Down;
-            } else {
-                wantedDir = UnitDir.Up;
-            }
-        }
-       
-        caster.setDir(wantedDir);
-    }
 }
