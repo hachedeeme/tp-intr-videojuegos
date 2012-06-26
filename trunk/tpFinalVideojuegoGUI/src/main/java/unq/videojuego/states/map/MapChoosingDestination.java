@@ -4,7 +4,7 @@ import unq.videojuego.components.BattleMap;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
-import unq.videojuego.states.character.CharWalking;
+import unq.videojuego.states.units.CharWalking;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
