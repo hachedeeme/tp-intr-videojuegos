@@ -2,7 +2,7 @@ package unq.videojuego.components;
 
 import unq.videojuego.enums.UnitDir;
 import unq.videojuego.states.State;
-import unq.videojuego.states.units.CharWaiting;
+import unq.videojuego.states.units.UnitWaiting;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.ImageHandler;
@@ -10,7 +10,7 @@ import com.uqbar.videojuego.characters.Unit;
 
 public abstract class BattleUnit extends BattleComponent {
 	private String name;
-	private State state = new CharWaiting();
+	private State state = new UnitWaiting();
 	private UnitDir dir = UnitDir.Down;
 	
 	public BattleUnit(String name, UnitDir dir){
