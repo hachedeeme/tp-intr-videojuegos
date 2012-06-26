@@ -73,8 +73,8 @@ public class VideojuegoGame extends Game {
 		//battleScene.addComponent(new GameStatsLabel(10, 10));
 		
 		battleScene.addBattleCharacter(angel, 4, 8);
-		battleScene.addBattleCharacter(ash, 5, 8);
-		battleScene.addBattleEnemy(slime, 4, 3);
+		//battleScene.addBattleCharacter(ash, 5, 8);
+		battleScene.addBattleEnemy(slime, 4, 7);
 		
 		battleScene.addObstacle(new Obstacle("Tree", 1, 1));
 		battleScene.addObstacle(new Obstacle("Tree", 5, 2));
