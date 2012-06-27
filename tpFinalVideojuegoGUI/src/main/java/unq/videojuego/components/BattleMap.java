@@ -190,6 +190,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 	
 	public void removeUnit(BattleUnit unit){
+		this.getScene().removeComponent(unit);
 		this.grid.get(unit.getMapX()).remove(unit.getMapY());
 		this.units.remove(unit);
 		if (this.enemies.contains(unit)){

@@ -42,6 +42,9 @@ public class UnitTakingDamage extends State {
 				map.addSameUnit();
 				map.setState(new MapSelectingUnit());
 			}
+			if (target.isDead()){
+				map.removeUnit(target);
+			}
 		}
 	}
 }
