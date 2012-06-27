@@ -1,11 +1,13 @@
 package unq.videojuego.scenes;
 
+import unq.videojuego.components.Background;
 import unq.videojuego.components.SceneChanger;
 import unq.videojuego.components.menus.Window;
 
 import com.uqbar.vainilla.GameScene;
 
 public abstract class VideojuegoScene extends GameScene {
+	protected Background background;
 	private int screenWidth;
 	private int screenHeight;
 	private SceneChanger sceneChanger;
@@ -17,6 +19,7 @@ public abstract class VideojuegoScene extends GameScene {
 		this.screenWidth = screenWidth;
 		this.screenHeight = screenHeight;
 		this.sceneChanger = sChanger;
+		this.addComponent(sChanger);
 	}
 
 	public SceneChanger getSceneChanger() {

@@ -1,7 +1,6 @@
 package unq.videojuego.states.sceneChanger;
 
 import unq.videojuego.components.SceneChanger;
-import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.scenes.MainMenuScene;
 import unq.videojuego.states.State;
 
@@ -20,9 +19,9 @@ public class GoToBattleScene extends State {
 		SceneChanger sChanger = (SceneChanger) comp;
 		MainMenuScene scene = (MainMenuScene) sChanger.getScene();
 		if (deltaState.isKeyPressed(Key.SPACE)){
-			//SoundHandler.INSTANCE.stopMusic();
-			//sChanger.getGame().setCurrentScene(new BattleScene());
-			//SoundHandler.INSTANCE.playSound("selection");
+			SoundHandler.INSTANCE.stopMusic();
+			sChanger.getGame().setCurrentScene(scene.getBattleScene());
+			SoundHandler.INSTANCE.playSound("StartGame");
 		}
 	}
 
