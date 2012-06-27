@@ -27,7 +27,6 @@ import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Sprite;
 
 public class BattleScene extends VideojuegoScene {
-	private Background background;
 	private IsometricLines isometricLines;
 	private BattleMap map;
 	private int width;
@@ -51,7 +50,8 @@ public class BattleScene extends VideojuegoScene {
 		this.tileSize = tileSize;
 		this.isometricLines = new IsometricLines(ImageHandler.INSTANCE.getSprite("IsometricLines"));
 		this.addComponent(this.isometricLines);
-		this.addComponent(new Background("Background"));
+		this.background = new Background("BattleBackground");
+		this.addComponent(this.background);
 		this.createWindows();
 		this.setMap(map);
 	}
