@@ -18,6 +18,14 @@ public class Character extends Unit{
 		this.stats      = new StatsHandler(statsToHandler);
 		this.skills     = new ArrayList<Skill>();
 	}
+	
+	private Character(String aName, StatsContainer basicStats, StatsHandler stats, CharEquipment equipment){
+		this.name = aName;
+		this.basicStats = basicStats;
+		this.equipment = equipment;
+		this.stats = stats;
+		this.skills     = new ArrayList<Skill>();	
+	}
 
 	//*************//
 	//** METHODS **//
@@ -59,6 +67,10 @@ public class Character extends Unit{
 		String enter = System.getProperty("line.separator");
 		String resString = super.toString() + this.equipment.toString() + enter;		
 		return resString;
+	}
+	
+	public Character copy(){
+		return new Character(this.name, this.basicStats.clone(), this.stats.copy(), this.equipment.copy());
 	}
 	
 	//**************//

@@ -101,6 +101,13 @@ public class StatsHandler extends StatsContainer {
 		return this.movility;
 	}
 	
+	public StatsHandler copy(){
+		StatsContainer stats = new StatsContainer(this.hp, this.mp, this.movility, this.speed, 
+												  this.strength, this.stamina, this.intellect, 
+												  this.wisdom);
+		return new StatsHandler(stats);
+	}
+	
 	//**************//
 	//** PRINTING **//
 	//**************//

@@ -72,4 +72,8 @@ public class Equipment extends Stackable {
 	public String toString() {
 		return this.getName();
 	}
+
+	public Equipment copy() {
+		return new Equipment(this.getName(), this.type, this.stats.clone(), this.range, this.getQuantity(), this.getPrice());
+	}
 }
