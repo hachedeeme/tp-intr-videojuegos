@@ -3,21 +3,19 @@ package unq.videojuego.scenes;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.commands.Action;
-import unq.videojuego.components.menus.BattleActionShowable;
+import unq.videojuego.components.SceneChanger;
 import unq.videojuego.components.menus.BattleItemShowable;
-import unq.videojuego.components.menus.BattleSkillShowable;
 import unq.videojuego.components.menus.Showable;
 import unq.videojuego.components.menus.Window;
+import unq.videojuego.states.Sleeping;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.videojuego.items.Consumable;
-import com.uqbar.videojuego.skills.Skill;
 
 public class MenuScene extends VideojuegoScene {
 	
 	public MenuScene(int screenWidth, int screenHeight) {
-		super(screenWidth, screenHeight);
+		super(screenWidth, screenHeight, new SceneChanger(new Sleeping()));
 		List<Showable> showables1 = new ArrayList<Showable>();
 		List<Showable> showables2 = new ArrayList<Showable>();
 		List<Showable> showables3 = new ArrayList<Showable>();

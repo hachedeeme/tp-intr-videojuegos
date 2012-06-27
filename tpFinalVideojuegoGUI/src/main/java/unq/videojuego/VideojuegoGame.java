@@ -64,7 +64,7 @@ public class VideojuegoGame extends Game {
 		ItemHandler ih = ItemHandler.INSTANCE;
 		
 		ImageHandler imageH = ImageHandler.INSTANCE;
-		//										     Name    Dir         HP   MP   Spd Str Stm Int Wis
+		//	     									 Name    Dir         HP   MP   Spd Str Stm Int Wis
 		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 27, 30, 27, 60, 30);
 		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
 		
