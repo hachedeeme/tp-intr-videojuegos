@@ -70,11 +70,11 @@ public class VideojuegoGame extends Game {
 		ItemHandler itemH = ItemHandler.INSTANCE;
 		
 		//		 									 Name    Dir         HP   MP   Spd Str Stm Int Wis
-		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 30, 38, 27, 60, 30);
-		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 240, 160, 30, 38, 27, 60, 30);
+		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 262, 100, 45, 50, 33, 16, 25);
 		
 		//									 Name     Dir         AttRang mov HP  MP   Spd  Str  Stm  Int Wis
-		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Down,    1,   3, 222,100, 50,  90,  70,  90, 90); 
+		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Down,    1,   3, 222,100, 50,  80,  60,  90, 90); 
 		
 		unitH.addUnits(angel, ash, slime);
 		
