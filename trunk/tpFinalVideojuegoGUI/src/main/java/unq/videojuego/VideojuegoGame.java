@@ -2,12 +2,18 @@ package unq.videojuego;
 
 import java.awt.Dimension;
 
+import unq.videojuego.components.BattleCharacter;
+import unq.videojuego.components.BattleEnemy;
+import unq.videojuego.components.BattleUnit;
+import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.MainMenuScene;
+import unq.videojuego.utils.UnitHandler;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.sound.SoundHandler;
+import com.uqbar.videojuego.items.ItemHandler;
 
 
 public class VideojuegoGame extends Game {
@@ -59,8 +65,49 @@ public class VideojuegoGame extends Game {
 		soundH.addSounds("MainMenuTheme", "BattleTheme", "VictoryTheme", "GameOverTheme", 
 						 "Accept", "Cancel", "Select", "StartGame", "Attack", "StrongAttack");
 		
+		// BattleUnits
+		UnitHandler unitH = UnitHandler.INSTANCE;
+		ItemHandler itemH = ItemHandler.INSTANCE;
 		
+		//		 									 Name    Dir         HP   MP   Spd Str Stm Int Wis
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 30, 38, 27, 60, 30);
+		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
 		
+		//									 Name     Dir         AttRang mov HP  MP   Spd  Str  Stm  Int Wis
+		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Down,    1,   3, 222,100, 50,  90,  70,  90, 90); 
+		
+		unitH.addUnits(angel, ash, slime);
+		
+		/* ITEM EQUIPMENTS LIST
+		 * 
+		 * WEAPONS: ONE HAND: Dagger, Shortsword, Rod. 
+		 * 			TWO HAND: Iron Axe, White Staff.
+		 * HEAD: Iron Helm, Wizard's Hat, Tiara.
+		 * BODY: Iron Armor, Ninja Gear, White Robe.
+		 * HANDS: Armguards, Gauntlets.
+		 * BOOTS: Battle Boots, Sprint Shoes, Ninja Tabi.
+		 * ACCESORIES: Magic Ring, Amulet.
+		 */
+		
+		angel.equip(itemH.getEquipment("White Staff"),
+					itemH.getEquipment("Tiara"),
+					itemH.getEquipment("White Robe"),
+					itemH.getEquipment("Armguards"),
+					itemH.getEquipment("Battle Boots"),
+					itemH.getEquipment("Magic Ring")
+					);
+	
+		ash.equip(itemH.getEquipment("Shortsword"),
+				  itemH.getEquipment("Dagger"),
+				  itemH.getEquipment("Iron Helm"),
+				  itemH.getEquipment("Ninja Gear"),
+				  itemH.getEquipment("Gauntlets"),
+				  itemH.getEquipment("Ninja Tabi"),
+				  itemH.getEquipment("Amulet")
+				  );
+		
+		System.out.println(angel);
+		System.out.println(ash);
 	}
 
 	@Override
