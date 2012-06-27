@@ -5,9 +5,7 @@ import java.util.List;
 
 import unq.videojuego.components.Background;
 import unq.videojuego.components.BattleCharacter;
-import unq.videojuego.components.BattleEnemy;
 import unq.videojuego.components.MiddleComponent;
-import unq.videojuego.components.Obstacle;
 import unq.videojuego.components.SceneChanger;
 import unq.videojuego.states.sceneChanger.GoToBattleScene;
 import unq.videojuego.utils.UnitHandler;
