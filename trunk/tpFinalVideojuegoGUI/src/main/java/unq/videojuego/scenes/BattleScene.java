@@ -74,7 +74,6 @@ public class BattleScene extends VideojuegoScene {
 		List<String> names = new ArrayList<String>();
 		names.add("Slime");
 		names.add("Slime");
-		names.add("Slime");
 		for (String name : names){
 			enemy = (BattleEnemy) unitH.getUnit(name);
 			this.addBattleEnemy(enemy, x, y);

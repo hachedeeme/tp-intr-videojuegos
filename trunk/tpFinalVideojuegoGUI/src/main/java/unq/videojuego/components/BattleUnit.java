@@ -12,13 +12,14 @@ public abstract class BattleUnit extends BattleComponent {
 	private String name;
 	private State state = new UnitWaiting();
 	private UnitDir dir = UnitDir.Down;
-	private int chargeTime = 100;
+	private int chargeTime;
 	
 	public BattleUnit(String name, UnitDir dir){
 		super();
 		this.name = name;
 		this.dir = dir;
 		this.createImagesMap();
+		this.resetCT();
 	}
 	
 	@Override
@@ -120,6 +121,10 @@ public abstract class BattleUnit extends BattleComponent {
 	
 	public boolean isDead(){
 		return this.getUnit().isDead();
+	}
+	
+	public void resetCT() {
+		this.chargeTime = 100;
 	}
 	
 }

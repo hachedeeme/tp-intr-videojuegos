@@ -27,6 +27,7 @@ public class GoToNextBattle extends State {
 			SoundHandler.INSTANCE.stopMusic();
 			SoundHandler.INSTANCE.playSound("Accept");
 			List<BattleCharacter> characters = scene.getMap().getCharacters();
+			this.resetCT(characters);
 			BattleScene newBScene = new BattleScene(scene.getTileSize(), scene.getWidth(), scene.getHeight());
 			
 			newBScene.addCharacters(characters);
@@ -35,6 +36,12 @@ public class GoToNextBattle extends State {
 			
 			sChanger.getGame().setCurrentScene(newBScene);
 			SoundHandler.INSTANCE.playMusic("BattleTheme");
+		}
+	}
+
+	private void resetCT(List<BattleCharacter> characters) {
+		for (BattleCharacter bChar : characters){
+			bChar.resetCT();
 		}
 	}
 
