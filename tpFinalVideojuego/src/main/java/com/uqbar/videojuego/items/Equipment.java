@@ -21,6 +21,13 @@ public class Equipment extends Stackable {
 		this.skills = new ArrayList<Skill>();
 	}
 	
+	public Equipment(String name, StatsContainer stats, EquipType aType) {
+		super(name, 1, 1);
+		this.type   = aType;
+		this.stats  = stats;
+		this.range  = 1;
+		this.skills = new ArrayList<Skill>();
+	}
 	//*************//
 	//** METHODS **//
 	//*************//	

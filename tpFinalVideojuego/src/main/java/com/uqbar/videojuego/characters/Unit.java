@@ -91,6 +91,14 @@ public abstract class Unit {
 		}
 	}
 	
+	@Override
+	public String toString() {
+		String enter = System.getProperty("line.separator");
+		String resString = this.getName() + enter;
+		resString += this.stats.toString();
+		return resString;
+	}
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//

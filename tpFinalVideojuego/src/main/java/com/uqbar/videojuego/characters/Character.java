@@ -54,6 +54,13 @@ public class Character extends Unit{
 		return super.getAttackRange();
 	}
 	
+	@Override
+	public String toString() {
+		String enter = System.getProperty("line.separator");
+		String resString = super.toString() + this.equipment.toString() + enter;		
+		return resString;
+	}
+	
 	//**************//
 	//** ACCESORS **//
 	//**************//	
