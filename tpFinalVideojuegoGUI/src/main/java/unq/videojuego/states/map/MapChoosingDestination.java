@@ -10,6 +10,7 @@ import unq.videojuego.utils.TTuple;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.events.constants.Key;
+import com.uqbar.vainilla.sound.SoundHandler;
 
 public class MapChoosingDestination extends State {
 
@@ -32,6 +33,7 @@ public class MapChoosingDestination extends State {
 				map.removeArea();
 			}
 		} else if (deltaState.isKeyPressed(Key.Z)){
+			SoundHandler.INSTANCE.playSound("Cancel");
 			BattleScene scene = map.getScene();
 			scene.addActiveWindow(scene.getBattleCommandsWindow());
 			map.removeSelectedTile();

@@ -3,6 +3,7 @@ package unq.videojuego.states.selectedTile;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.events.constants.Key;
+import com.uqbar.vainilla.sound.SoundHandler;
 
 import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.SelectedTile;
@@ -35,6 +36,7 @@ public class STileMoving extends State {
 			moved = true;
 		}
 		if (moved && ! map.isOutOfMap(newX, newY)){
+			SoundHandler.INSTANCE.playSound("Select");
 			sTile.getBattleMap().setSelectedTileCoords(newX, newY);
 		}
 	}
