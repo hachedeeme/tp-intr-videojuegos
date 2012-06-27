@@ -19,11 +19,14 @@ public class PassAction extends Action {
 		BattleMap map = bScene.getMap();
 		BattleUnit curUnit = map.getSelectedUnit();
 		curUnit.setState(new UnitWaiting());
+		curUnit.decreaseChargeTime(25);
+		map.endTurn();
 		map.addUnit(curUnit);
 		map.removeSelectedTile();
 		map.setState(new MapSelectingUnit());
 		bScene.getActiveWindow().setPointerPos(0);
 		bScene.resetCommands();
+		
 	}
 
 }

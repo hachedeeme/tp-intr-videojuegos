@@ -71,21 +71,23 @@ public class UnitWalking extends State {
 
 	@Override
 	public void update(GameComponent comp, DeltaState deltaState) {
-		BattleUnit bChar = (BattleUnit) comp;
-		BattleMap map = bChar.getScene().getMap();
+		BattleUnit bUnit = (BattleUnit) comp;
+		BattleMap map = bUnit.getScene().getMap();
 		double delta = deltaState.getDelta();
 		if (! this.moving){
 			if (this.tuplesPath.isEmpty()){
-				BattleScene scene = bChar.getScene();
+				BattleScene scene = bUnit.getScene();
 				scene.setMoved(true);
+				bUnit.decreaseChargeTime(50);
 				if (scene.turnEnded()){
-					bChar.setState(new UnitWaiting());
-					map.addUnit(bChar);
+					map.endTurn();
+					bUnit.setState(new UnitWaiting());
+					map.addUnit(bUnit);
 					map.setState(new MapSelectingUnit());
 					scene.resetCommands();
 				} else {
 					scene.getBattleCommandsWindow().removeCurElement();
-					bChar.setState(new UnitSelected());
+					bUnit.setState(new UnitSelected());
 					map.addSameUnit();
 					map.setState(new MapSelectingUnit());
 				}
@@ -94,20 +96,20 @@ public class UnitWalking extends State {
 				this.newMapX = firstTuple.getX();
 				this.newMapY = firstTuple.getY();
 				
-				this.newRealX = bChar.getScene().getMap().getRealXCoord(bChar, this.newMapX, this.newMapY);
-				this.newRealY = bChar.getScene().getMap().getRealYCoord(bChar, this.newMapX, this.newMapY);
+				this.newRealX = bUnit.getScene().getMap().getRealXCoord(bUnit, this.newMapX, this.newMapY);
+				this.newRealY = bUnit.getScene().getMap().getRealYCoord(bUnit, this.newMapX, this.newMapY);
 				
-				double curX = bChar.getX();
-				double curY = bChar.getY();
+				double curX = bUnit.getX();
+				double curY = bUnit.getY();
 				
 				this.calculateSpeeds(curX, curY, this.tileSize);
-				this.updateDir(bChar);
+				this.updateDir(bUnit);
 				this.moving = true;
 			}
-		} else if (this.notReachedTile(bChar)){
-				bChar.move(this.xSpeed * delta * 1.3, this.ySpeed * delta * 1.3);
+		} else if (this.notReachedTile(bUnit)){
+				bUnit.move(this.xSpeed * delta * 1.3, this.ySpeed * delta * 1.3);
 		} else {
-			map.setMapComponentCoords(bChar, this.newMapX, this.newMapY);
+			map.setMapComponentCoords(bUnit, this.newMapX, this.newMapY);
 			this.moving = false;
 		}
 

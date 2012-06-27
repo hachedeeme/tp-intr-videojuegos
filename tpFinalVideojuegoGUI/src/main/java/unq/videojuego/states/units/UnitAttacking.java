@@ -27,6 +27,7 @@ public class UnitAttacking extends State {
 			this.target.setState(new UnitTakingDamage(caster, originDir));
 			caster.setState(new UnitWaiting());
 			caster.getScene().addAttack(new AttackComp(target.getMapX(), target.getMapY(), "BasicAttack"));
+			caster.decreaseChargeTime(50);
 		}
 	}
 

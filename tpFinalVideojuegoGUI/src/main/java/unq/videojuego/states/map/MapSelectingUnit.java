@@ -32,6 +32,7 @@ public class MapSelectingUnit extends State {
 	public void update(GameComponent comp, DeltaState deltaState) {
 		BattleMap map = (BattleMap) comp;
 		BattleScene scene = map.getScene();
+		
 		map.nextSelectedUnit();
 		map.getSelectedUnit().setState(new UnitSelected());
 		map.updateHPBars();
@@ -71,6 +72,8 @@ public class MapSelectingUnit extends State {
 		
 		if (rangeDif > 0){ // Si no llega a atacarlo
 			if (scene.isMoved()){ // Si ya se movió
+				map.endTurn();
+				enemy.decreaseChargeTime(25);
 				enemy.setState(new UnitWaiting());
 				map.addUnit(enemy);
 				map.setState(new MapSelectingUnit());
@@ -81,6 +84,7 @@ public class MapSelectingUnit extends State {
 				map.setState(new Sleeping());
 			}
 		} else { // El Enemy ataca
+			enemy.decreaseChargeTime(25);
 			scene.setAttacked(true);
 			scene.setMoved(true);
 			map.setEnemyTarget(null);
