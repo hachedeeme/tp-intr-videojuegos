@@ -67,9 +67,9 @@ public class VideojuegoGame extends Game {
 		BattleCharacter ash   = new BattleCharacter("Ash", UnitDir.Up,   223, 165, 27, 30, 27, 60, 30);
 		
 		//									 Name     Dir       AttRang mov HP  MP   Spd Str Stm Int Wis
-		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60); 
-		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60);  
-		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60);  
+		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60); 
+		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
+		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);

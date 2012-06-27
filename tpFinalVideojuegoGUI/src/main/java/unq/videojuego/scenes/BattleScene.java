@@ -75,8 +75,10 @@ public class BattleScene extends VideojuegoScene {
 	}
 	
 	public void removeActiveWindow(){
-		this.removeComponent(this.getActiveWindow());
-		this.setActiveWindow(null);
+		if (this.getActiveWindow() != null){
+			this.removeComponent(this.getActiveWindow());
+			this.setActiveWindow(null);
+		}
 	}
 
 	public void addActiveWindow(Window window){
@@ -87,14 +89,23 @@ public class BattleScene extends VideojuegoScene {
 	public void resetCommands(){
 		this.setAttacked(false);
 		this.setMoved(false);
-		this.removeComponent(this.battleCommandsWindow);
+		//this.removeComponent(this.battleCommandsWindow);
+		//this.setActiveWindow(null);
+	}
+	
+	public void createCommandsWindowAsActive(){
 		Sprite blueWindow = ImageHandler.INSTANCE.getSprite("BlueWindow");
 		this.createCommandsWindow(blueWindow);
 		this.addActiveWindow(this.battleCommandsWindow);
 	}
 	
 	public boolean turnEnded(){
-		return this.attacked && this.moved;
+		return this.isAttacked() && this.isMoved();
+	}
+	
+
+	public boolean turnJustStarted() {
+		return ! this.isAttacked() && ! this.isMoved();
 	}
 	
 	public void updateAndShowUnitStats() {
