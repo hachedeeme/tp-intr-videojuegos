@@ -8,6 +8,7 @@ import com.uqbar.vainilla.appearances.LimitedAnimation;
 import com.uqbar.videojuego.characters.Character;
 import com.uqbar.videojuego.characters.StatsContainer;
 import com.uqbar.videojuego.characters.Unit;
+import com.uqbar.videojuego.items.Equipment;
 
 public class BattleCharacter extends BattleUnit {
 	private Character character;
@@ -96,6 +97,16 @@ public class BattleCharacter extends BattleUnit {
 		this.updateAppearance();
 	}
 	
+	public void equip(Equipment anEquipment){
+		this.character.equip(anEquipment);
+	}
+	
+	public void equip(Equipment...equipments){
+		for (Equipment equipment : equipments){
+			this.equip(equipment);
+		}
+	}
+	
 	@Override
 	public int getMovility(){
 		return this.character.getMovility();
@@ -113,6 +124,11 @@ public class BattleCharacter extends BattleUnit {
 	
 	public Unit getUnit(){
 		return this.character;
+	}
+	
+	@Override
+	public String toString() {
+		return this.character.toString();
 	}
 
 }

@@ -12,6 +12,7 @@ import unq.videojuego.scenes.BattleScene;
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.ImageHandler;
+import com.uqbar.videojuego.items.ItemHandler;
 
 public class VideojuegoGame extends Game {
 	private int tileSize;
@@ -60,17 +61,48 @@ public class VideojuegoGame extends Game {
 		int tileHeight = 7;
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
+		ItemHandler ih = ItemHandler.INSTANCE;
 		
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		//										     Name    Dir         HP   MP   Spd Str Stm Int Wis
-		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
-		BattleCharacter ash   = new BattleCharacter("Ash", UnitDir.Up,   223, 165, 27, 30, 27, 60, 30);
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 27, 30, 27, 60, 30);
+		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
 		
+		/* ITEM EQUIPMENTS LIST
+		 * 
+		 * WEAPONS: ONE HAND: Dagger, Shortsword, Rod. 
+		 * 			TWO HAND: Iron Axe, White Staff.
+		 * HEAD: Iron Helm, Wizard's Hat, Tiara.
+		 * BODY: Iron Armor, Ninja Gear, White Robe.
+		 * HANDS: Armguards, Gauntlets.
+		 * BOOTS: Battle Boots, Sprint Shoes, Ninja Tabi.
+		 * ACCESORIES: Magick Ring, Amulet.
+		 */
+		angel.equip(ih.getEquipment("White Staff"),
+					ih.getEquipment("Tiara"),
+					ih.getEquipment("White Robe"),
+					ih.getEquipment("Armguards"),
+					ih.getEquipment("Sprint Shoes"),
+					ih.getEquipment("Magick Ring")
+					);
+		
+		ash.equip(ih.getEquipment("Shortsword"),
+				  ih.getEquipment("Dagger"),
+				  ih.getEquipment("Iron Helm"),
+				  ih.getEquipment("Ninja Gear"),
+				  ih.getEquipment("Gauntlets"),
+				  ih.getEquipment("Ninja Tabi"),
+				  ih.getEquipment("Amulet")
+				  );
+		
+		System.out.println(angel);
+		System.out.println(ash);
 		//									 Name     Dir       AttRang mov HP  MP   Spd Str Stm Int Wis
 		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60); 
 		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
 		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
 		
+		System.out.println(slime1);
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
 		//battleScene.addComponent(new GameStatsLabel(10, 10));
