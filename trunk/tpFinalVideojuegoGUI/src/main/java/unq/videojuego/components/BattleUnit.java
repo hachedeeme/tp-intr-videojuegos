@@ -116,4 +116,8 @@ public abstract class BattleUnit extends BattleComponent {
 			this.chargeTime = 100;
 	}
 	
+	public boolean isDead(){
+		return this.getUnit().isDeat();
+	}
+	
 }
