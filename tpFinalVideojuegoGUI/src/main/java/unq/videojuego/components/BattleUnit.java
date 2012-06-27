@@ -73,6 +73,8 @@ public abstract class BattleUnit extends BattleComponent {
 	
 	public abstract int getSpeed();
 	
+	public abstract BattleUnit copy();
+	
 	public UnitDir getDir() {
 		return dir;
 	}
