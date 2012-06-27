@@ -62,11 +62,14 @@ public class VideojuegoGame extends Game {
 		this.screenHeight = this.tileSize*tileHeight;
 		
 		ImageHandler imageH = ImageHandler.INSTANCE;
+		//										     Name    Dir         HP   MP   Spd Str Stm Int Wis
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
+		BattleCharacter ash   = new BattleCharacter("Ash", UnitDir.Up,   223, 165, 27, 30, 27, 60, 30);
 		
-		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up);
-		BattleCharacter ash = new BattleCharacter("Ash", UnitDir.Up);
-		
-		BattleEnemy slime = new BattleEnemy("Slime", UnitDir.Down);
+		//									 Name     Dir       AttRang mov HP  MP   Spd Str Stm Int Wis
+		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60); 
+		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60);  
+		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   4, 200,100, 80, 60, 60, 60, 60);  
 		
 		BattleMap bm1 = new BattleMap(imageH.getSprite("BattleMap1"), this.tileSize, 11, 11);
 		BattleScene battleScene = new BattleScene(bm1, this.tileSize, tileWidth, tileHeight);
@@ -74,7 +77,9 @@ public class VideojuegoGame extends Game {
 		
 		battleScene.addBattleCharacter(angel, 4, 8);
 		battleScene.addBattleCharacter(ash, 5, 8);
-		battleScene.addBattleEnemy(slime, 4, 3);
+		battleScene.addBattleEnemy(slime1, 4, 3);
+		battleScene.addBattleEnemy(slime2, 3, 3);
+		battleScene.addBattleEnemy(slime3, 5, 3);
 		
 		battleScene.addObstacle(new Obstacle("Tree", 1, 1));
 		battleScene.addObstacle(new Obstacle("Tree", 5, 2));

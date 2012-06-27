@@ -190,7 +190,34 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 	
 	public void addUnit(BattleUnit unit){
+		/*int index  = 0;
+		int unitCT = unit.getChargeTime();
+		int currentCT;
+		ArrayList<BattleUnit> battleUnits = new ArrayList<BattleUnit>();
+		if(battleUnits.addAll(this.units)){
+			for (BattleUnit currentUnit : battleUnits) {
+				currentCT = currentUnit.getChargeTime();
+				if(currentCT > unitCT){
+					index ++;
+				}else{ 
+					if(currentCT == unitCT && currentUnit.getSpeed() > unit.getSpeed())
+						index++;
+					else
+						this.units.add(index, unit);
+				}
+			}
+		}else { this.units.add(unit); }*/
 		this.units.add(unit);
+	}
+	
+	public void endTurn(){
+		ArrayList<BattleUnit> battleUnits = new ArrayList<BattleUnit>();
+		battleUnits.addAll(this.units);
+		this.units = new ArrayList<BattleUnit>();
+		for (BattleUnit unit : battleUnits) {
+			unit.raiseChargeTime();
+			this.addUnit(unit);
+		}
 	}
 	
 	public void addSameUnit() {

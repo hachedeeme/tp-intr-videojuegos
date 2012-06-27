@@ -12,9 +12,11 @@ import com.uqbar.videojuego.characters.Unit;
 public class BattleCharacter extends BattleUnit {
 	private Character character;
 
-	public BattleCharacter(String name, UnitDir dir) {
+	public BattleCharacter(String name, UnitDir dir, 
+										int hp, int mp, int speed,
+										int strength, int stamina, int intellect, int wisdom) {
 		super(name, dir);
-		StatsContainer stats = new StatsContainer(40, 20, 0, 30, 30, 30, 10, 8);
+		StatsContainer stats = new StatsContainer(hp, mp, 0, speed, strength, stamina, intellect, wisdom);
 		this.character = new Character(name, stats);
 		System.out.println(this.character.getStats());
 	}
@@ -102,6 +104,11 @@ public class BattleCharacter extends BattleUnit {
 	@Override
 	public int getAttackRange() {
 		return this.character.getAttackRange();
+	}
+	
+	@Override
+	public int getSpeed() {
+		return this.character.getSpeed();
 	}
 	
 	public Unit getUnit(){

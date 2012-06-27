@@ -12,6 +12,7 @@ public abstract class BattleUnit extends BattleComponent {
 	private String name;
 	private State state = new UnitWaiting();
 	private UnitDir dir = UnitDir.Down;
+	private int chargeTime = 100;
 	
 	public BattleUnit(String name, UnitDir dir){
 		super();
@@ -68,6 +69,10 @@ public abstract class BattleUnit extends BattleComponent {
 	
 	public abstract int getAttackRange();
 	
+	public abstract Unit getUnit();
+	
+	public abstract int getSpeed();
+	
 	public UnitDir getDir() {
 		return dir;
 	}
@@ -87,15 +92,28 @@ public abstract class BattleUnit extends BattleComponent {
 
 	public String getName() {
 		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-	
-	public abstract Unit getUnit();
+	}	
 	
 	public void setOpposedDir(UnitDir aUnitDir){
 		this.dir = aUnitDir.getOpposed();
 	}
+	
+	public int getChargeTime() {
+		return chargeTime;
+	}
+	
+	public void decreaseChargeTime(int amount){
+		if(this.chargeTime > amount)
+			this.chargeTime -= amount;
+		else
+			this.chargeTime = 0;
+	}
+	
+	public void raiseChargeTime(){
+		int amount = 15 + this.getSpeed()* 7/100;
+		this.chargeTime += amount;
+		if(this.chargeTime > 100)
+			this.chargeTime = 100;
+	}
+	
 }
