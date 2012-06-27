@@ -19,7 +19,6 @@ public class BattleCharacter extends BattleUnit {
 		super(name, dir);
 		StatsContainer stats = new StatsContainer(hp, mp, 0, speed, strength, stamina, intellect, wisdom);
 		this.character = new Character(name, stats);
-		System.out.println(this.character.getStats());
 	}
 
 	@Override
