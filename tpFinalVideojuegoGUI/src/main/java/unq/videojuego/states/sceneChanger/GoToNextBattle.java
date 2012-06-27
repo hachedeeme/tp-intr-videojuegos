@@ -30,9 +30,8 @@ public class GoToNextBattle extends State {
 			BattleScene newBScene = new BattleScene(scene.getTileSize(), scene.getWidth(), scene.getHeight());
 			
 			newBScene.addCharacters(characters);
-			newBScene.addEnemies("Slime", "Slime", "Slime");
-			newBScene.addObstacle(new Obstacle("Tree", 1, 1));
-			newBScene.addObstacle(new Obstacle("Tree", 5, 2));
+			newBScene.addRandomEnemies();
+			newBScene.createObstacles();
 			
 			sChanger.getGame().setCurrentScene(newBScene);
 			SoundHandler.INSTANCE.playMusic("BattleTheme");

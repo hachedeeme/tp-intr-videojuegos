@@ -57,7 +57,35 @@ public class BattleScene extends VideojuegoScene {
 		this.setMap(new BattleMap(ImageHandler.INSTANCE.getSprite("BattleMap1"), tileSize, 11, 11));
 	}
 	
-	
+	public void addCharacters(List<BattleCharacter> characters) {
+		int x = 3;
+		int y = 8;
+		for (BattleCharacter bChar : characters){
+			this.addBattleCharacter(bChar, x, y);
+			x++;
+		}
+	}
+
+	public void addRandomEnemies() {
+		UnitHandler unitH = UnitHandler.INSTANCE;
+		BattleEnemy enemy;
+		int x = 3;
+		int y = 3;
+		List<String> names = new ArrayList<String>();
+		names.add("Slime");
+		names.add("Slime");
+		names.add("Slime");
+		for (String name : names){
+			enemy = (BattleEnemy) unitH.getUnit(name);
+			this.addBattleEnemy(enemy, x, y);
+			x++;
+		}
+	}
+
+	public void createObstacles() {
+		this.addObstacle(new Obstacle("Tree", 1, 1));
+		this.addObstacle(new Obstacle("Tree", 5, 2));
+	}
 	
 	private void createWindows() {
 		Sprite blueWindow = ImageHandler.INSTANCE.getSprite("BlueWindow");
@@ -244,27 +272,6 @@ public class BattleScene extends VideojuegoScene {
 
 	public void setMoved(boolean moved) {
 		this.moved = moved;
-	}
-
-	public void addCharacters(List<BattleCharacter> characters) {
-		int x = 3;
-		int y = 8;
-		for (BattleCharacter bChar : characters){
-			this.addBattleCharacter(bChar, x, y);
-			x++;
-		}
-	}
-
-	public void addEnemies(String...names) {
-		UnitHandler unitH = UnitHandler.INSTANCE;
-		BattleEnemy enemy;
-		int x = 3;
-		int y = 3;
-		for (String name : names){
-			enemy = (BattleEnemy) unitH.getUnit(name);
-			this.addBattleEnemy(enemy, x, y);
-			x++;
-		}
 	}
 	
 }

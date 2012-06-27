@@ -24,8 +24,6 @@ public class MainMenuScene extends VideojuegoScene {
 		this.addComponent(this.background);
 		this.addComponent(new MiddleComponent(screenWidth, screenHeight, ImageHandler.INSTANCE.getAnimation("GoToBattle")));
 		
-		ImageHandler imageH = ImageHandler.INSTANCE;
-		
 		UnitHandler unitH = UnitHandler.INSTANCE;
 		BattleCharacter angel = (BattleCharacter) unitH.getUnit("Angel");
 		BattleCharacter ash   = (BattleCharacter) unitH.getUnit("Ash");
@@ -37,11 +35,10 @@ public class MainMenuScene extends VideojuegoScene {
 		int tileHeight = screenHeight/tileSize;
 		this.battleScene = new BattleScene(tileSize, tileWidth, tileHeight);
 		this.battleScene.addCharacters(characters);
-		this.battleScene.addEnemies("Slime", "Slime", "Slime");
+		this.battleScene.addRandomEnemies();
+		this.battleScene.createObstacles();
 		//this.battleScene.addComponent(new GameStatsLabel(10, 10));
 		
-		this.battleScene.addObstacle(new Obstacle("Tree", 1, 1));
-		this.battleScene.addObstacle(new Obstacle("Tree", 5, 2));
 	}
 
 	public BattleScene getBattleScene() {
