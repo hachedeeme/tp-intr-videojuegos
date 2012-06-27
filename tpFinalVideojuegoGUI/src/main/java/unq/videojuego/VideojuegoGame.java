@@ -49,7 +49,8 @@ public class VideojuegoGame extends Game {
 		imageH.addLimitedAnimation(0.1, 1.5, 560, 104, 80, 104, "attacks/FirePilar");
 	
 		SoundHandler soundH = SoundHandler.INSTANCE;
-		soundH.addSounds("Accept", "StartGame");
+		soundH.addSounds("MainMenuTheme", "BattleTheme", "VictoryTheme", "GameOverTheme", 
+						 "Accept", "StartGame");
 		
 	}
 
@@ -62,7 +63,7 @@ public class VideojuegoGame extends Game {
 		this.screenHeight = this.tileSize*tileHeight;
 		
 		this.setCurrentScene(new MainMenuScene(this.screenWidth, this.screenHeight, this.tileSize));
-		//SoundHandler.INSTANCE.playMusic("MainMenuTheme");
+		SoundHandler.INSTANCE.playMusic("MainMenuTheme");
 	}
 	
 	public int getScreenWidth() {

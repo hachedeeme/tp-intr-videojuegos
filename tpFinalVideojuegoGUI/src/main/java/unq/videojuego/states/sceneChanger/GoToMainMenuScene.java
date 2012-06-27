@@ -24,7 +24,7 @@ public class GoToMainMenuScene extends State {
 			SoundHandler.INSTANCE.stopMusic();
 			sChanger.getGame().setCurrentScene(new MainMenuScene(scene.getScreenWidth(), scene.getScreenHeight(), scene.getTileSize()));
 			SoundHandler.INSTANCE.playSound("Accept");
-			//SoundHandler.INSTANCE.playMusic("MainMenuTheme");
+			SoundHandler.INSTANCE.playMusic("MainMenuTheme");
 		}
 	}
 
