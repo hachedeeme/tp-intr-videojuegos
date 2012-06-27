@@ -77,7 +77,7 @@ public abstract class Unit {
 	 * Retorna si el currentHp de la Unit es menor o igual a 0.
 	 * @return boolean
 	 */
-	public boolean isDeat(){
+	public boolean isDead(){
 		return this.stats.getCurrentHp() <= 0;
 	}
 	
