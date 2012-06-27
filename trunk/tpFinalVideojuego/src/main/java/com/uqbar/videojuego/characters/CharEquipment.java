@@ -76,7 +76,22 @@ public class CharEquipment {
 	
 	@Override
 	public String toString() {
-		return this.equipment.toString();
+		String enter = System.getProperty("line.separator");
+		String resString = "-- EQUIPMENT --" + enter;
+		resString += " - MAINHAND  = " + this.makeString(getMainHand()) + enter;
+		resString += " - OFFHAND   = " + this.makeString(getOffHand()) + enter;
+		resString += " - HEAD      = " + this.makeString(getHead()) + enter;
+		resString += " - BODY      = " + this.makeString(getBody()) + enter;
+		resString += " - HANDS     = " + this.makeString(getHand()) + enter;
+		resString += " - FEETS     = " + this.makeString(getFeet()) + enter;
+		resString += " - ACCESORY  = " + this.makeString(getAccesory()) + enter;
+		return resString;
+	}
+	
+	private String makeString(Object anObject){
+		if(anObject == null)
+			return "";
+		return anObject.toString();
 	}
 	
 	//**************//
