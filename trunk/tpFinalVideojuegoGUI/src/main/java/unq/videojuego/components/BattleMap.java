@@ -189,6 +189,16 @@ public class BattleMap extends GameComponent<BattleScene> {
 		this.selectedTile.setState(new Sleeping());
 	}
 	
+	public void removeUnit(BattleUnit unit){
+		this.grid.get(unit.getMapX()).remove(unit.getMapY());
+		this.units.remove(unit);
+		if (this.enemies.contains(unit)){
+			this.enemies.remove(unit);
+		} else {
+			this.characters.remove(unit);
+		}
+	}
+	
 	public void addUnit(BattleUnit unit){
 		int index  = 0;
 		int unitCT = unit.getChargeTime();

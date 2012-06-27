@@ -37,7 +37,9 @@ public class VideojuegoGame extends Game {
 						  
 						  "Dagger",
 						  
-						  "AngelAvatar", "AshAvatar", "SlimeAvatar");
+						  "AngelAvatar", "AshAvatar", "SlimeAvatar",
+						  
+						  "GameOver", "YouWin");
 		
 		// Tile Selection 
 		imageH.addAnimation(0.15, 1, 900, 50, 100, 50, "TileArea");
@@ -48,6 +50,10 @@ public class VideojuegoGame extends Game {
 		imageH.addLimitedAnimation(0.1, 1, 126, 128, 126, 64, "attacks/Ki");
 		imageH.addLimitedAnimation(0.1, 1.5, 560, 104, 80, 104, "attacks/FirePilar");
 	
+		// Messages
+		imageH.addAnimation(0.5, 1, 680, 200, 340, 200, "GoToMainMenu");
+		imageH.addAnimation(0.5, 1, 680, 200, 340, 200, "GoToBattle");
+		
 		SoundHandler soundH = SoundHandler.INSTANCE;
 		soundH.addSounds("MainMenuTheme", "BattleTheme", "VictoryTheme", "GameOverTheme", 
 						 "Accept", "StartGame");
