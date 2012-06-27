@@ -66,6 +66,14 @@ public class CharEquipment {
 		}
 	}
 	
+	public CharEquipment copy(){
+		CharEquipment equipment = new CharEquipment();
+		for (Equipment aEquip : this.equipment.values()) {
+			equipment.putEquipment(aEquip.copy());
+		}
+		return equipment;
+	}
+	
 	public boolean haveMainHand(){
 		return this.getMainHand() != null;
 	}

@@ -87,4 +87,15 @@ public class Enemy extends Unit{
 		this.skills = new ArrayList<Skill>();
 		this.attackRange = attackRange;
 	}
+	
+	private Enemy(String aName, int attackRange, StatsHandler stats){
+		this.name = aName;
+		this.stats  = stats;
+		this.skills = new ArrayList<Skill>();
+		this.attackRange = attackRange;
+	}
+	
+	public Enemy copy(){
+		return new Enemy(this.getName(), this.getAttackRange(), this.stats.copy());
+	}
 }
