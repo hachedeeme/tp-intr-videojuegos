@@ -57,7 +57,7 @@ public class VideojuegoGame extends Game {
 		
 		SoundHandler soundH = SoundHandler.INSTANCE;
 		soundH.addSounds("MainMenuTheme", "BattleTheme", "VictoryTheme", "GameOverTheme", 
-						 "Accept", "StartGame");
+						 "Accept", "StartGame", "Attack", "StrongAttack");
 		
 	}
 
