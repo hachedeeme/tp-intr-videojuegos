@@ -12,6 +12,7 @@ import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
 import unq.videojuego.states.sceneChanger.GoToMainMenuScene;
+import unq.videojuego.states.sceneChanger.GoToNextBattle;
 import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
@@ -245,15 +246,18 @@ public class BattleMap extends GameComponent<BattleScene> {
 	}
 
 	private void updateSceneChanger() {
+		// Asume que se perdió o se ganó
 		BattleScene scene = this.getScene();
 		if (this.characters.isEmpty()){
 			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("GameOver")));
 			scene.getSceneChanger().setState(new GoToMainMenuScene());
 			SoundHandler.INSTANCE.playMusic("GameOverTheme");
-		} else if (this.enemies.isEmpty()){
+		} else {
 			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("YouWin")));
-			scene.getSceneChanger().setState(new GoToMainMenuScene()); // Cambiar a nextBattle
+			scene.getSceneChanger().setState(new GoToNextBattle());
+			SoundHandler.INSTANCE.playMusic("VictoryTheme");
 		}
+		scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getAnimation("GoToAnotherScene")));
 	}
 
 	private boolean battleEnded() {

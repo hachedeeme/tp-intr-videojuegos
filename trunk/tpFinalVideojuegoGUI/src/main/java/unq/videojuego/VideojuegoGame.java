@@ -58,7 +58,7 @@ public class VideojuegoGame extends Game {
 		imageH.addLimitedAnimation(0.1, 1.5, 560, 104, 80, 104, "attacks/FirePilar");
 	
 		// Messages
-		imageH.addAnimation(0.5, 1, 680, 200, 340, 200, "GoToMainMenu");
+		imageH.addAnimation(0.5, 1, 680, 200, 340, 200, "GoToAnotherScene");
 		imageH.addAnimation(0.5, 1, 680, 200, 340, 200, "GoToBattle");
 		
 		SoundHandler soundH = SoundHandler.INSTANCE;

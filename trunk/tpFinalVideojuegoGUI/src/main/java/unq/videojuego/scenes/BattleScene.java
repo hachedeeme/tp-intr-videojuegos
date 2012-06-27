@@ -22,6 +22,7 @@ import unq.videojuego.components.menus.Showable;
 import unq.videojuego.components.menus.UnitStats;
 import unq.videojuego.components.menus.Window;
 import unq.videojuego.states.Sleeping;
+import unq.videojuego.utils.UnitHandler;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Sprite;
@@ -43,7 +44,7 @@ public class BattleScene extends VideojuegoScene {
 	
 	private UnitStats curUnitStats;
 	
-	public BattleScene(BattleMap map, int tileSize, int width, int height) {
+	public BattleScene(int tileSize, int width, int height) {
 		super(tileSize * width, tileSize * height, new SceneChanger(new Sleeping()));
 		this.width = width;
 		this.height = height;
@@ -53,8 +54,10 @@ public class BattleScene extends VideojuegoScene {
 		this.background = new Background("BattleBackground");
 		this.addComponent(this.background);
 		this.createWindows();
-		this.setMap(map);
+		this.setMap(new BattleMap(ImageHandler.INSTANCE.getSprite("BattleMap1"), tileSize, 11, 11));
 	}
+	
+	
 	
 	private void createWindows() {
 		Sprite blueWindow = ImageHandler.INSTANCE.getSprite("BlueWindow");
@@ -241,6 +244,27 @@ public class BattleScene extends VideojuegoScene {
 
 	public void setMoved(boolean moved) {
 		this.moved = moved;
+	}
+
+	public void addCharacters(List<BattleCharacter> characters) {
+		int x = 3;
+		int y = 8;
+		for (BattleCharacter bChar : characters){
+			this.addBattleCharacter(bChar, x, y);
+			x++;
+		}
+	}
+
+	public void addEnemies(String...names) {
+		UnitHandler unitH = UnitHandler.INSTANCE;
+		BattleEnemy enemy;
+		int x = 3;
+		int y = 3;
+		for (String name : names){
+			enemy = (BattleEnemy) unitH.getUnit(name);
+			this.addBattleEnemy(enemy, x, y);
+			x++;
+		}
 	}
 	
 }
