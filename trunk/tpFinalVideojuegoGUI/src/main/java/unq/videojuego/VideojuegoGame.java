@@ -9,21 +9,22 @@ import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.sound.SoundHandler;
 
+
 public class VideojuegoGame extends Game {
-	private int tileSize;
-	private int screenWidth;
-	private int screenHeight;
+    private int tileSize;
+    private int screenWidth;
+    private int screenHeight;
 
-	@Override
-	public Dimension getDisplaySize() {
-		return new Dimension(this.screenWidth, this.screenHeight);
-	}
+    @Override
+    public Dimension getDisplaySize() {
+        return new Dimension(this.screenWidth, this.screenHeight);
+    }
 
-	@Override
-	public String getTitle() {
-		return "Videojuego";
-	}
-
+    @Override
+    public String getTitle() {
+        return "Videojuego";
+    }
+    
 	@Override
 	protected void initializeResources() {
 		ImageHandler imageH = ImageHandler.INSTANCE;
@@ -84,7 +85,8 @@ public class VideojuegoGame extends Game {
 		return this.tileSize;
 	}
 
-	public static void main(String[] args) {
-		new DesktopGameLauncher(new VideojuegoGame()).launch();
-	}
+
+    public static void main(String[] args) {
+        new DesktopGameLauncher(new VideojuegoGame()).launch();
+    }
 }
