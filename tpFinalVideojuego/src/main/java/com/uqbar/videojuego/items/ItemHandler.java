@@ -21,11 +21,11 @@ public class ItemHandler {
 		this.addItem( "Shortsword", new Equipment(
 					  "Shortsword", new StatsContainer( 0, 0, 0,  0,  25,  0,  0,  0), EquipType.ONEHANDED));
 		this.addItem( "Iron Axe", new Equipment(
-				      "Iron Axe",   new StatsContainer( 0, 0, 0,  0,  40,  8,  0,  0), EquipType.TWOHANDED));
+				      "Iron Axe",   new StatsContainer( 0, 0, 0,  0,  42,  8,  0,  0), EquipType.TWOHANDED));
 		this.addItem( "Rod", new Equipment(
 				 	  "Rod", 	    new StatsContainer( 0, 0, 0,  0,  10,  0, 10,  0), EquipType.ONEHANDED));
 		this.addItem( "White Staff", new Equipment(
-					  "White Staff",new StatsContainer( 0, 0, 0,  0,  20,  0,  8,  0) ,EquipType.TWOHANDED));
+					  "White Staff",new StatsContainer( 0, 0, 0,  0,  23,  0,  8,  0) ,EquipType.TWOHANDED));
 		
 		//															  BODY	
 		//	    							            HP MP Mov Spd Str Stm Int Wis
