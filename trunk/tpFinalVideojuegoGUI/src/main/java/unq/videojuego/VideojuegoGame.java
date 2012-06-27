@@ -2,19 +2,12 @@ package unq.videojuego;
 
 import java.awt.Dimension;
 
-import unq.videojuego.components.BattleCharacter;
-import unq.videojuego.components.BattleEnemy;
-import unq.videojuego.components.BattleMap;
-import unq.videojuego.components.Obstacle;
-import unq.videojuego.enums.UnitDir;
-import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.scenes.MainMenuScene;
 
 import com.uqbar.vainilla.DesktopGameLauncher;
 import com.uqbar.vainilla.Game;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.sound.SoundHandler;
-import com.uqbar.videojuego.items.ItemHandler;
 
 public class VideojuegoGame extends Game {
 	private int tileSize;
