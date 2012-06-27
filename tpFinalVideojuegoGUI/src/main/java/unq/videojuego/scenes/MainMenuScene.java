@@ -4,6 +4,7 @@ import unq.videojuego.components.Background;
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleEnemy;
 import unq.videojuego.components.BattleMap;
+import unq.videojuego.components.MiddleComponent;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.components.SceneChanger;
 import unq.videojuego.enums.UnitDir;
@@ -20,6 +21,7 @@ public class MainMenuScene extends VideojuegoScene {
 		
 		this.background = new Background("MainMenuBackground");
 		this.addComponent(this.background);
+		this.addComponent(new MiddleComponent(screenWidth, screenHeight, ImageHandler.INSTANCE.getAnimation("GoToBattle")));
 		
 		ItemHandler itemH = ItemHandler.INSTANCE;
 		ImageHandler imageH = ImageHandler.INSTANCE;
