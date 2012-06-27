@@ -22,8 +22,8 @@ public class GoToMainMenuScene extends State {
 		BattleScene scene = (BattleScene) sChanger.getScene();
 		if (deltaState.isKeyPressed(Key.SPACE)){
 			SoundHandler.INSTANCE.stopMusic();
-			sChanger.getGame().setCurrentScene(new MainMenuScene(scene.getScreenWidth(), scene.getScreenHeight(), scene.getTileSize()));
 			SoundHandler.INSTANCE.playSound("Accept");
+			sChanger.getGame().setCurrentScene(new MainMenuScene(scene.getScreenWidth(), scene.getScreenHeight(), scene.getTileSize()));
 			SoundHandler.INSTANCE.playMusic("MainMenuTheme");
 		}
 	}

@@ -31,9 +31,9 @@ public class UnitTakingDamage extends State {
 			BattleScene scene = target.getScene();
 			BattleMap map = scene.getMap();
 			if (scene.turnEnded()){
+				map.setState(new MapSelectingUnit());
 				map.endTurn();
 				target.setState(new UnitWaiting());
-				map.setState(new MapSelectingUnit());
 				map.addUnit(this.caster);
 				scene.resetCommands();
 			} else {
