@@ -26,7 +26,7 @@ public class MainMenuScene extends VideojuegoScene {
 		ItemHandler itemH = ItemHandler.INSTANCE;
 		ImageHandler imageH = ImageHandler.INSTANCE;
 		//	     									 Name    Dir         HP   MP   Spd Str Stm Int Wis
-		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 27, 30, 27, 60, 30);
+		BattleCharacter angel = new BattleCharacter("Angel", UnitDir.Up, 223, 160, 30, 38, 27, 60, 30);
 		BattleCharacter ash   = new BattleCharacter("Ash",   UnitDir.Up, 255, 100, 45, 50, 33, 16, 25);
 		
 		/* ITEM EQUIPMENTS LIST
@@ -43,7 +43,7 @@ public class MainMenuScene extends VideojuegoScene {
 					itemH.getEquipment("Tiara"),
 					itemH.getEquipment("White Robe"),
 					itemH.getEquipment("Armguards"),
-					itemH.getEquipment("Sprint Shoes"),
+					itemH.getEquipment("Battle Boots"),
 					itemH.getEquipment("Magick Ring")
 					);
 		
@@ -58,10 +58,10 @@ public class MainMenuScene extends VideojuegoScene {
 		
 		System.out.println(angel);
 		System.out.println(ash);
-		//									 Name     Dir       AttRang mov HP  MP   Spd Str Stm Int Wis
-		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60); 
-		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
-		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 200,100, 80, 60, 60, 60, 60);  
+		//									 Name     Dir       AttRang mov HP  MP   Spd  Str  Stm  Int Wis
+		BattleEnemy slime1 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 222,100, 50,  90,  70,  90, 90); 
+		BattleEnemy slime2 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 222,100, 50,  90,  70,  90, 90); 
+		BattleEnemy slime3 = new BattleEnemy("Slime", UnitDir.Down, 1,   3, 222,100, 50,  90,  70,  90, 90); 
 		
 		System.out.println(slime1);
 		int tileWidth = screenWidth/tileSize;
