@@ -8,6 +8,7 @@ import unq.videojuego.states.State;
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.appearances.LimitedAnimation;
+import com.uqbar.vainilla.sound.SoundHandler;
 
 public class UnitAttacking extends State {
 	private BattleUnit target;
@@ -26,6 +27,7 @@ public class UnitAttacking extends State {
 			this.target.setOpposedDir(caster.getDir());
 			this.target.setState(new UnitTakingDamage(caster, originDir));
 			caster.setState(new UnitWaiting());
+			SoundHandler.INSTANCE.playSound("Attack");
 			caster.getScene().addAttack(new AttackComp(target.getMapX(), target.getMapY(), "BasicAttack"));
 			caster.decreaseChargeTime(50);
 		}
