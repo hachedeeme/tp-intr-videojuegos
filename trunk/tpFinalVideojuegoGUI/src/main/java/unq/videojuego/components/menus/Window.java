@@ -4,7 +4,6 @@ import java.awt.Graphics2D;
 import java.util.ArrayList;
 import java.util.List;
 
-import unq.videojuego.commands.Action;
 import unq.videojuego.components.ImageComp;
 import unq.videojuego.scenes.VideojuegoScene;
 
@@ -13,6 +12,7 @@ import com.uqbar.vainilla.GameComponent;
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Sprite;
 import com.uqbar.vainilla.events.constants.Key;
+import com.uqbar.vainilla.sound.SoundHandler;
 
 public class Window extends GameComponent<VideojuegoScene> {
 	private List<Showable> topElements;
@@ -67,11 +67,13 @@ public class Window extends GameComponent<VideojuegoScene> {
 					if (this.pointerPos > 0){
 						this.pointerPos--;
 						this.updatePointer();
+						SoundHandler.INSTANCE.playSound("Select");
 					} else {
 						this.moveToBotElems();
 					}
 				} else if (deltaState.isKeyPressed(Key.DOWN)){
 					if (this.pointerPos < this.elements.size()-1){
+						SoundHandler.INSTANCE.playSound("Select");
 						this.pointerPos++;
 						this.updatePointer();
 					} else {

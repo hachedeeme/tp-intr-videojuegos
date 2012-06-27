@@ -25,6 +25,7 @@ public class MapWaitingForAction extends State {
 			BattleActionShowable actionS = (BattleActionShowable) scene.getActiveWindow().getElem();
 			actionS.execute(scene);
 		} else if (deltaState.isKeyPressed(Key.Z)){
+			SoundHandler.INSTANCE.playSound("Cancel");
 			scene.removeActiveWindow();
 			scene.setActiveWindow(scene.getBattleCommandsWindow());
 		}
