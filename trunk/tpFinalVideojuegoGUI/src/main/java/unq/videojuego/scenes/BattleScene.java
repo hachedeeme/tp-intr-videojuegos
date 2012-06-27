@@ -64,8 +64,6 @@ public class BattleScene extends VideojuegoScene {
 		List<Showable> battleActions = new ArrayList<Showable>();
 		battleActions.add(new BattleActionShowable(new AttackAction()));
 		this.battleActionsWindow = new Window(this.battleCommandsWindow.getWidth(), this.getScreenHeight() - blueWindow.getHeight(), blueWindow, battleActions);
-		
-		this.addActiveWindow(this.battleCommandsWindow);
 	}
 	
 	public void createCommandsWindow(Sprite blueWindow){

@@ -203,25 +203,39 @@ public class BattleMap extends GameComponent<BattleScene> {
 					  currentUnit.getSpeed() > unit.getSpeed())
 					index++;
 				else {
-					System.out.println("AGREGUE");
 					this.units.add(index, unit);
 					added = true;
 					break;
 				}
 			}
 		if (! added){
-			System.out.println("AGREGUE");
 			this.units.add(unit);
 		}
 	}
 	
 	public void endTurn(){
-		ArrayList<BattleUnit> battleUnits = new ArrayList<BattleUnit>();
-		battleUnits.addAll(this.units);
-		this.units = new ArrayList<BattleUnit>();
+		ArrayList<BattleUnit> battleUnits = new ArrayList<BattleUnit>(this.units);
+		this.units.clear();
+		while (this.noOneIsReady(battleUnits)){
+			this.raiseUnitsChargeTime(battleUnits);
+		}
+		for (BattleUnit unit : battleUnits){
+			this.addUnit(unit);
+		}
+	}
+
+	private boolean noOneIsReady(ArrayList<BattleUnit> battleUnits) {
+		for (BattleUnit unit : battleUnits){
+			if (unit.getChargeTime() == 100){
+				return false;
+			}
+		}
+		return true;
+	}
+
+	private void raiseUnitsChargeTime(ArrayList<BattleUnit> battleUnits) {
 		for (BattleUnit unit : battleUnits) {
 			unit.raiseChargeTime();
-			this.addUnit(unit);
 		}
 	}
 	
