@@ -206,7 +206,6 @@ public class BattleMap extends GameComponent<BattleScene> {
 			this.updateSceneChanger();
 			this.setState(new Sleeping());
 			this.updateHPBars();
-			SoundHandler.INSTANCE.playMusic("GameOverTheme");
 		}
 	}
 	
@@ -250,6 +249,7 @@ public class BattleMap extends GameComponent<BattleScene> {
 		if (this.characters.isEmpty()){
 			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("GameOver")));
 			scene.getSceneChanger().setState(new GoToMainMenuScene());
+			SoundHandler.INSTANCE.playMusic("GameOverTheme");
 		} else if (this.enemies.isEmpty()){
 			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("YouWin")));
 			scene.getSceneChanger().setState(new GoToMainMenuScene()); // Cambiar a nextBattle
