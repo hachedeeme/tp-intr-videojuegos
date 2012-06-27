@@ -20,6 +20,11 @@ public class BattleCharacter extends BattleUnit {
 		StatsContainer stats = new StatsContainer(hp, mp, 0, speed, strength, stamina, intellect, wisdom);
 		this.character = new Character(name, stats);
 	}
+	
+	private BattleCharacter(String name, UnitDir dir, Character character){
+		super(name, dir);
+		this.character = character;
+	}
 
 	@Override
 	public void createImagesMap() {		
@@ -106,6 +111,9 @@ public class BattleCharacter extends BattleUnit {
 		}
 	}
 	
+	public BattleCharacter copy(){
+		return new BattleCharacter(this.getName(), this.getDir(), this.character.copy());
+	}
 	@Override
 	public int getMovility(){
 		return this.character.getMovility();
