@@ -21,6 +21,11 @@ public class BattleEnemy extends BattleUnit {
 							   hp, mp, speed, strength, stamina, intellect, wisdom);
 	}
 	
+	private BattleEnemy(String name, UnitDir dir, Enemy enemy) {
+		super(name, dir);
+		this.enemy = enemy;
+	}
+
 	@Override
 	public void createImagesMap() {		
 		// Waiting
@@ -93,6 +98,10 @@ public class BattleEnemy extends BattleUnit {
 
 		
 		this.updateAppearance();
+	}
+	
+	public BattleEnemy copy(){
+		return new BattleEnemy(this.getName(), this.getDir(), this.enemy.copy());
 	}
 	
 	@Override
