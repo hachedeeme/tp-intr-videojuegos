@@ -11,12 +11,15 @@ import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.Sleeping;
 import unq.videojuego.states.State;
 import unq.videojuego.states.map.MapSelectingUnit;
+import unq.videojuego.states.sceneChanger.GoToMainMenuScene;
 import unq.videojuego.utils.PathFinder;
 import unq.videojuego.utils.TTuple;
 
 import com.uqbar.vainilla.DeltaState;
 import com.uqbar.vainilla.GameComponent;
+import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Sprite;
+import com.uqbar.vainilla.sound.SoundHandler;
 
 public class BattleMap extends GameComponent<BattleScene> {
 	private PathFinder pathFinder = PathFinder.INSTANCE;
@@ -198,6 +201,13 @@ public class BattleMap extends GameComponent<BattleScene> {
 		} else {
 			this.characters.remove(unit);
 		}
+		
+		if (this.battleEnded()){
+			this.updateSceneChanger();
+			this.setState(new Sleeping());
+			this.updateHPBars();
+			SoundHandler.INSTANCE.playMusic("GameOverTheme");
+		}
 	}
 	
 	public void addUnit(BattleUnit unit){
@@ -233,6 +243,21 @@ public class BattleMap extends GameComponent<BattleScene> {
 		for (BattleUnit unit : battleUnits){
 			this.addUnit(unit);
 		}
+	}
+
+	private void updateSceneChanger() {
+		BattleScene scene = this.getScene();
+		if (this.characters.isEmpty()){
+			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("GameOver")));
+			scene.getSceneChanger().setState(new GoToMainMenuScene());
+		} else if (this.enemies.isEmpty()){
+			scene.addComponent(new MiddleComponent(scene.getScreenWidth(), scene.getScreenHeight(), ImageHandler.INSTANCE.getSprite("YouWin")));
+			scene.getSceneChanger().setState(new GoToMainMenuScene()); // Cambiar a nextBattle
+		}
+	}
+
+	private boolean battleEnded() {
+		return this.enemies.isEmpty() || this.characters.isEmpty();
 	}
 
 	private boolean noOneIsReady(ArrayList<BattleUnit> battleUnits) {

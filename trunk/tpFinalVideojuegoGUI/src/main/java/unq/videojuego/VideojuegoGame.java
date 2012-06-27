@@ -59,6 +59,8 @@ public class VideojuegoGame extends Game {
 		soundH.addSounds("MainMenuTheme", "BattleTheme", "VictoryTheme", "GameOverTheme", 
 						 "Accept", "StartGame", "Attack", "StrongAttack");
 		
+		
+		
 	}
 
 	@Override
