@@ -68,12 +68,8 @@ public class VideojuegoGame extends Game {
 		this.screenWidth = this.tileSize*tileWidth;
 		this.screenHeight = this.tileSize*tileHeight;
 		
-		
-		
 		this.setCurrentScene(new MainMenuScene(this.screenWidth, this.screenHeight, this.tileSize));
-		/*
-		this.setCurrentScene(new MenuScene(screenWidth, screenHeight));
-		 */
+		//SoundHandler.INSTANCE.playMusic("MainMenuTheme");
 	}
 	
 	public int getScreenWidth() {

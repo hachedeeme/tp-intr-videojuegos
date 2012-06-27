@@ -22,6 +22,7 @@ public class GoToBattleScene extends State {
 			SoundHandler.INSTANCE.stopMusic();
 			sChanger.getGame().setCurrentScene(scene.getBattleScene());
 			SoundHandler.INSTANCE.playSound("StartGame");
+			//SoundHandler.INSTANCE.playMusic("BattleTheme");
 		}
 	}
 
