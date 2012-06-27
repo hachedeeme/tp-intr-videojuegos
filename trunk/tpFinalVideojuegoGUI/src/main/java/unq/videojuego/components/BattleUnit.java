@@ -117,7 +117,7 @@ public abstract class BattleUnit extends BattleComponent {
 	}
 	
 	public boolean isDead(){
-		return this.getUnit().isDeat();
+		return this.getUnit().isDead();
 	}
 	
 }
