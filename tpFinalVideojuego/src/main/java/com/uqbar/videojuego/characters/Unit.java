@@ -46,7 +46,8 @@ public abstract class Unit {
 	
 	public int applyVariance(int aValue){
 		Random rand = new Random();
-		return rand.nextInt(aValue * 10 / 100) + aValue;
+		double newValue = aValue * 10.0 / 100.0;
+		return rand.nextInt((int)Math.ceil(newValue)) + aValue;
 	}
 	/**
 	 * Retorna el da�o fisico que puede llegar a causar seg�n sus stats.
