@@ -1,5 +1,7 @@
 package com.uqbar.videojuego.characters;
 
+import java.util.ArrayList;
+
 
 
 public class StatsHandler extends StatsContainer {
@@ -32,7 +34,7 @@ public class StatsHandler extends StatsContainer {
 	}
 	
 	public void increaseHP(int amount){
-		if((this.hp - this.currentHp) < amount)
+		if((this.hp - this.currentHp) > amount)
 			this.currentHp += amount;
 		else
 			this.currentHp = this.hp;
@@ -46,7 +48,7 @@ public class StatsHandler extends StatsContainer {
 	}
 	
 	public void increaseMP(int amount){
-		if((this.mp - this.currentMp) < amount)
+		if((this.mp - this.currentMp) > amount)
 			this.currentMp += amount;
 		else
 			this.currentMp = this.mp;
@@ -113,8 +115,8 @@ public class StatsHandler extends StatsContainer {
 		resString += "MP = " + this.mp + "/"+ this.currentMp + enter;
 		resString += this.statsToString();
 		resString += "Attack Power = " + this.attackPower + enter;
-		resString += "Spell Power = " + this.spellPower + enter;
-		resString += "Armor = " + this.armor + enter;
+		resString += "Spell Power  = " + this.spellPower + enter;
+		resString += "Armor        = " + this.armor + enter;
 		resString += "Magic Resist = " + this.magicResist + enter;
 		return resString;
 	}
