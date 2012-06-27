@@ -16,10 +16,12 @@ import unq.videojuego.components.BattleMap;
 import unq.videojuego.components.BattleUnit;
 import unq.videojuego.components.IsometricLines;
 import unq.videojuego.components.Obstacle;
+import unq.videojuego.components.SceneChanger;
 import unq.videojuego.components.menus.BattleActionShowable;
 import unq.videojuego.components.menus.Showable;
 import unq.videojuego.components.menus.UnitStats;
 import unq.videojuego.components.menus.Window;
+import unq.videojuego.states.Sleeping;
 
 import com.uqbar.vainilla.ImageHandler;
 import com.uqbar.vainilla.appearances.Sprite;
@@ -43,7 +45,7 @@ public class BattleScene extends VideojuegoScene {
 	private UnitStats curUnitStats;
 	
 	public BattleScene(BattleMap map, int tileSize, int width, int height) {
-		super(tileSize * width, tileSize * height);
+		super(tileSize * width, tileSize * height, new SceneChanger(new Sleeping()));
 		this.width = width;
 		this.height = height;
 		this.tileSize = tileSize;
