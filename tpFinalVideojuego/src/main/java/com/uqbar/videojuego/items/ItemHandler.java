@@ -63,8 +63,8 @@ public class ItemHandler {
 		
 		//		  										    	  ACCESORY	
 		//	    							             HP MP Mov Spd Str Stm Int Wis
-		this.addItem( "Magick Ring", new Equipment(
-					  "Magick Ring", new StatsContainer( 0, 0,  0,  0,  0,  0,  5,  5) ,EquipType.ACCESORY));
+		this.addItem( "Magic Ring", new Equipment(
+					  "Magic Ring", new StatsContainer( 0, 0,  0,  0,  0,  0,  5,  5) ,EquipType.ACCESORY));
 		this.addItem( "Amulet", new Equipment(
 					  "Amulet",      new StatsContainer( 0, 0,  0,  0,  5,  5,  0,  0) ,EquipType.ACCESORY));
 	}
