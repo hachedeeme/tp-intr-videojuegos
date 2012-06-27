@@ -96,6 +96,11 @@ public class BattleEnemy extends BattleUnit {
 	}
 	
 	@Override
+	public String toString() {
+		return this.enemy.toString();
+	}
+	
+	@Override
 	public int getMovility() {
 		return this.enemy.getMovility();
 	}
