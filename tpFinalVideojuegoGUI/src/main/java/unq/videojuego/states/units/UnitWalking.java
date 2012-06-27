@@ -36,6 +36,7 @@ public class UnitWalking extends State {
 	public UnitWalking(List<TTuple> tuplesPath, int tileSize) {
 		super("Walking");
 		this.tuplesPath = tuplesPath;
+		System.out.println(tuplesPath);
 		this.tileSize = tileSize;
 	}
 

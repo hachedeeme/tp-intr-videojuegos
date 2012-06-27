@@ -5,6 +5,7 @@ import java.util.List;
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.Obstacle;
 import unq.videojuego.components.SceneChanger;
+import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.BattleScene;
 import unq.videojuego.states.State;
 
@@ -27,7 +28,7 @@ public class GoToNextBattle extends State {
 			SoundHandler.INSTANCE.stopMusic();
 			SoundHandler.INSTANCE.playSound("Accept");
 			List<BattleCharacter> characters = scene.getMap().getCharacters();
-			this.resetCT(characters);
+			this.resetCharacters(characters);
 			BattleScene newBScene = new BattleScene(scene.getTileSize(), scene.getWidth(), scene.getHeight());
 			
 			newBScene.addCharacters(characters);
@@ -39,9 +40,11 @@ public class GoToNextBattle extends State {
 		}
 	}
 
-	private void resetCT(List<BattleCharacter> characters) {
+	private void resetCharacters(List<BattleCharacter> characters) {
 		for (BattleCharacter bChar : characters){
 			bChar.resetCT();
+			bChar.setDir(UnitDir.Up);
+			bChar.updateAppearance();
 		}
 	}
 
