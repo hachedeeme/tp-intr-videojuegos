@@ -38,6 +38,11 @@ public class MapSelectingUnit extends State {
 		scene.removeCurUnitStats();
 		scene.updateAndShowUnitStats();
 		
+		if (scene.turnJustStarted()){
+			scene.removeActiveWindow();
+			scene.createCommandsWindowAsActive();
+		}
+		
 		if (map.curIsEnemy()){
 			scene.removeComponent(scene.getBattleCommandsWindow());
 			map.setState(new Sleeping());
