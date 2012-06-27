@@ -1,9 +1,5 @@
 package com.uqbar.videojuego.characters;
 
-import java.util.ArrayList;
-
-
-
 public class StatsHandler extends StatsContainer {
 	private int currentHp;
 	private int currentMp;

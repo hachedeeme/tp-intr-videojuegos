@@ -30,9 +30,9 @@ public class ItemHandler {
 		//															  BODY	
 		//	    							            HP MP Mov Spd Str Stm Int Wis
 		this.addItem( "Iron Armor", new Equipment(
-					  "Iron Armor", new StatsContainer( 0, 0, 0,  0,  0,  35,  0,  3) ,EquipType.CHEST));
+					  "Iron Armor", new StatsContainer( 0, 0, 0,  0,  0,  30,  0,  3) ,EquipType.CHEST));
 		this.addItem( "Ninja Gear", new Equipment(
-					  "Ninja Gear", new StatsContainer( 0, 0, 0,  6,  0,  33,  0,  6) ,EquipType.CHEST));
+					  "Ninja Gear", new StatsContainer( 0, 0, 0,  6,  0,  27,  0,  6) ,EquipType.CHEST));
 		this.addItem( "White Robe", new Equipment(
 					  "White Robe", new StatsContainer( 0, 0, 0,  0,  0,  23,  3,  48),EquipType.CHEST));
 		
