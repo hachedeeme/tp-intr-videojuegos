@@ -97,12 +97,12 @@ public class StatsContainer {
 	//**************//
 	protected String statsToString(){
 		String enter = System.getProperty("line.separator");
-		String resString = "Movility = " + this.movility + enter;
-		resString += "Speed = " + this.speed + enter;
-		resString += "Strength = "  + this.strength + enter;
-		resString += "Stamina = "   + this.stamina + enter;
+		String resString = "Movility  = " + this.movility + enter;
+		resString += "Speed     = " + this.speed + enter;
+		resString += "Strength  = "  + this.strength + enter;
+		resString += "Stamina   = "   + this.stamina + enter;
 		resString += "Intellect = " + this.intellect + enter;
-		resString += "Wisdom = "    + this.wisdom + enter;
+		resString += "Wisdom    = "    + this.wisdom + enter;
 		return resString;
 	}
 	
