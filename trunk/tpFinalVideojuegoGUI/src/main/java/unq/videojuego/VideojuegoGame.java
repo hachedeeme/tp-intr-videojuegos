@@ -4,7 +4,6 @@ import java.awt.Dimension;
 
 import unq.videojuego.components.BattleCharacter;
 import unq.videojuego.components.BattleEnemy;
-import unq.videojuego.components.BattleUnit;
 import unq.videojuego.enums.UnitDir;
 import unq.videojuego.scenes.MainMenuScene;
 import unq.videojuego.utils.UnitHandler;
