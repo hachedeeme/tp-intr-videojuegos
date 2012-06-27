@@ -11,9 +11,14 @@ import com.uqbar.videojuego.characters.Unit;
 public class BattleEnemy extends BattleUnit {
 	private Enemy enemy;
 
-	public BattleEnemy(String name, UnitDir dir) {
+	public BattleEnemy(String name, UnitDir dir, 
+					   int attackRange, int movility,
+					   int hp, int mp,
+					   int speed,
+					   int strength, int stamina, int intellect, int wisdom ) {
 		super(name, dir);
-		this.enemy = new Enemy(name, 200, 100, 27, 30, 26, 19, 20);
+		this.enemy = new Enemy(name, attackRange, movility,
+							   hp, mp, speed, strength, stamina, intellect, wisdom);
 	}
 	
 	@Override
@@ -98,6 +103,11 @@ public class BattleEnemy extends BattleUnit {
 	@Override
 	public int getAttackRange() {
 		return this.enemy.getAttackRange();
+	}
+	
+	@Override
+	public int getSpeed() {
+		return this.enemy.getSpeed();
 	}
 	
 	public Unit getUnit(){
